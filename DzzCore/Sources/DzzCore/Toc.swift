@@ -48,7 +48,7 @@ public struct Toc: Sendable {
 public enum TocParser {
     private static let sectionLine = try! NSRegularExpression(
         pattern: #"^(\S+部)\t\[[^\]]*\]\t（(\d{4})-(\d{4})）\s*$"#)
-    private static let juanCount = try! NSRegularExpression(pattern: #"(?:第\d+-)?(\d+)卷"#)
+    private static let juanCount = try! NSRegularExpression(pattern: #"(?:第(\d+)-)?(\d+)卷"#)
 
     public static func parse(_ text: String) -> Toc {
         var sections: [TocSection] = []
@@ -88,7 +88,12 @@ public enum TocParser {
         if fields.count > 4 {
             let f = fields[4] as NSString
             if let m = juanCount.firstMatch(in: fields[4], range: NSRange(location: 0, length: f.length)) {
-                count = Int(f.substring(with: m.range(at: 1)))
+                let last = Int(f.substring(with: m.range(at: 2)))
+                if m.range(at: 1).location != NSNotFound, let first = Int(f.substring(with: m.range(at: 1))), let last {
+                    count = last - first + 1    // "(第401-600卷)" → 200
+                } else {
+                    count = last
+                }
             }
         }
 

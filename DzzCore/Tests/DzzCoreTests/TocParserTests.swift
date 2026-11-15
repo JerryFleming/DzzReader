@@ -44,6 +44,7 @@ enum Fixtures {
 
     @Test func parsesRangeJuanCount() {
         #expect(toc.entries.first { $0.number == "0220a" }?.juanCount == 200)
+        #expect(toc.entries.first { $0.number == "0220b" }?.juanCount == 200)   // (第201-400卷)
         #expect(toc.entries.first { $0.number == "0216" }?.juanCount == 1)
     }
 
