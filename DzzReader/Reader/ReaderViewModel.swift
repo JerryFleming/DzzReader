@@ -60,10 +60,10 @@ final class ReaderViewModel {
 
     // MARK: Loading
 
-    func load(scheme: ColorScheme) async {
+    func load(fileURL: URL? = nil, scheme: ColorScheme) async {
         self.scheme = scheme
         do {
-            let result = try await BookLoader.load(book: book)
+            let result = try await BookLoader.load(book: book, fileURL: fileURL)
             loaded = result
             book.lastOpened = .now
 

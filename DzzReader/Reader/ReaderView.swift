@@ -61,6 +61,7 @@ struct ReaderView: View {
                     .font(.footnote)
                     .padding(.horizontal, 14).padding(.vertical, 8)
                     .background(.thinMaterial, in: Capsule())
+                    .accessibilityIdentifier("toast")
                     .transition(.opacity)
                     .task {
                         try? await Task.sleep(for: .seconds(1.5))
@@ -118,7 +119,6 @@ struct ReaderView: View {
                         Label("书签", systemImage: "bookmark")
                     }
                     .accessibilityIdentifier("bookmarkButton")
-                    .simultaneousGesture(LongPressGesture().onEnded { _ in showBookmarks = true })
                     Spacer()
                     Button { showBookmarks = true } label: { Label("书签列表", systemImage: "bookmark.fill") }
                         .accessibilityIdentifier("bookmarkListButton")
