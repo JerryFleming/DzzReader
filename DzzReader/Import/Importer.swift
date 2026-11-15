@@ -1,11 +1,79 @@
 import Foundation
 import SwiftData
+import DzzCore
 
-/// Placeholder until Task 10; the shelf's swipe-to-delete needs the symbol.
+enum ImportError: Error, LocalizedError {
+    case undecodable(String)
+    case unreadable(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .undecodable(let name): "无法识别「\(name)」的文字编码。"
+        case .unreadable(let name): "无法读取「\(name)」。"
+        }
+    }
+}
+
+/// Copies txt files into Documents/Imported as UTF-8 and registers them as books.
 @MainActor
 enum Importer {
+    static var importedDirectory: URL {
+        let url = URL.documentsDirectory.appending(path: "Imported")
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        return url
+    }
+
+    private static let headerTitle = try! NSRegularExpression(pattern: #"^(?:大正藏\s*)?No\.\s*\S+\s+(.+)$"#)
+
+    @discardableResult
+    static func importFile(at url: URL, context: ModelContext) throws -> Book {
+        let name = url.lastPathComponent
+        let accessed = url.startAccessingSecurityScopedResource()
+        defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+
+        let data: Data
+        do {
+            data = try Data(contentsOf: url)
+        } catch {
+            throw ImportError.unreadable(name)
+        }
+        guard let decoded = TextDecoder.decode(data) else { throw ImportError.undecodable(name) }
+
+        let id = UUID().uuidString
+        let relativePath = "Imported/\(id).txt"
+        let destination = importedDirectory.appending(path: "\(id).txt")
+        let utf8 = Data(decoded.text.utf8)
+        try utf8.write(to: destination, options: .atomic)
+
+        let title = titleFor(text: decoded.text, filename: name)
+        let book = Book(id: id, title: title, source: .imported, relativePath: relativePath,
+                        section: nil, juanCount: nil, author: nil, catalogOrder: 0,
+                        byteSize: utf8.count, encodingName: decoded.encodingName)
+        book.chapters = ChapterIndexer.index(text: decoded.text, bookTitle: title)
+        book.indexedByteSize = utf8.count
+        context.insert(book)
+        try context.save()
+        return book
+    }
+
     static func delete(_ book: Book, context: ModelContext) throws {
+        if book.source == .imported {
+            try? FileManager.default.removeItem(at: book.fileURL)
+        }
         context.delete(book)
         try context.save()
+    }
+
+    /// Title from the canon header line when present, else the filename without extension.
+    static func titleFor(text: String, filename: String) -> String {
+        let fallback = (filename as NSString).deletingPathExtension
+        guard let firstLine = text.split(separator: "\n", omittingEmptySubsequences: true)
+            .map({ ChapterIndexer.normalise($0) }).first(where: { !$0.isEmpty }) else { return fallback }
+        let ns = firstLine as NSString
+        if let m = headerTitle.firstMatch(in: firstLine, range: NSRange(location: 0, length: ns.length)) {
+            let title = ns.substring(with: m.range(at: 1)).trimmingCharacters(in: .whitespaces)
+            if !title.isEmpty { return title }
+        }
+        return fallback
     }
 }
