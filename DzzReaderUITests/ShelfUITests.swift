@@ -30,7 +30,7 @@ final class ShelfUITests: XCTestCase {
         XCTAssertTrue(first.waitForExistence(timeout: 10))
         saveShot("section-agama")
         first.tap()
-        XCTAssertTrue(app.staticTexts["长阿含经"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.textViews["chapterText"].waitForExistence(timeout: 20))
     }
 
     func testSearchFindsByNumber() {

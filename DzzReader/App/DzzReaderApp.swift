@@ -29,6 +29,7 @@ struct RootView: View {
     @State private var loadError: String?
     @State private var path = NavigationPath()
     @State private var importRequested = false
+    @State private var settings = ReaderSettings()
 
     var body: some View {
         Group {
@@ -38,7 +39,9 @@ struct RootView: View {
                 NavigationStack(path: $path) {
                     ShelfView(importRequested: $importRequested)
                         .navigationDestination(for: ShelfSection.self) { SectionView(sectionName: $0.name) }
-                        .navigationDestination(for: Book.self) { book in Text(book.title) }
+                        .navigationDestination(for: Book.self) { book in
+                            ReaderView(book: book, context: context, settings: settings)
+                        }
                 }
             } else {
                 ProgressView("正在整理书架…")
