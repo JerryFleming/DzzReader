@@ -76,6 +76,26 @@ final class ReaderUITests: XCTestCase {
         saveShot("reader-resumed")
     }
 
+    /// The largest file in the corpus (5.3 MB, 0220c 大般若经) must open and show its 目录 promptly.
+    func testLargestBookOpensQuickly() {
+        let started = Date()
+        openBook(number: "0220c", rowTitle: "0220c · 大般若波罗蜜多经")
+        let opened = Date().timeIntervalSince(started)
+        tapCenter()
+        XCTAssertTrue(app.staticTexts["chapterTitle"].waitForExistence(timeout: 5))
+        let sheetStart = Date()
+        app.buttons["chaptersButton"].tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'chapter-'")).firstMatch.waitForExistence(timeout: 5))
+        let sheetTime = Date().timeIntervalSince(sheetStart)
+        saveShot("largest-chapters")
+        NSLog("DZZPERF largest book open=%.2fs chapters sheet=%.2fs", opened, sheetTime)
+        XCTAssertLessThan(sheetTime, 3.0)
+        app.buttons["完成"].tap()
+        app.textViews["chapterText"].swipeUp()
+        app.textViews["chapterText"].swipeUp()
+        XCTAssertTrue(app.textViews["chapterText"].exists)
+    }
+
     func testEmptyAndSmallBooksOpen() {
         openBook(number: "0002", rowTitle: "0002 · 佛说七佛经")
         tapCenter()
