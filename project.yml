@@ -44,9 +44,17 @@ targets:
     platform: iOS
     sources:
       - path: DzzReaderTests
+        excludes:
+          - Fixtures
+      - path: DzzReaderTests/Fixtures
+        type: folder
+        buildPhase: resources
     dependencies:
       - target: DzzReader
       - package: DzzCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
 
 schemes:
   DzzReader:
