@@ -27,13 +27,19 @@ struct RootView: View {
     @Environment(\.modelContext) private var context
     @State private var ready = false
     @State private var loadError: String?
+    @State private var path = NavigationPath()
+    @State private var importRequested = false
 
     var body: some View {
         Group {
             if let loadError {
                 ContentUnavailableView("无法整理书架", systemImage: "books.vertical", description: Text(loadError))
             } else if ready {
-                Text("大藏经")
+                NavigationStack(path: $path) {
+                    ShelfView(importRequested: $importRequested)
+                        .navigationDestination(for: ShelfSection.self) { SectionView(sectionName: $0.name) }
+                        .navigationDestination(for: Book.self) { book in Text(book.title) }
+                }
             } else {
                 ProgressView("正在整理书架…")
             }

@@ -35,6 +35,20 @@
                ReferencedContainer = "container:DzzReader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D51908EB557304A7C0548D44"
+               BuildableName = "DzzReaderUITests.xctest"
+               BlueprintName = "DzzReaderUITests"
+               ReferencedContainer = "container:DzzReader.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -61,6 +75,17 @@
                BlueprintIdentifier = "1FDFC29B32E9755FAC1612F1"
                BuildableName = "DzzReaderTests.xctest"
                BlueprintName = "DzzReaderTests"
+               ReferencedContainer = "container:DzzReader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D51908EB557304A7C0548D44"
+               BuildableName = "DzzReaderUITests.xctest"
+               BlueprintName = "DzzReaderUITests"
                ReferencedContainer = "container:DzzReader.xcodeproj">
             </BuildableReference>
          </TestableReference>

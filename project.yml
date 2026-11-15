@@ -56,15 +56,29 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: "YES"
 
+  DzzReaderUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: DzzReaderUITests
+    dependencies:
+      - target: DzzReader
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        TEST_TARGET_NAME: DzzReader
+
 schemes:
   DzzReader:
     build:
       targets:
         DzzReader: all
         DzzReaderTests: [test]
+        DzzReaderUITests: [test]
     run:
       config: Debug
     test:
       config: Debug
       targets:
         - DzzReaderTests
+        - DzzReaderUITests

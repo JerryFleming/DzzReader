@@ -8,14 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2047B7ED1D02BD7F97EC8076 /* BookSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953F5B32F02D9193D621DB2 /* BookSource.swift */; };
+		36BF94B4C9D54922BA93D74B /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386AAB558B23B39BC3346BD5 /* SectionView.swift */; };
+		3C03ACA760593BB124EAC04B /* BookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41AA864CB9DBD089FEF35A4 /* BookRow.swift */; };
+		3C5A6CE2A8A3BEF2B092BDAC /* ShelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78C8D517D239CD75800343 /* ShelfUITests.swift */; };
+		687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C13CB41671E634D4D5594C /* Importer.swift */; };
 		7FF9287F9D568161353CC89A /* ReadingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */; };
 		81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */; };
 		840097FE32E2F28381FE8B01 /* DzzCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0995F20ECE2B75266299086 /* DzzCore */; };
 		92A5FDF6C3190A2B4DB70F18 /* CatalogLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49080ABA9A3DE5050A9428E7 /* CatalogLoaderTests.swift */; };
+		AF5EEB34C9F2EB98158968A9 /* ShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503643486B3504BF98B5DFBD /* ShelfView.swift */; };
 		BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */; };
 		C0D63A404D6FA1D8DBCD2C60 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = CDDE53494A0217F9B5FFC3B4 /* Fixtures */; };
 		C4CC5D89BB33BCE06160C117 /* CatalogLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */; };
 		D79CE93563CCD46CAD50EC46 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0C6C718002E8456E4EC0E /* Bookmark.swift */; };
+		EAB591C58978C0CDC54F5867 /* ShelfSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9ACBB95078CF2B140F097E /* ShelfSearchResults.swift */; };
 		ECE44E62CA1C837E1DB28CFE /* DzzCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4703AEE269D9AF9314B978DD /* DzzCore */; };
 		EEB3CB14433CEE8E6A633E65 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6349296641D593FBB2295912 /* Book.swift */; };
 /* End PBXBuildFile section */
@@ -28,22 +34,36 @@
 			remoteGlobalIDString = 811CE11CB9A6E04306316D69;
 			remoteInfo = DzzReader;
 		};
+		DC98C5186277AF2F6AC25B30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0A8AC7394DF4BA80DAAE2CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 811CE11CB9A6E04306316D69;
+			remoteInfo = DzzReader;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1953F5B32F02D9193D621DB2 /* BookSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSource.swift; sourceTree = "<group>"; };
+		1A9ACBB95078CF2B140F097E /* ShelfSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfSearchResults.swift; sourceTree = "<group>"; };
+		386AAB558B23B39BC3346BD5 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoader.swift; sourceTree = "<group>"; };
 		45436F0672A06F30D7935B78 /* DzzReaderTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49080ABA9A3DE5050A9428E7 /* CatalogLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoaderTests.swift; sourceTree = "<group>"; };
+		503643486B3504BF98B5DFBD /* ShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
 		6349296641D593FBB2295912 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		65C13CB41671E634D4D5594C /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DzzReaderApp.swift; sourceTree = "<group>"; };
 		6F069477C7829B58BEA5516D /* DzzReader.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DzzReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContainer+App.swift"; sourceTree = "<group>"; };
 		941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgress.swift; sourceTree = "<group>"; };
 		A0142C0EA21FA88AB3F832E4 /* DzzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DzzCore; path = DzzCore; sourceTree = SOURCE_ROOT; };
+		A41AA864CB9DBD089FEF35A4 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
+		B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F21CB7606BFCD52BC87223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7B0C6C718002E8456E4EC0E /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		CDDE53494A0217F9B5FFC3B4 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = DzzReaderTests/Fixtures; sourceTree = SOURCE_ROOT; };
+		EB78C8D517D239CD75800343 /* ShelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +121,29 @@
 			children = (
 				CE119CE6DD0A184DC408DB1F /* DzzReader */,
 				12CBBD44DA177FC023A7E920 /* DzzReaderTests */,
+				9A75334750B1B7017576AC74 /* DzzReaderUITests */,
 				31EA1639F1B67EF14A3E7910 /* Packages */,
 				A2808729478EE0F836BE926E /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		981B02820B864C1710CBA7C7 /* Shelf */ = {
+			isa = PBXGroup;
+			children = (
+				A41AA864CB9DBD089FEF35A4 /* BookRow.swift */,
+				386AAB558B23B39BC3346BD5 /* SectionView.swift */,
+				1A9ACBB95078CF2B140F097E /* ShelfSearchResults.swift */,
+				503643486B3504BF98B5DFBD /* ShelfView.swift */,
+			);
+			path = Shelf;
+			sourceTree = "<group>";
+		};
+		9A75334750B1B7017576AC74 /* DzzReaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB78C8D517D239CD75800343 /* ShelfUITests.swift */,
+			);
+			path = DzzReaderUITests;
 			sourceTree = "<group>";
 		};
 		A2808729478EE0F836BE926E /* Products */ = {
@@ -111,6 +151,7 @@
 			children = (
 				6F069477C7829B58BEA5516D /* DzzReader.app */,
 				45436F0672A06F30D7935B78 /* DzzReaderTests.xctest */,
+				B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,9 +169,19 @@
 			children = (
 				C6F21CB7606BFCD52BC87223 /* Info.plist */,
 				B855A6010E95EDEDA287955C /* App */,
+				DFBBD020D79D1E7B637C9035 /* Import */,
 				4B6D021575AFF89A04974CF6 /* Model */,
+				981B02820B864C1710CBA7C7 /* Shelf */,
 			);
 			path = DzzReader;
+			sourceTree = "<group>";
+		};
+		DFBBD020D79D1E7B637C9035 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				65C13CB41671E634D4D5594C /* Importer.swift */,
+			);
+			path = Import;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +228,24 @@
 			productReference = 6F069477C7829B58BEA5516D /* DzzReader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D51908EB557304A7C0548D44 /* DzzReaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDAADD114496D6A2F2817C64 /* Build configuration list for PBXNativeTarget "DzzReaderUITests" */;
+			buildPhases = (
+				68BC2399F94E213779C31125 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B003E11EE19CCD576A6D7B3F /* PBXTargetDependency */,
+			);
+			name = DzzReaderUITests;
+			packageProductDependencies = (
+			);
+			productName = DzzReaderUITests;
+			productReference = B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,6 +257,9 @@
 				TargetAttributes = {
 					811CE11CB9A6E04306316D69 = {
 						ProvisioningStyle = Automatic;
+					};
+					D51908EB557304A7C0548D44 = {
+						TestTargetID = 811CE11CB9A6E04306316D69;
 					};
 				};
 			};
@@ -210,6 +282,7 @@
 			targets = (
 				811CE11CB9A6E04306316D69 /* DzzReader */,
 				1FDFC29B32E9755FAC1612F1 /* DzzReaderTests */,
+				D51908EB557304A7C0548D44 /* DzzReaderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +322,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		68BC2399F94E213779C31125 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C5A6CE2A8A3BEF2B092BDAC /* ShelfUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B1124F91352CA1712299321 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,12 +343,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEB3CB14433CEE8E6A633E65 /* Book.swift in Sources */,
+				3C03ACA760593BB124EAC04B /* BookRow.swift in Sources */,
 				2047B7ED1D02BD7F97EC8076 /* BookSource.swift in Sources */,
 				D79CE93563CCD46CAD50EC46 /* Bookmark.swift in Sources */,
 				C4CC5D89BB33BCE06160C117 /* CatalogLoader.swift in Sources */,
 				BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */,
+				687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */,
 				81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */,
 				7FF9287F9D568161353CC89A /* ReadingProgress.swift in Sources */,
+				36BF94B4C9D54922BA93D74B /* SectionView.swift in Sources */,
+				EAB591C58978C0CDC54F5867 /* ShelfSearchResults.swift in Sources */,
+				AF5EEB34C9F2EB98158968A9 /* ShelfView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +364,11 @@
 			isa = PBXTargetDependency;
 			target = 811CE11CB9A6E04306316D69 /* DzzReader */;
 			targetProxy = BA4466F5F45631ABE32547A8 /* PBXContainerItemProxy */;
+		};
+		B003E11EE19CCD576A6D7B3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 811CE11CB9A6E04306316D69 /* DzzReader */;
+			targetProxy = DC98C5186277AF2F6AC25B30 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -439,6 +530,23 @@
 			};
 			name = Debug;
 		};
+		A608806FC077A9A7B9FE7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerryfleming.DzzReaderUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzzReader;
+			};
+			name = Debug;
+		};
 		B48C7BF6141025C25FF9A252 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -455,6 +563,23 @@
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E1DB74DADDDD6EEB45B19F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerryfleming.DzzReaderUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzzReader;
 			};
 			name = Release;
 		};
@@ -501,6 +626,15 @@
 			buildConfigurations = (
 				A3803DF5612B05F993EC9D24 /* Debug */,
 				B48C7BF6141025C25FF9A252 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DDAADD114496D6A2F2817C64 /* Build configuration list for PBXNativeTarget "DzzReaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A608806FC077A9A7B9FE7A4E /* Debug */,
+				E1DB74DADDDD6EEB45B19F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
