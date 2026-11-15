@@ -1,0 +1,62 @@
+name: DzzReader
+options:
+  bundleIdPrefix: com.jerryfleming
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+
+packages:
+  DzzCore:
+    path: DzzCore
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  DzzReader:
+    type: application
+    platform: iOS
+    sources:
+      - path: DzzReader
+    dependencies:
+      - package: DzzCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jerryfleming.dzzreader
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: "NO"
+        INFOPLIST_FILE: DzzReader/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SUPPORTS_MACCATALYST: "NO"
+    postCompileScripts:
+      - name: Copy Books
+        script: '"$SRCROOT/Scripts/copy-books.sh"'
+        inputFiles:
+          - $(SRCROOT)/../dzz/toc.txt
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Books/toc.txt
+
+  DzzReaderTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: DzzReaderTests
+    dependencies:
+      - target: DzzReader
+      - package: DzzCore
+
+schemes:
+  DzzReader:
+    build:
+      targets:
+        DzzReader: all
+        DzzReaderTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - DzzReaderTests
