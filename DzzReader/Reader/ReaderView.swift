@@ -72,7 +72,7 @@ struct ReaderView: View {
             }
         }
         .environment(\.colorScheme, theme.chromeScheme(for: scheme))
-        .toolbar(.hidden, for: .navigationBar)
+        .toolbar(.hidden, for: .navigationBar, .tabBar)
         .navigationBarBackButtonHidden(true)
         .statusBarHidden(!vm.showChrome)
         .task { await vm.load(scheme: scheme) }

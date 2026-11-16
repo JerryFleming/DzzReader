@@ -28,6 +28,7 @@ struct RootView: View {
     @State private var ready = false
     @State private var loadError: String?
     @State private var path = NavigationPath()
+    @State private var tab = AppTab.shelf
     @State private var importRequested = false
     @State private var importErrors: [String] = []
     @State private var settings = ReaderSettings()
@@ -37,12 +38,22 @@ struct RootView: View {
             if let loadError {
                 ContentUnavailableView("无法整理书架", systemImage: "books.vertical", description: Text(loadError))
             } else if ready {
-                NavigationStack(path: $path) {
-                    ShelfView(importRequested: $importRequested)
-                        .navigationDestination(for: ShelfSection.self) { SectionView(sectionName: $0.name) }
-                        .navigationDestination(for: Book.self) { book in
-                            ReaderView(book: book, context: context, settings: settings)
+                TabView(selection: $tab) {
+                    Tab("书架", systemImage: "books.vertical", value: AppTab.shelf) {
+                        NavigationStack(path: $path) {
+                            ShelfView(importRequested: $importRequested)
+                                .navigationDestination(for: ShelfSection.self) { SectionView(sectionName: $0.name) }
+                                .navigationDestination(for: Book.self) { book in
+                                    ReaderView(book: book, context: context, settings: settings)
+                                }
                         }
+                    }
+                    Tab("诵经", systemImage: "text.book.closed", value: AppTab.chanting) {
+                        ComingSoonView(title: "诵经", systemImage: "text.book.closed")
+                    }
+                    Tab("分享", systemImage: "square.and.arrow.up", value: AppTab.share) {
+                        ComingSoonView(title: "分享", systemImage: "square.and.arrow.up")
+                    }
                 }
             } else {
                 ProgressView("正在整理书架…")
@@ -82,8 +93,27 @@ struct RootView: View {
             }
         }
         importErrors = errors
+        if !imported.isEmpty { tab = .shelf }   // a file opened from another app lands on the shelf
         if imported.count == 1, let book = imported.first {
             path.append(book)
+        }
+    }
+}
+
+enum AppTab: Hashable {
+    case shelf, chanting, share
+}
+
+/// Placeholder for a tab whose feature is not built yet.
+struct ComingSoonView: View {
+    let title: String
+    let systemImage: String
+
+    var body: some View {
+        NavigationStack {
+            ContentUnavailableView(title, systemImage: systemImage, description: Text("即将推出"))
+                .navigationTitle(title)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
