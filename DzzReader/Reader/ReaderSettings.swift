@@ -33,9 +33,8 @@ final class ReaderSettings {
     var fontSize: Double { didSet { defaults.set(fontSize, forKey: "reader.fontSize") } }
     var lineSpacing: Double { didSet { defaults.set(lineSpacing, forKey: "reader.lineSpacing") } }
     var margin: Double { didSet { defaults.set(margin, forKey: "reader.margin") } }
-    // Not part of `snapshot`: changing these must not rebuild the chapter text.
+    // Not part of `snapshot`: changing this must not rebuild the chapter text.
     var autoScrollSpeed: Double { didSet { defaults.set(autoScrollSpeed, forKey: "reader.autoScrollSpeed") } }
-    var showPageButtons: Bool { didSet { defaults.set(showPageButtons, forKey: "reader.showPageButtons") } }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -45,7 +44,6 @@ final class ReaderSettings {
         lineSpacing = defaults.object(forKey: "reader.lineSpacing") as? Double ?? 1.6
         margin = defaults.object(forKey: "reader.margin") as? Double ?? 20
         autoScrollSpeed = defaults.object(forKey: "reader.autoScrollSpeed") as? Double ?? 30
-        showPageButtons = defaults.object(forKey: "reader.showPageButtons") as? Bool ?? true
     }
 
     var snapshot: Snapshot {

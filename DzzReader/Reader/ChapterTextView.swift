@@ -12,13 +12,12 @@ struct ChapterTextView: UIViewRepresentable {
     let tintColor: UIColor
     let margin: CGFloat
     @Binding var scrollTarget: Int?          // rendered offset to place at the top; cleared after scrolling
-    @Binding var pageCommand: PageCommand?   // scroll one screen up/down; cleared after scrolling
     var autoScrollSpeed: Double?             // points per second; nil when auto-scroll is off or paused
     var onVisibleOffsetChanged: (Int) -> Void
     var onNextChapter: () -> Void
     var onAddBookmark: (NSRange, String) -> Void
     var onTapCenter: () -> Void
-    var onReachedEnd: () -> Void             // auto-scroll or next-screen hit the end of the chapter
+    var onReachedEnd: () -> Void             // auto-scroll or a next-screen swipe hit the end of the chapter
 
     static func dismantleUIView(_ view: UITextView, coordinator: Coordinator) {
         coordinator.setAutoScroll(speed: nil)
@@ -43,6 +42,14 @@ struct ChapterTextView: UIViewRepresentable {
         tap.delegate = context.coordinator
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+
+        // Horizontal swipes turn the screen like a page: left = next screen, right = previous screen.
+        for direction in [UISwipeGestureRecognizer.Direction.right, .left] {
+            let swipe = UISwipeGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleSwipe(_:)))
+            swipe.direction = direction
+            swipe.delegate = context.coordinator
+            view.addGestureRecognizer(swipe)
+        }
 
         context.coordinator.textView = view
         apply(to: view, context: context, contentChanged: true)
@@ -85,15 +92,6 @@ struct ChapterTextView: UIViewRepresentable {
             }
         }
 
-        if let command = pageCommand, !coordinator.pagePending {
-            coordinator.pagePending = true
-            DispatchQueue.main.async {
-                coordinator.page(command)
-                coordinator.parent.pageCommand = nil
-                coordinator.pagePending = false
-            }
-        }
-
         coordinator.setAutoScroll(speed: autoScrollSpeed)
     }
 
@@ -133,7 +131,6 @@ struct ChapterTextView: UIViewRepresentable {
         var attributedText: NSAttributedString?
         private var debounce: Task<Void, Never>?
         private var lastReported: Int = -1
-        var pagePending = false
 
         // Auto-scroll state
         private var displayLink: CADisplayLink?
@@ -358,9 +355,14 @@ struct ChapterTextView: UIViewRepresentable {
             parent.onTapCenter()
         }
 
+        @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+            page(gesture.direction == .left ? .next : .previous)
+        }
+
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
             guard let view = textView else { return false }
             if view.selectedRange.length > 0 { return false }
+            if gestureRecognizer is UISwipeGestureRecognizer { return true }
             let point = touch.location(in: view)
             let visibleTop = view.contentOffset.y
             let height = view.bounds.height

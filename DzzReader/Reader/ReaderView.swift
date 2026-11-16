@@ -8,7 +8,6 @@ struct ReaderView: View {
     @State private var showChapters = false
     @State private var showAppearance = false
     @State private var showBookmarks = false
-    @State private var pageCommand: PageCommand?
 
     init(book: Book, context: ModelContext, settings: ReaderSettings) {
         _vm = State(initialValue: ReaderViewModel(book: book, context: context, settings: settings))
@@ -32,7 +31,6 @@ struct ReaderView: View {
                     tintColor: theme.foreground(for: scheme).withAlphaComponent(0.8),
                     margin: vm.settings.margin,
                     scrollTarget: $vm.scrollTarget,
-                    pageCommand: $pageCommand,
                     autoScrollSpeed: vm.autoScrolling && !vm.showChrome ? vm.settings.autoScrollSpeed : nil,
                     onVisibleOffsetChanged: { vm.recordVisibleRenderedOffset($0) },
                     onNextChapter: { vm.next() },
@@ -62,10 +60,6 @@ struct ReaderView: View {
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
-
-            if vm.settings.showPageButtons && !vm.showChrome && vm.loaded != nil {
-                pageButtons
-            }
 
             if vm.showChrome && vm.loaded != nil {
                 chrome
@@ -183,31 +177,6 @@ struct ReaderView: View {
                 .font(.caption2).foregroundStyle(.secondary)
         }
         .padding(.horizontal, 16)
-    }
-
-    // MARK: Page buttons
-
-    private var pageButtons: some View {
-        VStack(spacing: 12) {
-            pageButton("chevron.up", label: "上一屏", id: "pageUpButton") { pageCommand = .previous }
-            pageButton("chevron.down", label: "下一屏", id: "pageDownButton") { pageCommand = .next }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-        .padding(.trailing, 10)
-        .padding(.bottom, 12)
-        .transition(.opacity)
-    }
-
-    private func pageButton(_ symbol: String, label: String, id: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: symbol)
-                .font(.body.weight(.semibold))
-                .frame(width: 44, height: 44)
-                .background(.ultraThinMaterial, in: Circle())
-        }
-        .foregroundStyle(Color(theme.foreground(for: scheme)).opacity(0.55))
-        .accessibilityLabel(label)
-        .accessibilityIdentifier(id)
     }
 
     /// Insets of the key window (status bar / home indicator), independent of the hidden navigation bar.

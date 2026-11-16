@@ -49,7 +49,7 @@ final class AutoScrollUITests: XCTestCase {
     func hideChrome() {
         if app.staticTexts["chapterTitle"].exists {
             tapCenter()
-            XCTAssertTrue(app.buttons["pageDownButton"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["chapterTitle"].waitForNonExistence(timeout: 5))
         }
     }
 
@@ -60,35 +60,36 @@ final class AutoScrollUITests: XCTestCase {
         return Int(digits) ?? -1
     }
 
-    func testPageButtonsAndAutoScroll() {
+    func testSwipePagingAndAutoScroll() {
         openShortBook()
         showChrome()
         app.sliders["progressSlider"].adjust(toNormalizedSliderPosition: 0)
         sleep(1)
         let start = percent()
         hideChrome()
-        saveShot("page-buttons")
+        saveShot("before-swipe")
 
-        // Next screen twice, then back twice.
-        app.buttons["pageDownButton"].tap()
+        // No page buttons any more; swipe left twice for the next screens, then right twice to go back.
+        XCTAssertFalse(app.buttons["pageDownButton"].exists)
+        chapterText.swipeLeft()
         sleep(1)
-        app.buttons["pageDownButton"].tap()
+        chapterText.swipeLeft()
         sleep(1)
         saveShot("paged-down")
         showChrome()
         let paged = percent()
         XCTAssertGreaterThan(paged, start)
         hideChrome()
-        app.buttons["pageUpButton"].tap()
+        chapterText.swipeRight()
         sleep(1)
-        app.buttons["pageUpButton"].tap()
+        chapterText.swipeRight()
         sleep(1)
         showChrome()
         XCTAssertLessThan(percent(), paged)
 
         // Auto-scroll: starting hides the chrome; tapping the centre pauses and shows the speed control.
         app.buttons["autoScrollButton"].tap()
-        XCTAssertTrue(app.buttons["pageDownButton"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["chapterTitle"].waitForNonExistence(timeout: 5))
         showChrome()
         let speedSlider = app.sliders["autoScrollSpeedSlider"]
         XCTAssertTrue(speedSlider.waitForExistence(timeout: 5))
@@ -108,39 +109,5 @@ final class AutoScrollUITests: XCTestCase {
         speedSlider.adjust(toNormalizedSliderPosition: 0.17)   // back to about the default 30
         app.buttons["autoScrollButton"].tap()   // stop
         XCTAssertFalse(app.sliders["autoScrollSpeedSlider"].exists)
-
-        // The appearance toggle hides the page buttons.
-        app.buttons["appearanceButton"].tap()
-        let toggle = app.switches["pageButtonsToggle"]
-        revealToggle(toggle)
-        saveShot("appearance-toggle")
-        toggle.switches.firstMatch.tap()
-        app.buttons["完成"].tap()
-        hideChrome2()
-        XCTAssertFalse(app.buttons["pageDownButton"].exists)
-        // Restore the default for other runs.
-        showChrome()
-        app.buttons["appearanceButton"].tap()
-        revealToggle(toggle)
-        toggle.switches.firstMatch.tap()
-        app.buttons["完成"].tap()
-    }
-
-    /// The toggle sits at the bottom of the appearance sheet: expand the sheet, then scroll its list.
-    func revealToggle(_ toggle: XCUIElement) {
-        for _ in 0..<4 where !(toggle.exists && toggle.isHittable) {
-            app.swipeUp()
-            sleep(1)
-        }
-        XCTAssertTrue(toggle.waitForExistence(timeout: 5))
-    }
-
-    /// Hide the chrome when the page buttons are switched off (nothing to wait for).
-    func hideChrome2() {
-        if app.staticTexts["chapterTitle"].exists {
-            tapCenter()
-            sleep(1)
-        }
-        XCTAssertFalse(app.staticTexts["chapterTitle"].exists)
     }
 }
