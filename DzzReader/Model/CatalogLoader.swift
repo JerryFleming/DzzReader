@@ -8,6 +8,13 @@ import DzzCore
 enum CatalogLoader {
     static let hashKey = "catalogHash"
 
+    /// 部 from the bundled toc.txt keyed by name, for showing each 部's 经号 range. Parsed once.
+    static let bundledSections: [String: TocSection] = {
+        let url = Bundle.main.resourceURL!.appending(path: "Books/toc.txt")
+        guard let text = try? String(contentsOf: url, encoding: .utf8) else { return [:] }
+        return Dictionary(TocParser.parse(text).sections.map { ($0.name, $0) }, uniquingKeysWith: { a, _ in a })
+    }()
+
     /// Loads only when the bundled toc.txt or file count changed since the last load. Returns books upserted.
     static func loadIfNeeded(booksDirectory: URL, context: ModelContext, defaults: UserDefaults = .standard) throws -> Int {
         let hash = try catalogHash(booksDirectory: booksDirectory)

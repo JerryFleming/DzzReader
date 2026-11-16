@@ -25,6 +25,8 @@ final class ShelfUITests: XCTestCase {
         let agama = app.staticTexts["阿含部"]
         XCTAssertTrue(agama.waitForExistence(timeout: 30), "shelf did not load")
         saveShot("shelf")
+        XCTAssertEqual(app.staticTexts["section-range-阿含部"].label, "0001-0151")
+        XCTAssertEqual(app.staticTexts["section-range-本缘部"].label, "0152-0219")
         agama.tap()
         let first = app.staticTexts["0001 · 长阿含经"]
         XCTAssertTrue(first.waitForExistence(timeout: 10))

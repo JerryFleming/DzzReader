@@ -133,8 +133,15 @@ struct ShelfView: View {
             Section {
                 ForEach(sections, id: \.name) { section in
                     NavigationLink(value: ShelfSection(name: section.name)) {
-                        HStack {
+                        HStack(alignment: .firstTextBaseline) {
                             Text(section.name)
+                            if let range = CatalogLoader.bundledSections[section.name] {
+                                Text(String(format: "%04d-%04d", range.firstNumber, range.lastNumber))
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                                    .monospacedDigit()
+                                    .accessibilityIdentifier("section-range-\(section.name)")
+                            }
                             Spacer()
                             Text("\(section.count)")
                                 .foregroundStyle(.secondary)
