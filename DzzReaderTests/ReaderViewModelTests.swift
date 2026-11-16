@@ -7,7 +7,7 @@ import DzzCore
 
 @Suite @MainActor struct ReaderViewModelTests {
     /// The container must outlive the test or SwiftData destroys the models.
-    private func makeVM() async throws -> (ReaderViewModel, ModelContext, ModelContainer) {
+    private func makeVM(wholeBook: Bool = true) async throws -> (ReaderViewModel, ModelContext, ModelContainer) {
         let container = try ModelContainer.inMemory()
         let context = container.mainContext
         let fixture = TestFixtures.root.appending(path: "marked-3juan.txt")
@@ -18,13 +18,13 @@ import DzzCore
         let loaded = try await BookLoader.load(book: book, fileURL: fixture)
         _ = loaded
         let settings = ReaderSettings(defaults: UserDefaults(suiteName: "ReaderViewModelTests-\(UUID().uuidString)")!)
-        let vm = ReaderViewModel(book: book, context: context, settings: settings)
+        let vm = ReaderViewModel(book: book, context: context, settings: settings, wholeBookLimit: wholeBook ? .max : 0)
         await vm.load(fileURL: fixture, scheme: .light)
         return (vm, context, container)
     }
 
-    @Test func bookmarkFromPositionUsesFollowingText() async throws {
-        let (vm, context, container) = try await makeVM()
+    @Test(arguments: [true, false]) func bookmarkFromPositionUsesFollowingText(wholeBook: Bool) async throws {
+        let (vm, context, container) = try await makeVM(wholeBook: wholeBook)
         defer { _ = container }
         vm.go(toChapter: 1, sourceOffset: 0)
         vm.addBookmark(sourceOffset: 0, excerpt: nil)
@@ -37,8 +37,8 @@ import DzzCore
         #expect(vm.toast == "已添加书签")
     }
 
-    @Test func bookmarkFromSelectionKeepsSelectedText() async throws {
-        let (vm, context, container) = try await makeVM()
+    @Test(arguments: [true, false]) func bookmarkFromSelectionKeepsSelectedText(wholeBook: Bool) async throws {
+        let (vm, context, container) = try await makeVM(wholeBook: wholeBook)
         defer { _ = container }
         vm.go(toChapter: 2, sourceOffset: 10)
         vm.addBookmark(sourceOffset: 10, excerpt: "　　如是我闻。一时")
@@ -47,8 +47,8 @@ import DzzCore
         #expect(mark.chapterIndex == 2 && mark.characterOffset == 10)
     }
 
-    @Test func jumpAndDelete() async throws {
-        let (vm, context, container) = try await makeVM()
+    @Test(arguments: [true, false]) func jumpAndDelete(wholeBook: Bool) async throws {
+        let (vm, context, container) = try await makeVM(wholeBook: wholeBook)
         defer { _ = container }
         vm.go(toChapter: 3, sourceOffset: 42)
         vm.addBookmark(sourceOffset: 42, excerpt: nil)
@@ -57,13 +57,13 @@ import DzzCore
         vm.jump(to: mark)
         #expect(vm.chapterIndex == 3)
         #expect(vm.visibleSourceOffset == 42)
-        #expect(vm.scrollTarget == vm.rendered?.renderedOffset(forSource: 42))
+        #expect(vm.scrollTarget == vm.renderedOffset(chapter: 3, sourceOffset: 42))
         vm.delete(mark)
         #expect(try context.fetch(FetchDescriptor<Bookmark>()).isEmpty)
     }
 
-    @Test func currentSectionFollowsVisibleOffset() async throws {
-        let (vm, _, container) = try await makeVM()
+    @Test(arguments: [true, false]) func currentSectionFollowsVisibleOffset(wholeBook: Bool) async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: wholeBook)
         defer { _ = container }
         let chapter = vm.chapters[2]
         #expect(chapter.sections.count == 2)
@@ -73,13 +73,84 @@ import DzzCore
         #expect(vm.currentSectionIndex == 1)
     }
 
-    @Test func fractionJumpLandsInExpectedChapter() async throws {
-        let (vm, _, container) = try await makeVM()
+    @Test(arguments: [true, false]) func fractionJumpLandsInExpectedChapter(wholeBook: Bool) async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: wholeBook)
         defer { _ = container }
         vm.go(toFraction: 1.0)
         #expect(vm.chapterIndex == vm.chapters.count - 1)
         #expect(vm.fraction == 1.0)
         vm.go(toFraction: 0)
         #expect(vm.chapterIndex == 0 && vm.visibleSourceOffset == 0)
+    }
+
+    // MARK: Whole-book documents
+
+    @Test func wholeBookRendersEveryChapterOnce() async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: true)
+        defer { _ = container }
+        #expect(vm.isWholeBook)
+        #expect(vm.document == 0..<vm.chapters.count)
+        #expect(vm.nextDocumentTitle == nil && vm.previousDocumentTitle == nil)
+        #expect(vm.attributed.string.hasSuffix("全书完"))
+        let content = vm.contentID
+        vm.go(toChapter: 2, sourceOffset: 5)
+        vm.next()
+        #expect(vm.contentID == content)                // chapter changes only scroll
+        #expect(vm.chapterIndex == 3)
+        #expect(vm.scrollTarget == vm.rendered?.chapterStarts[3])
+    }
+
+    @Test func wholeBookChapterFollowsTheVisibleText() async throws {
+        let (vm, context, container) = try await makeVM(wholeBook: true)
+        defer { _ = container }
+        let starts = try #require(vm.rendered?.chapterStarts)
+        vm.recordVisibleRenderedOffset(starts[2] + 7)
+        #expect(vm.chapterIndex == 2)
+        #expect(vm.renderedOffset(chapter: 2, sourceOffset: vm.visibleSourceOffset) == starts[2] + 7)
+        #expect(vm.book.progress?.chapterIndex == 2)
+        vm.recordVisibleRenderedOffset(starts[1])
+        #expect(vm.chapterIndex == 1)
+
+        // A selection bookmark lands in the chapter of the selection, not the one at the top of the screen.
+        vm.addBookmark(renderedOffset: starts[3] + 4, excerpt: "选中")
+        let mark = try #require(try context.fetch(FetchDescriptor<Bookmark>()).first)
+        #expect(mark.chapterIndex == 3)
+        #expect(vm.renderedOffset(chapter: 3, sourceOffset: mark.characterOffset) == starts[3] + 4)
+    }
+
+    @Test func wholeBookEdgesDoNotChangeDocument() async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: true)
+        defer { _ = container }
+        let content = vm.contentID
+        vm.reachedStart()
+        vm.reachedEnd()
+        #expect(vm.contentID == content)
+        vm.autoScrolling = true
+        vm.reachedEnd()
+        #expect(!vm.autoScrolling && vm.toast == "已读完")
+    }
+
+    // MARK: Chapter-at-a-time documents
+
+    @Test func largeBookShowsOneChapterAndPagesAtEdges() async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: false)
+        defer { _ = container }
+        #expect(!vm.isWholeBook)
+        vm.go(toChapter: 1)
+        #expect(vm.document == 1..<2)
+        #expect(vm.nextDocumentTitle == vm.chapters[2].title)
+        #expect(vm.previousDocumentTitle == vm.chapters[0].title)
+
+        vm.reachedEnd()
+        #expect(vm.document == 2..<3 && vm.chapterIndex == 2 && vm.visibleSourceOffset == 0)
+
+        vm.reachedStart()
+        #expect(vm.document == 1..<2 && vm.chapterIndex == 1)
+        #expect(vm.visibleSourceOffset == vm.chapters[1].length)   // lands on the previous chapter's last screen
+
+        vm.go(toChapter: vm.chapters.count - 1)
+        vm.autoScrolling = true
+        vm.reachedEnd()
+        #expect(!vm.autoScrolling && vm.toast == "已读完")
     }
 }

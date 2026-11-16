@@ -37,6 +37,7 @@
 		D96705A53605004BACBE66CE /* AttributedChapterBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3DCAFB22229FA6C27039B2 /* AttributedChapterBuilderTests.swift */; };
 		DBF95EB9191247700E35C2DF /* BookLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5159BCBC1D777A0C670069ED /* BookLoaderTests.swift */; };
 		E21D73216A65B44C851F628A /* ChapterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6957ADA3CCBB16CB3E68744C /* ChapterTextView.swift */; };
+		E45AC7BFD6E575A77758FD05 /* ContinuousReadingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */; };
 		E742E9FA79D714172326D058 /* ReaderChromeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */; };
 		EAB591C58978C0CDC54F5867 /* ShelfSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9ACBB95078CF2B140F097E /* ShelfSearchResults.swift */; };
 		ECE44E62CA1C837E1DB28CFE /* DzzCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4703AEE269D9AF9314B978DD /* DzzCore */; };
@@ -100,6 +101,7 @@
 		D1EAE0079103672F885A102C /* ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderUITests.swift; sourceTree = "<group>"; };
 		E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScrollUITests.swift; sourceTree = "<group>"; };
 		EB78C8D517D239CD75800343 /* ShelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfUITests.swift; sourceTree = "<group>"; };
+		F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousReadingUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			children = (
 				E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */,
 				0A2FCE72237810128A21862D /* BlankLineUITests.swift */,
+				F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */,
 				B9C725ABABA0935B11072D3E /* ImportUITests.swift */,
 				0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */,
 				D1EAE0079103672F885A102C /* ReaderUITests.swift */,
@@ -400,6 +403,7 @@
 			files = (
 				780B851702C7144CCB3BC06C /* AutoScrollUITests.swift in Sources */,
 				7616B59C71EAA1E0510598C6 /* BlankLineUITests.swift in Sources */,
+				E45AC7BFD6E575A77758FD05 /* ContinuousReadingUITests.swift in Sources */,
 				A9769BB12EC96CD0F41F8FB1 /* ImportUITests.swift in Sources */,
 				E742E9FA79D714172326D058 /* ReaderChromeUITests.swift in Sources */,
 				3BFF8A0DC36D0B641298DD55 /* ReaderUITests.swift in Sources */,

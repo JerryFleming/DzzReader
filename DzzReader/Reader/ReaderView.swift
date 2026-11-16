@@ -27,6 +27,8 @@ struct ReaderView: View {
                 ChapterTextView(
                     attributedText: vm.attributed,
                     contentID: vm.contentID,
+                    previousChapterHint: vm.previousDocumentTitle,
+                    nextChapterHint: vm.nextDocumentTitle,
                     backgroundColor: theme.background(for: scheme),
                     tintColor: theme.foreground(for: scheme).withAlphaComponent(0.8),
                     margin: vm.settings.margin,
@@ -34,19 +36,10 @@ struct ReaderView: View {
                     autoScrollSpeed: vm.autoScrolling && !vm.showChrome ? vm.settings.autoScrollSpeed : nil,
                     onVisibleOffsetChanged: { vm.recordVisibleRenderedOffset($0) },
                     onNextChapter: { vm.next() },
-                    onAddBookmark: { range, text in
-                        let source = vm.rendered?.sourceOffset(forRendered: range.location) ?? 0
-                        vm.addBookmark(sourceOffset: source, excerpt: text)
-                    },
+                    onAddBookmark: { range, text in vm.addBookmark(renderedOffset: range.location, excerpt: text) },
                     onTapCenter: { withAnimation(.easeInOut(duration: 0.2)) { vm.showChrome.toggle() } },
-                    onReachedEnd: {
-                        if vm.hasNext {
-                            vm.next()
-                        } else if vm.autoScrolling {
-                            vm.autoScrolling = false
-                            vm.toast = "已读完"
-                        }
-                    }
+                    onReachedEnd: { vm.reachedEnd() },
+                    onReachedStart: { vm.reachedStart() }
                 )
                 .ignoresSafeArea()
                 .accessibilityIdentifier("chapterText")

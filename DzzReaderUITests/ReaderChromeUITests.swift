@@ -73,6 +73,9 @@ final class ReaderChromeUITests: XCTestCase {
         let sectionTitle = anySection.label
         anySection.tap()
         XCTAssertTrue(app.staticTexts["chapterTitle"].waitForExistence(timeout: 5))
+        sleep(1)
+        saveShot("section-jumped")
+        // The text view reports only what is on screen, so the section heading must be in it.
         let visible = app.textViews["chapterText"].value as? String ?? ""
         XCTAssertTrue(visible.contains(sectionTitle.suffix(4)), "section \(sectionTitle) not at top of \(visible.prefix(60))")
 

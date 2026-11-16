@@ -47,3 +47,9 @@ cd .. && xcodebuild test -project DzzReader.xcodeproj -scheme DzzReader \
 - Chapter marks `第0章 ` mark 卷 headings (twice: opening and closing line), 品 sub-headings (once) and, in some files, ordinary paragraphs. The indexer treats marks over 30 characters (parentheticals removed) as body text, collapses closing 卷 lines, and turns 品 marks into jumpable sections.
 - Chapters longer than 120,000 UTF-16 units are split into parts titled `…（1/3）`.
 - Persisted offsets are source-text offsets; the rendered text only drops the mark prefixes.
+
+## Reading modes
+
+- Books up to 300,000 UTF-16 units (`LoadedBook.wholeBookLimit`, about 97% of the corpus) are rendered as one continuous document; chapters are just positions in it, and the chapter shown in the chrome is whichever one is at the top of the screen.
+- Larger books are rendered a chapter at a time. Pulling past the bottom (or top) edge opens the next (or previous) chapter, with a hint once the pull is far enough; a previous-screen swipe on the first screen also goes back a chapter.
+- Progress and bookmarks are stored as (chapter index, source offset in that chapter) in both modes.

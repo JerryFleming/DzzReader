@@ -73,6 +73,7 @@ final class AutoScrollUITests: XCTestCase {
         XCTAssertFalse(app.buttons["pageDownButton"].exists)
         chapterText.swipeLeft()
         sleep(1)
+        saveShot("paged-1")   // its top line should be the bottom line of before-swipe
         chapterText.swipeLeft()
         sleep(1)
         saveShot("paged-down")
@@ -82,6 +83,7 @@ final class AutoScrollUITests: XCTestCase {
         hideChrome()
         chapterText.swipeRight()
         sleep(1)
+        saveShot("paged-back-1")   // its bottom line should be the top line of paged-down
         chapterText.swipeRight()
         sleep(1)
         showChrome()

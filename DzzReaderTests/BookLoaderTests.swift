@@ -21,7 +21,7 @@ import DzzCore
         #expect(book.chapters.count == 4)
         #expect(book.indexedByteSize == size)
         #expect(!book.needsIndexing)
-        #expect(loaded.rendered(1).text.hasPrefix("　　　　佛说长阿含经卷第一"))
+        #expect(loaded.rendered(1..<2).text.hasPrefix("　　　　佛说长阿含经卷第一"))
 
         // Second load must use the cache: plant a sentinel index and expect it back untouched.
         let sentinel = [ChapterRange(title: "哨兵", startOffset: 0, endOffset: (loaded.fullText as NSString).length, sections: [])]

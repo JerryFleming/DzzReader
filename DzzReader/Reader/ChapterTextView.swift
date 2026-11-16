@@ -3,11 +3,14 @@ import UIKit
 
 enum PageCommand { case previous, next }
 
-/// The reading surface: a TextKit 2 UITextView showing one chapter.
+/// The reading surface: a TextKit 2 UITextView showing one document (a whole book, or one chapter of a big one).
 /// All offsets crossing this boundary are RENDERED offsets (UTF-16 units into `attributedText`).
 struct ChapterTextView: UIViewRepresentable {
     let attributedText: NSAttributedString
-    let contentID: Int                       // changes when a different chapter is shown
+    let contentID: Int                       // changes when a different document is shown
+    /// Titles of the chapters a pull past the top / bottom edge opens; nil when there is none (or it is on screen).
+    var previousChapterHint: String? = nil
+    var nextChapterHint: String? = nil
     let backgroundColor: UIColor
     let tintColor: UIColor
     let margin: CGFloat
@@ -17,7 +20,8 @@ struct ChapterTextView: UIViewRepresentable {
     var onNextChapter: () -> Void
     var onAddBookmark: (NSRange, String) -> Void
     var onTapCenter: () -> Void
-    var onReachedEnd: () -> Void             // auto-scroll or a next-screen swipe hit the end of the chapter
+    var onReachedEnd: () -> Void             // auto-scroll, a next-screen swipe or a pull ran past the end
+    var onReachedStart: () -> Void = {}      // a previous-screen swipe or a pull ran past the start
 
     static func dismantleUIView(_ view: UITextView, coordinator: Coordinator) {
         coordinator.setAutoScroll(speed: nil)
@@ -74,8 +78,9 @@ struct ChapterTextView: UIViewRepresentable {
             let chapterChanged = coordinator.contentID != contentID
             coordinator.contentID = contentID
             coordinator.attributedText = attributedText
-            // Keep the reading position across a restyle of the same chapter.
-            let keep = chapterChanged ? nil : coordinator.currentTopOffset()
+            // Keep the reading position across a restyle of the same document. While a jump is still settling,
+            // the top line may not be where it will end up, so keep the jump's target instead.
+            let keep = chapterChanged ? nil : (coordinator.pendingTarget ?? coordinator.currentTopOffset())
             view.attributedText = attributedText
             if chapterChanged {
                 view.setContentOffset(.zero, animated: false)
@@ -111,6 +116,36 @@ struct ChapterTextView: UIViewRepresentable {
         override func safeAreaInsetsDidChange() {
             super.safeAreaInsetsDidChange()
             updateInsets()
+        }
+
+        /// Only the text on screen. A whole book can be hundreds of thousands of characters; handing all of it to
+        /// accessibility clients makes every query slow (XCUITest snapshots took ~5 s per query).
+        override var accessibilityValue: String? {
+            get { visibleText() }
+            set {}
+        }
+
+        private func visibleText() -> String? {
+            guard let layout = textLayoutManager, let content = layout.textContentManager else { return nil }
+            let insets = verticalScrollIndicatorInsets
+            // Container coordinates of the visible band between the status bar and the home indicator.
+            let top = max(contentOffset.y + insets.top - textContainerInset.top, 0)
+            let bottom = top + max(bounds.height - insets.top - insets.bottom, 1)
+            let documentStart = content.documentRange.location
+            let length = attributedText?.length ?? 0
+            var start = 0
+            if let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: top)) {
+                start = content.offset(from: documentStart, to: fragment.rangeInElement.location)
+                // Skip lines of a long paragraph that are already above the screen.
+                let frameY = fragment.layoutFragmentFrame.minY
+                if let line = fragment.textLineFragments.first(where: { frameY + $0.typographicBounds.maxY > top + 1 }) {
+                    start += line.characterRange.location
+                }
+            }
+            let end = layout.textLayoutFragment(for: CGPoint(x: 0, y: bottom))
+                .map { content.offset(from: documentStart, to: $0.rangeInElement.endLocation) } ?? length
+            guard start < end, end <= length else { return attributedText?.string }
+            return (attributedText.string as NSString).substring(with: NSRange(location: start, length: end - start))
         }
 
         private func updateInsets() {
@@ -168,9 +203,19 @@ struct ChapterTextView: UIViewRepresentable {
             return content.offset(from: content.documentRange.location, to: location)
         }
 
-        func scroll(toRenderedOffset offset: Int) {
+        /// Rendered offset a scroll is still settling on; restyles keep this instead of a possibly stale top line.
+        private(set) var pendingTarget: Int?
+
+        /// Puts the line containing `offset` at the top, then checks on the next pass that it is really there.
+        /// TextKit 2 positions text it has not laid out by estimate, and UITextView re-anchors the viewport when
+        /// estimates are replaced, so a single attempt can land well off in a long document.
+        func scroll(toRenderedOffset offset: Int, attempt: Int = 0) {
             guard let view = textView, let layout = view.textLayoutManager, let content = layout.textContentManager else { return }
+            pendingTarget = offset
             view.layoutIfNeeded()
+            if attempt >= 2 {
+                layout.ensureLayout(for: content.documentRange)   // last resort: real positions for everything
+            }
             let length = view.attributedText?.length ?? 0
             let clamped = min(max(offset, 0), max(length - 1, 0))
             guard let location = content.location(content.documentRange.location, offsetBy: clamped) else { return }
@@ -183,9 +228,40 @@ struct ChapterTextView: UIViewRepresentable {
                 break
             }
             let target = y + ReaderTextView.topPadding
-            let maxY = max(view.contentSize.height - view.bounds.height, 0)
+            var maxY = max(view.contentSize.height - view.bounds.height, 0)
+            if target > maxY {
+                // TextKit 2 only estimates the height of text it has not laid out, so a long jump into a whole
+                // book can land past the estimated end and be clamped short. Lay out a screen beyond the target
+                // and take the real content height from the layout manager.
+                let below = content.location(location, offsetBy: min(4_000, max(length - clamped, 0))) ?? content.documentRange.endLocation
+                if let range = NSTextRange(location: location, end: below) { layout.ensureLayout(for: range) }
+                let used = layout.usageBoundsForTextContainer.height
+                let height = used + view.textContainerInset.top + view.textContainerInset.bottom
+                if height > view.contentSize.height { view.contentSize.height = height }
+                maxY = max(view.contentSize.height - view.bounds.height, 0)
+            }
             view.setContentOffset(CGPoint(x: 0, y: min(max(target, 0), maxY)), animated: false)
-            report()
+            DispatchQueue.main.async { [weak self] in self?.verifyScroll(to: offset, attempt: attempt) }
+        }
+
+        private func verifyScroll(to offset: Int, attempt: Int) {
+            guard pendingTarget == offset, let view = textView else { return }   // superseded, or the reader took over
+            view.layoutIfNeeded()
+            let maxY = max(view.contentSize.height - view.bounds.height, 0)
+            let top = currentTopOffset() ?? offset
+            // On target when `offset` falls in the first visible line (lines are well under 64 characters),
+            // or when the document end is reached and the target cannot come any higher.
+            let landed = (top <= offset && offset - top < 64) || (top <= offset && view.contentOffset.y >= maxY - 1)
+            if landed || attempt >= 3 {
+                pendingTarget = nil
+                report()
+            } else {
+                scroll(toRenderedOffset: offset, attempt: attempt + 1)
+            }
+        }
+
+        func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            pendingTarget = nil   // the reader's finger wins over a settling jump
         }
 
         // MARK: Screen paging
@@ -202,7 +278,35 @@ struct ChapterTextView: UIViewRepresentable {
             return line(at: fragment.layoutFragmentFrame.maxY + 0.5, depth: depth + 1)
         }
 
-        /// Scrolls one screen, aligned so the line cut off at the bottom becomes the first line (and vice versa).
+        /// The last non-blank line that ends at or above `y` (skips paragraph spacing and collapsed empty lines).
+        private func line(endingAtOrAbove y: CGFloat) -> (minY: CGFloat, maxY: CGFloat)? {
+            guard let layout = textView?.textLayoutManager else { return nil }
+            var probe = y - 0.5
+            for _ in 0..<8 where probe >= 0 {
+                guard let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: probe)) else { return nil }
+                let frameY = fragment.layoutFragmentFrame.minY
+                for line in fragment.textLineFragments.reversed() {
+                    let bounds = line.typographicBounds
+                    let minY = frameY + bounds.minY, maxY = frameY + bounds.maxY
+                    if maxY <= y + 0.5, line.characterRange.length > 0, bounds.height > 2,
+                       !line.attributedString.attributedSubstring(from: line.characterRange).string
+                           .trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        return (minY, maxY)
+                    }
+                }
+                probe = frameY - 0.5
+            }
+            return nil
+        }
+
+        /// Top of the first line that starts at or below `y`.
+        private func lineStart(atOrAfter y: CGFloat) -> CGFloat? {
+            guard let current = line(at: y) else { return nil }
+            return current.minY >= y - 0.5 ? current.minY : (line(at: current.maxY + 0.5)?.minY ?? current.maxY)
+        }
+
+        /// Scrolls one screen, keeping one line of overlap: the last fully visible line becomes the first line
+        /// of the next screen, and the first fully visible line becomes the last line of the previous screen.
         func page(_ direction: PageCommand) {
             guard let view = textView else { return }
             view.layoutIfNeeded()
@@ -218,22 +322,34 @@ struct ChapterTextView: UIViewRepresentable {
                     parent.onReachedEnd()
                     return
                 }
-                // First line not fully visible at the bottom.
-                let lineTop = line(at: top + visible)?.minY ?? top + visible
-                target = (lineTop > top + 1 ? lineTop : top + visible) + padding
+                // The first line not fully visible at the bottom, then the fully visible line just above it.
+                let cutTop = line(at: top + visible)?.minY ?? top + visible
+                let lastFull = line(endingAtOrAbove: cutTop)?.minY ?? cutTop
+                if lastFull > top + 1 {
+                    target = lastFull + padding
+                } else if cutTop > top + 1 {
+                    target = cutTop + padding          // only one line fits on screen: no room for overlap
+                } else {
+                    target = top + visible + padding
+                }
             case .previous:
-                guard view.contentOffset.y > 0.5 else { return }
-                // First fully visible line becomes the first line below the new screen.
-                var anchor = top
-                if let current = line(at: top) {
-                    anchor = current.minY >= top - 0.5 ? current.minY : (line(at: current.maxY + 0.5)?.minY ?? current.maxY)
+                // At the first line counts as the top: a jump parks it under the status bar, `topPadding` down.
+                guard view.contentOffset.y > padding + 0.5 else {
+                    parent.onReachedStart()
+                    return
                 }
-                let newTop = anchor - visible
-                var lineTop = newTop
-                if let candidate = line(at: newTop) {
-                    lineTop = candidate.minY >= newTop - 0.5 ? candidate.minY : (line(at: candidate.maxY + 0.5)?.minY ?? candidate.maxY)
+                // The first fully visible line stays on screen as the last line of the new screen.
+                let anchor = lineStart(atOrAfter: top) ?? top
+                let anchorBottom = line(at: anchor)?.maxY ?? anchor
+                let newTop = anchorBottom - visible
+                let lineTop = lineStart(atOrAfter: newTop) ?? newTop
+                if lineTop < anchor - 1 {
+                    target = lineTop + padding
+                } else {
+                    // The anchor line alone fills the screen: fall back to a plain previous screen.
+                    let plainTop = lineStart(atOrAfter: anchor - visible) ?? anchor - visible
+                    target = (plainTop < anchor - 1 ? plainTop : anchor - visible) + padding
                 }
-                target = (lineTop < anchor - 1 ? lineTop : newTop) + padding
             }
             target = min(max(target, 0), maxOffset)
             autoY = nil
@@ -263,6 +379,7 @@ struct ChapterTextView: UIViewRepresentable {
         }
 
         func chapterDidChange() {
+            pendingTarget = nil   // it was an offset into the previous document
             endReported = false
             autoY = nil
             pausedUntil = CACurrentMediaTime() + 1   // let the reader see the new chapter's heading
@@ -307,6 +424,7 @@ struct ChapterTextView: UIViewRepresentable {
         // MARK: UIScrollViewDelegate
 
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            updatePullHint()
             // Auto-scroll reports on its own throttle; skip a debounce task per frame.
             if displayLink != nil, !scrollView.isDragging, !scrollView.isDecelerating { return }
             debounce?.cancel()
@@ -322,7 +440,75 @@ struct ChapterTextView: UIViewRepresentable {
         func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) { report() }
 
         func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            switch pullEdge() {
+            case .previous(let distance) where distance >= Self.pullThreshold && parent.previousChapterHint != nil:
+                hidePullHint()
+                DispatchQueue.main.async { self.parent.onReachedStart() }
+                return
+            case .next(let distance) where distance >= Self.pullThreshold && parent.nextChapterHint != nil:
+                hidePullHint()
+                DispatchQueue.main.async { self.parent.onReachedEnd() }
+                return
+            default:
+                break
+            }
             if !decelerate { report() }
+        }
+
+        // MARK: Pull past the edge to change chapter
+
+        static let pullThreshold: CGFloat = 72
+        private var pullLabel: UILabel?
+
+        private enum PullEdge { case previous(CGFloat), next(CGFloat), none }
+
+        /// How far the reader has dragged past the top or bottom of the document.
+        private func pullEdge() -> PullEdge {
+            guard let view = textView else { return .none }
+            let maxOffset = max(view.contentSize.height - view.bounds.height, 0)
+            if view.contentOffset.y < 0 { return .previous(-view.contentOffset.y) }
+            if view.contentOffset.y > maxOffset { return .next(view.contentOffset.y - maxOffset) }
+            return .none
+        }
+
+        private func hidePullHint() { pullLabel?.alpha = 0 }
+
+        private func updatePullHint() {
+            guard let view = textView else { return }
+            let title: String
+            let distance: CGFloat
+            let atTop: Bool
+            switch pullEdge() {
+            case .previous(let d) where parent.previousChapterHint != nil && view.isTracking:
+                (distance, atTop) = (d, true)
+                title = (d >= Self.pullThreshold ? "松开进入上一卷" : "下拉进入上一卷") + "\n" + parent.previousChapterHint!
+            case .next(let d) where parent.nextChapterHint != nil && view.isTracking:
+                (distance, atTop) = (d, false)
+                title = (d >= Self.pullThreshold ? "松开进入下一卷" : "上拉进入下一卷") + "\n" + parent.nextChapterHint!
+            default:
+                hidePullHint()
+                return
+            }
+            let label = pullLabel ?? {
+                let label = UILabel()
+                label.numberOfLines = 2
+                label.textAlignment = .center
+                label.font = .preferredFont(forTextStyle: .footnote)
+                label.accessibilityIdentifier = "pullHint"
+                view.addSubview(label)
+                pullLabel = label
+                return label
+            }()
+            label.text = title
+            label.textColor = view.tintColor
+            let insets = view.verticalScrollIndicatorInsets
+            let height: CGFloat = 44
+            // Pinned to the visible band, inside the gap the overscroll opens up.
+            let y = atTop
+                ? view.contentOffset.y + insets.top + max((distance - height) / 2, 4)
+                : view.contentOffset.y + view.bounds.height - insets.bottom - height - max((distance - height) / 2, 4)
+            label.frame = CGRect(x: 0, y: y, width: view.bounds.width, height: height)
+            label.alpha = min(distance / Self.pullThreshold, 1)
         }
 
         // MARK: Links and edit menu

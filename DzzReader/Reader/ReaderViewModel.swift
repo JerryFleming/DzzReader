@@ -3,6 +3,9 @@ import SwiftData
 import SwiftUI
 import DzzCore
 
+/// Drives the reader. A book is shown as one DOCUMENT: the whole book when it is small enough
+/// (`LoadedBook.isWholeBook`), otherwise one chapter at a time. Chapters are always positions within the book;
+/// progress and bookmarks are stored as (chapter index, source offset within that chapter) in both modes.
 @Observable @MainActor
 final class ReaderViewModel {
     let book: Book
@@ -10,7 +13,10 @@ final class ReaderViewModel {
     let settings: ReaderSettings
 
     private(set) var loaded: LoadedBook?
+    /// The chapter at the top of the screen.
     private(set) var chapterIndex = 0
+    /// The chapters currently rendered into the text view.
+    private(set) var document: Range<Int> = 0..<0
     private(set) var rendered: RenderedChapter?
     private(set) var attributed = NSAttributedString()
     private(set) var contentID = 0
@@ -23,16 +29,20 @@ final class ReaderViewModel {
     var toast: String?
 
     private var scheme: ColorScheme = .light
+    private let wholeBookLimit: Int
 
-    init(book: Book, context: ModelContext, settings: ReaderSettings) {
+    init(book: Book, context: ModelContext, settings: ReaderSettings, wholeBookLimit: Int = LoadedBook.wholeBookLimit) {
         self.book = book
         self.context = context
         self.settings = settings
+        self.wholeBookLimit = wholeBookLimit
     }
 
     // MARK: Derived
 
     var chapters: [ChapterRange] { loaded?.chapters ?? [] }
+
+    var isWholeBook: Bool { loaded?.isWholeBook ?? false }
 
     var chapterTitle: String {
         chapters.indices.contains(chapterIndex) ? chapters[chapterIndex].title : book.title
@@ -55,8 +65,40 @@ final class ReaderViewModel {
     var hasPrevious: Bool { chapterIndex > 0 }
     var hasNext: Bool { chapterIndex + 1 < chapters.count }
 
+    /// Title of the chapter after the rendered document, when it has to be loaded separately.
+    var nextDocumentTitle: String? {
+        guard !document.isEmpty, document.upperBound < chapters.count else { return nil }
+        return chapters[document.upperBound].title
+    }
+
+    /// Title of the chapter before the rendered document, when it has to be loaded separately.
+    var previousDocumentTitle: String? {
+        guard !document.isEmpty, document.lowerBound > 0 else { return nil }
+        return chapters[document.lowerBound - 1].title
+    }
+
     private var bodyLength: Int {
-        attributed.length - AttributedChapterBuilder.footerLength(for: hasNext ? chapters[chapterIndex + 1].title : nil)
+        attributed.length - AttributedChapterBuilder.footerLength(for: nextDocumentTitle)
+    }
+
+    // MARK: Offsets
+
+    /// Rendered offset of a (chapter, source offset in chapter) position; the chapter must be in `document`.
+    func renderedOffset(chapter index: Int, sourceOffset: Int) -> Int {
+        guard let rendered, document.contains(index) else { return 0 }
+        let chapter = chapters[index]
+        let offset = min(max(sourceOffset, 0), chapter.length)
+        return rendered.renderedOffset(forSource: chapter.startOffset - chapters[document.lowerBound].startOffset + offset)
+    }
+
+    /// The (chapter, source offset in chapter) position of a rendered offset in the current document.
+    func position(forRendered renderedOffset: Int) -> (chapter: Int, offset: Int) {
+        guard let rendered, !document.isEmpty else { return (chapterIndex, 0) }
+        let clamped = min(max(renderedOffset, 0), max(bodyLength, 0))
+        let index = document.lowerBound + ChapterRenderer.chapterIndex(forRendered: clamped, starts: rendered.chapterStarts)
+        let chapter = chapters[index]
+        let absolute = chapters[document.lowerBound].startOffset + rendered.sourceOffset(forRendered: clamped)
+        return (index, min(max(absolute - chapter.startOffset, 0), chapter.length))
     }
 
     // MARK: Loading
@@ -64,7 +106,7 @@ final class ReaderViewModel {
     func load(fileURL: URL? = nil, scheme: ColorScheme) async {
         self.scheme = scheme
         do {
-            let result = try await BookLoader.load(book: book, fileURL: fileURL)
+            let result = try await BookLoader.load(book: book, fileURL: fileURL, wholeBookLimit: wholeBookLimit)
             loaded = result
             book.lastOpened = .now
 
@@ -103,17 +145,35 @@ final class ReaderViewModel {
         return chapters[located.chapterIndex].title
     }
 
+    /// Scrolling (auto-scroll, a swipe, or a pull) ran past the end of the document.
+    func reachedEnd() {
+        if nextDocumentTitle != nil {
+            go(toChapter: document.upperBound)
+        } else if autoScrolling {
+            autoScrolling = false
+            toast = "已读完"
+        }
+    }
+
+    /// A swipe or pull ran past the start of the document: open the previous chapter at its last screen.
+    func reachedStart() {
+        guard previousDocumentTitle != nil else { return }
+        let index = document.lowerBound - 1
+        go(toChapter: index, sourceOffset: chapters[index].length)
+    }
+
     private func show(chapter index: Int, sourceOffset: Int) {
         guard let loaded else { return }
-        let chapterChanged = index != chapterIndex || rendered == nil
-        chapterIndex = index
-        if chapterChanged {
-            rendered = loaded.rendered(index)
+        let span = loaded.documentSpan(containing: index)
+        if span != document || rendered == nil {
+            document = span
+            rendered = loaded.rendered(span)
             contentID += 1
             rebuildAttributed()
         }
+        chapterIndex = index
         visibleSourceOffset = min(max(sourceOffset, 0), chapters[index].length)
-        scrollTarget = rendered?.renderedOffset(forSource: visibleSourceOffset) ?? 0
+        scrollTarget = renderedOffset(chapter: index, sourceOffset: visibleSourceOffset)
         persistProgress()
     }
 
@@ -126,19 +186,18 @@ final class ReaderViewModel {
 
     private func rebuildAttributed() {
         guard let rendered else { return }
-        let nextTitle = hasNext ? chapters[chapterIndex + 1].title : nil
         attributed = AttributedChapterBuilder.build(rendered: rendered, settings: settings, theme: settings.theme,
-                                                    scheme: scheme, nextChapterTitle: nextTitle)
+                                                    scheme: scheme, nextChapterTitle: nextDocumentTitle)
     }
 
     // MARK: Progress
 
     func recordVisibleRenderedOffset(_ renderedOffset: Int) {
-        guard let rendered else { return }
-        let clamped = min(max(renderedOffset, 0), max(bodyLength, 0))
-        let source = rendered.sourceOffset(forRendered: clamped)
-        guard source != visibleSourceOffset else { return }
-        visibleSourceOffset = source
+        guard rendered != nil else { return }
+        let position = position(forRendered: renderedOffset)
+        guard position.chapter != chapterIndex || position.offset != visibleSourceOffset else { return }
+        chapterIndex = position.chapter
+        visibleSourceOffset = position.offset
         persistProgress()
     }
 
@@ -160,9 +219,20 @@ final class ReaderViewModel {
 
     // MARK: Bookmarks
 
+    /// Bookmark at a rendered offset of the text view (a selection), in whichever chapter it falls.
+    func addBookmark(renderedOffset: Int, excerpt: String?) {
+        let position = position(forRendered: renderedOffset)
+        addBookmark(chapter: position.chapter, sourceOffset: position.offset, excerpt: excerpt)
+    }
+
+    /// Bookmark at a source offset within the current chapter.
     func addBookmark(sourceOffset: Int, excerpt: String?) {
-        guard let loaded, chapters.indices.contains(chapterIndex) else { return }
-        let chapter = chapters[chapterIndex]
+        addBookmark(chapter: chapterIndex, sourceOffset: sourceOffset, excerpt: excerpt)
+    }
+
+    private func addBookmark(chapter index: Int, sourceOffset: Int, excerpt: String?) {
+        guard let loaded, chapters.indices.contains(index) else { return }
+        let chapter = chapters[index]
         let offset = min(max(sourceOffset, 0), chapter.length)
         let text: String
         if let excerpt, !excerpt.isEmpty {
@@ -173,7 +243,7 @@ final class ReaderViewModel {
             let length = min(80, full.length - start)
             text = Self.tidy(length > 0 ? full.substring(with: NSRange(location: start, length: length)) : chapter.title)
         }
-        let mark = Bookmark(chapterIndex: chapterIndex, characterOffset: offset, excerpt: String(text.prefix(40)))
+        let mark = Bookmark(chapterIndex: index, characterOffset: offset, excerpt: String(text.prefix(40)))
         mark.book = book
         book.bookmarks.append(mark)
         try? context.save()
