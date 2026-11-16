@@ -18,6 +18,7 @@
 		4F8971F569449BB4CC893773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CFB5A8591A0161FCA93C2C /* Assets.xcassets */; };
 		5680EDC3E65523B51F9CC53A /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE8A7D858423933D4E5F9 /* ImporterTests.swift */; };
 		687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C13CB41671E634D4D5594C /* Importer.swift */; };
+		780B851702C7144CCB3BC06C /* AutoScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */; };
 		7FF9287F9D568161353CC89A /* ReadingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */; };
 		81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */; };
 		840097FE32E2F28381FE8B01 /* DzzCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0995F20ECE2B75266299086 /* DzzCore */; };
@@ -69,7 +70,7 @@
 		381266753F403BD40976D3F2 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
 		386AAB558B23B39BC3346BD5 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoader.swift; sourceTree = "<group>"; };
-		45436F0672A06F30D7935B78 /* DzzReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DzzReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45436F0672A06F30D7935B78 /* DzzReaderTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49080ABA9A3DE5050A9428E7 /* CatalogLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoaderTests.swift; sourceTree = "<group>"; };
 		4D3EA4600C94993534A30EAB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		503643486B3504BF98B5DFBD /* ShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
@@ -79,22 +80,23 @@
 		668CF36F99DF559FFA82C0CD /* ReaderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderSettings.swift; sourceTree = "<group>"; };
 		6957ADA3CCBB16CB3E68744C /* ChapterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTextView.swift; sourceTree = "<group>"; };
 		6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DzzReaderApp.swift; sourceTree = "<group>"; };
-		6F069477C7829B58BEA5516D /* DzzReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DzzReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F069477C7829B58BEA5516D /* DzzReader.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DzzReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80454FA4134B577CF9CF95B9 /* Sheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheets.swift; sourceTree = "<group>"; };
 		85DBE8A7D858423933D4E5F9 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContainer+App.swift"; sourceTree = "<group>"; };
 		93CFB5A8591A0161FCA93C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgress.swift; sourceTree = "<group>"; };
-		A0142C0EA21FA88AB3F832E4 /* DzzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DzzCore; sourceTree = SOURCE_ROOT; };
+		A0142C0EA21FA88AB3F832E4 /* DzzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DzzCore; path = DzzCore; sourceTree = SOURCE_ROOT; };
 		A41AA864CB9DBD089FEF35A4 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
 		AB1BB8E961A8D1D61E179F88 /* ReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModelTests.swift; sourceTree = "<group>"; };
-		B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DzzReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C725ABABA0935B11072D3E /* ImportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportUITests.swift; sourceTree = "<group>"; };
 		BF3DCAFB22229FA6C27039B2 /* AttributedChapterBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedChapterBuilderTests.swift; sourceTree = "<group>"; };
 		C6F21CB7606BFCD52BC87223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7B0C6C718002E8456E4EC0E /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		CDDE53494A0217F9B5FFC3B4 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = DzzReaderTests/Fixtures; sourceTree = SOURCE_ROOT; };
 		D1EAE0079103672F885A102C /* ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderUITests.swift; sourceTree = "<group>"; };
+		E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScrollUITests.swift; sourceTree = "<group>"; };
 		EB78C8D517D239CD75800343 /* ShelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 		9A75334750B1B7017576AC74 /* DzzReaderUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */,
 				B9C725ABABA0935B11072D3E /* ImportUITests.swift */,
 				0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */,
 				D1EAE0079103672F885A102C /* ReaderUITests.swift */,
@@ -310,9 +313,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2720;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					811CE11CB9A6E04306316D69 = {
+						DevelopmentTeam = GBX6ZRW9H9;
 						ProvisioningStyle = Automatic;
 					};
 					D51908EB557304A7C0548D44 = {
@@ -391,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780B851702C7144CCB3BC06C /* AutoScrollUITests.swift in Sources */,
 				A9769BB12EC96CD0F41F8FB1 /* ImportUITests.swift in Sources */,
 				E742E9FA79D714172326D058 /* ReaderChromeUITests.swift in Sources */,
 				3BFF8A0DC36D0B641298DD55 /* ReaderUITests.swift in Sources */,
@@ -507,7 +512,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -528,7 +532,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -573,7 +576,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -587,7 +589,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -602,9 +603,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBX6ZRW9H9;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = DzzReader/Info.plist;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,9 +641,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBX6ZRW9H9;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = DzzReader/Info.plist;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

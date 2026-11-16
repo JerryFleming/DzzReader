@@ -18,6 +18,7 @@ final class ReaderViewModel {
     private(set) var visibleSourceOffset = 0
     var scrollTarget: Int?                   // rendered offset handed to the text view
     var showChrome = false
+    var autoScrolling = false
     var error: String?
     var toast: String?
 

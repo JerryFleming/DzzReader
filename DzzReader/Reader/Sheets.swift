@@ -114,6 +114,11 @@ struct AppearanceSheet: View {
                         Text("页边距")
                     } minimumValueLabel: { Image(systemName: "rectangle.compress.vertical") } maximumValueLabel: { Image(systemName: "rectangle.expand.vertical") }
                 }
+
+                Section {
+                    Toggle("翻屏按钮", isOn: $settings.showPageButtons)
+                        .accessibilityIdentifier("pageButtonsToggle")
+                } footer: { Text("在阅读界面右下角显示上一屏、下一屏按钮。") }
             }
             .navigationTitle("外观")
             .navigationBarTitleDisplayMode(.inline)
