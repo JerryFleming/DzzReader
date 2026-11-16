@@ -65,6 +65,25 @@ import DzzCore
         #expect(try context.fetch(FetchDescriptor<Book>()).isEmpty)
     }
 
+    @Test func inboxFileIsRemovedAfterImport() throws {
+        // Files handed over by the share sheet arrive in Documents/Inbox and must not pile up there.
+        let inbox = URL.documentsDirectory.appending(path: "Inbox")
+        try FileManager.default.createDirectory(at: inbox, withIntermediateDirectories: true)
+        let url = inbox.appending(path: "shared-\(UUID().uuidString).txt")
+        try Data("共享来的书。".utf8).write(to: url)
+        let book = try Importer.importFile(at: url, context: context)
+        #expect(!FileManager.default.fileExists(atPath: url.path))
+        #expect(FileManager.default.fileExists(atPath: book.fileURL.path))
+        try Importer.delete(book, context: context)
+    }
+
+    @Test func sourceOutsideInboxIsLeftAlone() throws {
+        let url = try write(Data("保留原件。".utf8), name: "keep.txt")
+        let book = try Importer.importFile(at: url, context: context)
+        #expect(FileManager.default.fileExists(atPath: url.path))
+        try Importer.delete(book, context: context)
+    }
+
     @Test func titleFallsBackToFilenameWithoutCanonHeader() throws {
         let url = try write(Data("第一行不是经名\n正文".utf8), name: "我的笔记.txt")
         let book = try Importer.importFile(at: url, context: context)

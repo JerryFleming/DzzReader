@@ -1,6 +1,7 @@
 import Foundation
 import SwiftData
 import Testing
+import DzzCore
 @testable import DzzReader
 
 final class TestBundleAnchor {}
@@ -60,6 +61,25 @@ enum TestFixtures {
         #expect(first == 4)
         #expect(second == 0)
         #expect(try context.fetch(FetchDescriptor<Book>()).count == 4)
+    }
+
+    @Test func reloadsWhenAFileChangesSize() throws {
+        // Copy the fixture so we can modify it.
+        let copy = FileManager.default.temporaryDirectory.appending(path: "MiniBooks-\(UUID().uuidString)")
+        try FileManager.default.copyItem(at: TestFixtures.miniBooks, to: copy)
+        let defaults = UserDefaults(suiteName: "CatalogLoaderTests-\(UUID().uuidString)")!
+        #expect(try CatalogLoader.loadIfNeeded(booksDirectory: copy, context: context, defaults: defaults) == 4)
+        let book = try #require(try context.fetch(FetchDescriptor<Book>()).first { $0.id == "T9999" })
+        book.chapters = [ChapterRange(title: "旧", startOffset: 0, endOffset: 1, sections: [])]
+        book.indexedByteSize = book.byteSize
+        #expect(!book.needsIndexing)
+
+        // Same file count, different content: the index cache must be invalidated.
+        let file = copy.appending(path: "00/9999无目录经.txt")
+        try Data("无目录经正文。第二版，长了一些。\n".utf8).write(to: file)
+        #expect(try CatalogLoader.loadIfNeeded(booksDirectory: copy, context: context, defaults: defaults) == 4)
+        #expect(book.needsIndexing)
+        #expect(book.chapters.count == 1)   // cached index still there until the book is opened
     }
 
     @Test func deletingBookCascades() throws {

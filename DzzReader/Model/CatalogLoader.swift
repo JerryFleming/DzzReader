@@ -82,12 +82,14 @@ enum CatalogLoader {
         return result
     }
 
+    /// Changes when toc.txt, the file count, or any file size changes, so a replaced corpus invalidates cached indexes.
     private static func catalogHash(booksDirectory: URL) throws -> String {
         let toc = try Data(contentsOf: booksDirectory.appending(path: "toc.txt"))
-        let count = try bookFiles(in: booksDirectory).count
+        let files = try bookFiles(in: booksDirectory)
+        let totalSize = files.reduce(0) { $0 + $1.size }
         var hasher = SHA256()
         hasher.update(data: toc)
-        hasher.update(data: Data("\(count)".utf8))
+        hasher.update(data: Data("\(files.count):\(totalSize)".utf8))
         return hasher.finalize().map { String(format: "%02x", $0) }.joined()
     }
 }

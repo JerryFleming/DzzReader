@@ -53,6 +53,11 @@ enum Importer {
         book.indexedByteSize = utf8.count
         context.insert(book)
         try context.save()
+
+        // Files handed over by other apps land in Documents/Inbox; the copy is ours now, so tidy up.
+        if url.path.contains("/Inbox/") {
+            try? FileManager.default.removeItem(at: url)
+        }
         return book
     }
 
