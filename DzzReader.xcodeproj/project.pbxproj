@@ -18,6 +18,7 @@
 		4F8971F569449BB4CC893773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CFB5A8591A0161FCA93C2C /* Assets.xcassets */; };
 		5680EDC3E65523B51F9CC53A /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE8A7D858423933D4E5F9 /* ImporterTests.swift */; };
 		687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C13CB41671E634D4D5594C /* Importer.swift */; };
+		7616B59C71EAA1E0510598C6 /* BlankLineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FCE72237810128A21862D /* BlankLineUITests.swift */; };
 		780B851702C7144CCB3BC06C /* AutoScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */; };
 		7FF9287F9D568161353CC89A /* ReadingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */; };
 		81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		0592562D8BF0B441685B6F52 /* BookLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLoader.swift; sourceTree = "<group>"; };
+		0A2FCE72237810128A21862D /* BlankLineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankLineUITests.swift; sourceTree = "<group>"; };
 		0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderChromeUITests.swift; sourceTree = "<group>"; };
 		17681B449024CFFBD9794F28 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModel.swift; sourceTree = "<group>"; };
 		1953F5B32F02D9193D621DB2 /* BookSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSource.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */,
+				0A2FCE72237810128A21862D /* BlankLineUITests.swift */,
 				B9C725ABABA0935B11072D3E /* ImportUITests.swift */,
 				0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */,
 				D1EAE0079103672F885A102C /* ReaderUITests.swift */,
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				780B851702C7144CCB3BC06C /* AutoScrollUITests.swift in Sources */,
+				7616B59C71EAA1E0510598C6 /* BlankLineUITests.swift in Sources */,
 				A9769BB12EC96CD0F41F8FB1 /* ImportUITests.swift in Sources */,
 				E742E9FA79D714172326D058 /* ReaderChromeUITests.swift in Sources */,
 				3BFF8A0DC36D0B641298DD55 /* ReaderUITests.swift in Sources */,

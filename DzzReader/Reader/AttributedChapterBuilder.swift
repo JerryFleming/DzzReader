@@ -70,6 +70,8 @@ enum AttributedChapterBuilder {
             }
         }
 
+        collapseEmptyLines(in: body)
+
         let footerStyle = NSMutableParagraphStyle()
         footerStyle.alignment = .center
         footerStyle.paragraphSpacingBefore = 1.5 * size
@@ -83,5 +85,23 @@ enum AttributedChapterBuilder {
         }
         body.append(NSAttributedString(string: footerText(for: nextChapterTitle), attributes: footerAttributes))
         return body
+    }
+
+    /// Height of an empty (or whitespace-only) source line once collapsed.
+    static let emptyLineHeight: CGFloat = 1
+
+    /// Every paragraph already gets `paragraphSpacing` after it, so a blank source line would otherwise add a
+    /// full line plus a second spacing. Shrink blank lines to a hairline instead of removing them, so rendered
+    /// offsets (bookmarks, progress) still match the source.
+    private static func collapseEmptyLines(in text: NSMutableAttributedString) {
+        let ns = text.string as NSString
+        let style = NSMutableParagraphStyle()
+        style.minimumLineHeight = emptyLineHeight
+        style.maximumLineHeight = emptyLineHeight
+        let font = UIFont.systemFont(ofSize: emptyLineHeight)
+        ns.enumerateSubstrings(in: NSRange(location: 0, length: ns.length), options: [.byParagraphs]) { sub, _, enclosing, _ in
+            guard let sub, sub.trimmingCharacters(in: .whitespaces).isEmpty, enclosing.length > 0 else { return }
+            text.addAttributes([.font: font, .paragraphStyle: style], range: enclosing)
+        }
     }
 }
