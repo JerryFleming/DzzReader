@@ -25,7 +25,7 @@ final class ReaderChromeUITests: XCTestCase {
         let field = app.searchFields.firstMatch
         field.tap()
         field.typeText("0001")
-        let row = app.staticTexts["0001 · 长阿含经"]
+        let row = app.collectionViews["shelfSearchResults"].staticTexts["0001 · 长阿含经"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         row.tap()
         XCTAssertTrue(app.textViews["chapterText"].waitForExistence(timeout: 20))

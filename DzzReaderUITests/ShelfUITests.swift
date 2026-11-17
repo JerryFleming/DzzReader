@@ -42,7 +42,7 @@ final class ShelfUITests: XCTestCase {
         field.tap()
         field.typeText("0026")
         saveShot("search-typed")
-        XCTAssertTrue(app.staticTexts["0026 · 中阿含经"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.collectionViews["shelfSearchResults"].staticTexts["0026 · 中阿含经"].waitForExistence(timeout: 10))
         saveShot("search-0026")
     }
 
@@ -59,8 +59,12 @@ final class ShelfUITests: XCTestCase {
         }
         XCTAssertEqual(field.value as? String, "002")
 
-        // Scrolling the results does not dismiss the keyboard either.
-        app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '002'")).firstMatch.swipeUp()
+        // Scrolling the results does not dismiss the keyboard either. Drag the list from its empty
+        // right edge: starting on a row turns the swipe into a tap that opens the book.
+        let results = app.collectionViews["shelfSearchResults"]
+        XCTAssertTrue(results.waitForExistence(timeout: 5))
+        let from = results.coordinate(withNormalizedOffset: CGVector(dx: 0.97, dy: 0.6))
+        from.press(forDuration: 0.05, thenDragTo: results.coordinate(withNormalizedOffset: CGVector(dx: 0.97, dy: 0.3)))
         sleep(1)
         saveShot("after-scroll")
         XCTAssertTrue(app.keyboards.firstMatch.exists, "keyboard dismissed by scrolling")
@@ -70,7 +74,7 @@ final class ShelfUITests: XCTestCase {
         app.typeText("\n")
         XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5), "Enter did not dismiss the keyboard")
         XCTAssertEqual(field.value as? String, "002")
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '002'")).firstMatch.exists)
+        XCTAssertTrue(app.collectionViews["shelfSearchResults"].staticTexts.matching(NSPredicate(format: "label BEGINSWITH '002'")).firstMatch.exists)
     }
 
     func testTopSearchBarAndBottomTabs() {

@@ -31,7 +31,7 @@ final class ContinuousReadingUITests: XCTestCase {
         let field = app.searchFields.firstMatch
         field.tap()
         field.typeText(number)
-        let row = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "\(number) ·")).firstMatch
+        let row = app.collectionViews["shelfSearchResults"].staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "\(number) ·")).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let start = Date()
         row.tap()

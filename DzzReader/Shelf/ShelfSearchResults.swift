@@ -18,6 +18,7 @@ struct ShelfSearchResults: View {
             NavigationLink(value: book) { BookRow(book: book, showsChapter: false) }
         }
         .scrollDismissesKeyboard(.never)   // only Enter in the search field dismisses the keyboard
+        .accessibilityIdentifier("shelfSearchResults")
         .overlay {
             if matches.isEmpty {
                 ContentUnavailableView.search(text: query)

@@ -10,7 +10,7 @@ final class BlankLineUITests: XCTestCase {
         let field = app.searchFields.firstMatch
         field.tap()
         field.typeText("0236a")
-        let row = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH[c] %@", "0236a")).firstMatch
+        let row = app.collectionViews["shelfSearchResults"].staticTexts.matching(NSPredicate(format: "label BEGINSWITH[c] %@", "0236a")).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         row.tap()
         let text = app.textViews["chapterText"]

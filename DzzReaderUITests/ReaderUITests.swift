@@ -27,7 +27,7 @@ final class ReaderUITests: XCTestCase {
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
         field.typeText(number)
-        let row = app.staticTexts[rowTitle]
+        let row = app.collectionViews["shelfSearchResults"].staticTexts[rowTitle]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         row.tap()
         XCTAssertTrue(app.textViews["chapterText"].waitForExistence(timeout: 20))
@@ -64,8 +64,9 @@ final class ReaderUITests: XCTestCase {
 
         // Leave and come back.
         app.buttons["backButton"].tap()
-        XCTAssertTrue(app.staticTexts["0001 · 长阿含经"].waitForExistence(timeout: 10))
-        app.staticTexts["0001 · 长阿含经"].tap()
+        let row = app.collectionViews["shelfSearchResults"].staticTexts["0001 · 长阿含经"]   // the search is still open
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        row.tap()
         XCTAssertTrue(text.waitForExistence(timeout: 20))
         sleep(1)
         tapCenter()
@@ -110,7 +111,7 @@ final class ReaderUITests: XCTestCase {
         field.tap()
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 4))
         field.typeText("2722")
-        let row = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '2722 ·'")).firstMatch
+        let row = app.collectionViews["shelfSearchResults"].staticTexts.matching(NSPredicate(format: "label BEGINSWITH '2722 ·'")).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         row.tap()
         let text = app.textViews["chapterText"]

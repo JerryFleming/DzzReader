@@ -26,7 +26,7 @@ final class AutoScrollUITests: XCTestCase {
         let field = app.searchFields.firstMatch
         field.tap()
         field.typeText("0172")
-        let row = app.staticTexts["0172 · 佛说菩萨投身饴饿虎起塔因缘经"]
+        let row = app.collectionViews["shelfSearchResults"].staticTexts["0172 · 佛说菩萨投身饴饿虎起塔因缘经"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         row.tap()
         XCTAssertTrue(app.textViews["chapterText"].waitForExistence(timeout: 20))
