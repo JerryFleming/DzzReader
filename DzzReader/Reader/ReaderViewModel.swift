@@ -217,6 +217,27 @@ final class ReaderViewModel {
         try? context.save()
     }
 
+    // MARK: Sharing
+
+    /// The 分享 card markup for a selection: `书名•卷名::文字`, using the chapter the selection starts in.
+    /// The split-part suffix such as （1/3） is dropped from the chapter title, chapter marks and
+    /// whitespace from the text, and the card's own markup characters (`::`, `|`) from all three.
+    func quoteMarkup(renderedOffset: Int, selection: String) -> String {
+        let index = position(forRendered: renderedOffset).chapter
+        var chapter = chapters.indices.contains(index) ? chapters[index].title : ""
+        chapter = chapter.replacingOccurrences(of: #"[（(]\d+/\d+[）)]$"#, with: "", options: .regularExpression)
+        var text = selection.replacingOccurrences(of: "(?m)" + ChapterIndexer.chapterMarkPattern, with: "", options: .regularExpression)
+        text = text.replacingOccurrences(of: #"[\s　]+"#, with: "", options: .regularExpression)
+        func clean(_ s: String) -> String {
+            s.replacingOccurrences(of: "::", with: "：")
+                .replacingOccurrences(of: "|", with: "")
+                .replacingOccurrences(of: "｜", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        let source = [clean(book.title), clean(chapter)].filter { !$0.isEmpty }.joined(separator: "•")
+        return source + "::" + clean(text)
+    }
+
     // MARK: Bookmarks
 
     /// Bookmark at a rendered offset of the text view (a selection), in whichever chapter it falls.

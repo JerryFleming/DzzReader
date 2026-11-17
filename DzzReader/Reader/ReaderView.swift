@@ -5,6 +5,7 @@ struct ReaderView: View {
     @State private var vm: ReaderViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var scheme
+    @Environment(QuoteInbox.self) private var quoteInbox: QuoteInbox?
     @State private var showChapters = false
     @State private var showAppearance = false
     @State private var showBookmarks = false
@@ -37,6 +38,7 @@ struct ReaderView: View {
                     onVisibleOffsetChanged: { vm.recordVisibleRenderedOffset($0) },
                     onNextChapter: { vm.next() },
                     onAddBookmark: { range, text in vm.addBookmark(renderedOffset: range.location, excerpt: text) },
+                    onShareQuote: { range, text in quoteInbox?.send(vm.quoteMarkup(renderedOffset: range.location, selection: text)) },
                     onTapCenter: { withAnimation(.easeInOut(duration: 0.2)) { vm.showChrome.toggle() } },
                     onReachedEnd: { vm.reachedEnd() },
                     onReachedStart: { vm.reachedStart() }

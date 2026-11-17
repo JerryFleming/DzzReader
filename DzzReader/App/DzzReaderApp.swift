@@ -32,6 +32,8 @@ struct RootView: View {
     @State private var importRequested = false
     @State private var importErrors: [String] = []
     @State private var settings = ReaderSettings()
+    @AppStorage("share.quote") private var shareMarkup = QuoteScript.sample
+    @State private var quoteInbox = QuoteInbox()
 
     var body: some View {
         Group {
@@ -52,8 +54,17 @@ struct RootView: View {
                         ComingSoonView(title: "诵经", systemImage: "text.book.closed")
                     }
                     Tab("分享", systemImage: "square.and.arrow.up", value: AppTab.share) {
-                        ComingSoonView(title: "分享", systemImage: "square.and.arrow.up")
+                        ShareView()
                     }
+                }
+                // A selection shared from the reader fills the card's text box and opens the tab;
+                // the book stays open on the shelf tab underneath.
+                .environment(quoteInbox)
+                .onChange(of: quoteInbox.pending) { _, markup in
+                    guard let markup else { return }
+                    shareMarkup = markup
+                    tab = .share
+                    quoteInbox.pending = nil   // so sending the same text again still arrives
                 }
             } else {
                 ProgressView("正在整理书架…")
@@ -98,6 +109,16 @@ struct RootView: View {
             path.append(book)
         }
     }
+}
+
+/// Carries `书名•卷名::文字` markup from the reader to the 分享 tab. A single long-lived object in
+/// the environment (rather than a closure, which SwiftUI cannot compare) so readers of it are not
+/// invalidated on every update; RootView watches `pending` and delivers it.
+@Observable @MainActor
+final class QuoteInbox {
+    var pending: String?
+
+    func send(_ markup: String) { pending = markup }
 }
 
 enum AppTab: Hashable {

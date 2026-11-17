@@ -19,6 +19,7 @@ struct ChapterTextView: UIViewRepresentable {
     var onVisibleOffsetChanged: (Int) -> Void
     var onNextChapter: () -> Void
     var onAddBookmark: (NSRange, String) -> Void
+    var onShareQuote: (NSRange, String) -> Void = { _, _ in }   // the selection goes to the 分享 card
     var onTapCenter: () -> Void
     var onReachedEnd: () -> Void             // auto-scroll, a next-screen swipe or a pull ran past the end
     var onReachedStart: () -> Void = {}      // a previous-screen swipe or a pull ran past the start
@@ -532,7 +533,11 @@ struct ChapterTextView: UIViewRepresentable {
                 self?.parent.onAddBookmark(range, selected)
                 textView.selectedRange = NSRange(location: range.location, length: 0)
             }
-            return UIMenu(children: [bookmark] + suggestedActions)
+            let share = UIAction(title: "分享卡片", image: UIImage(systemName: "text.quote")) { [weak self] _ in
+                self?.parent.onShareQuote(range, selected)
+                textView.selectedRange = NSRange(location: range.location, length: 0)
+            }
+            return UIMenu(children: [bookmark, share] + suggestedActions)
         }
 
         // MARK: Center tap

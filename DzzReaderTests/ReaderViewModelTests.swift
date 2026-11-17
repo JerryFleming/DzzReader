@@ -118,6 +118,16 @@ import DzzCore
         #expect(vm.renderedOffset(chapter: 3, sourceOffset: mark.characterOffset) == starts[3] + 4)
     }
 
+    @Test(arguments: [true, false]) func quoteMarkupNamesBookAndChapterOfTheSelection(wholeBook: Bool) async throws {
+        let (vm, _, container) = try await makeVM(wholeBook: wholeBook)
+        defer { _ = container }
+        vm.go(toChapter: 2, sourceOffset: 0)
+        let start = vm.renderedOffset(chapter: 2, sourceOffset: 5)
+        let markup = vm.quoteMarkup(renderedOffset: start, selection: "　　如是我闻。\n第0章 一时佛|在::舍卫国。")
+        #expect(markup == "长阿含经•\(vm.chapters[2].title)::如是我闻。一时佛在：舍卫国。")
+        #expect(QuoteScript(markup).source == "长阿含经•\(vm.chapters[2].title)")
+    }
+
     @Test func wholeBookEdgesDoNotChangeDocument() async throws {
         let (vm, _, container) = try await makeVM(wholeBook: true)
         defer { _ = container }

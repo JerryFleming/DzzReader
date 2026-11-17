@@ -86,7 +86,7 @@ final class ShelfUITests: XCTestCase {
         XCTAssertLessThan(field.frame.maxX, importButton.frame.minX)
         XCTAssertLessThan(abs(field.frame.midY - importButton.frame.midY), 8)
 
-        // Bottom bar: 书架, 诵经, 分享; the other two are placeholders for now.
+        // Bottom bar: 书架, 诵经, 分享; 诵经 is a placeholder for now.
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.exists)
         for name in ["书架", "诵经", "分享"] { XCTAssertTrue(tabs.buttons[name].exists, name) }
@@ -96,7 +96,7 @@ final class ShelfUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["即将推出"].waitForExistence(timeout: 5))
         saveShot("tab-chanting")
         tabs.buttons["分享"].tap()
-        XCTAssertTrue(app.staticTexts["即将推出"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.otherElements["quoteCard"].waitForExistence(timeout: 5))
         tabs.buttons["书架"].tap()
         XCTAssertTrue(agama.waitForExistence(timeout: 5))
 

@@ -7,7 +7,7 @@ Design: `docs/superpowers/specs/2026-11-15-dzz-reader-ios-design.md`.
 ## Layout
 
 - `DzzCore/` — Swift package with all Foundation-only logic: toc parsing, chapter indexing (卷 + 品 sections, oversized-卷 splitting), chapter rendering with a source/rendered offset map, text decoding, progress maths. Test with `swift test` on macOS.
-- `DzzReader/` — the SwiftUI app: SwiftData models, catalog loader, shelf, reader (TextKit 2 `UITextView`), bookmarks, appearance, import.
+- `DzzReader/` — the SwiftUI app: SwiftData models, catalog loader, shelf, reader (TextKit 2 `UITextView`), bookmarks, appearance, import, and the 分享 tab (`Share/`: the vertical quote card ported from `../lecture/index.html`).
 - `DzzReaderTests/` — Swift Testing unit tests for the app layer (run on the simulator).
 - `DzzReaderUITests/` — XCUITest flows that drive the real app: shelf, reader, chapter list, slider, appearance, bookmarks, relaunch, import.
 - `Scripts/copy-books.sh` — build phase that rsyncs `../dzz/toc.txt` and `../dzz/NN/*.txt` into the bundle's `Books/` folder (nothing else from `../dzz` is copied).

@@ -36,6 +36,7 @@ struct ShelfView: View {
         // arrives re-hosts the top bar and drops the search field's focus.
         let searching = !searchText.isEmpty
         shelf
+            .accessibilityHidden(searching)   // covered by the results; don't let VoiceOver or tests find rows twice
             .overlay {
                 ShelfSearchResults(books: books, query: searchText)
                     .background(Color(.systemGroupedBackground))
