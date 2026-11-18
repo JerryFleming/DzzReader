@@ -10,7 +10,6 @@
 		0DEB0528F027D7A14B07DD4C /* Sheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80454FA4134B577CF9CF95B9 /* Sheets.swift */; };
 		2047B7ED1D02BD7F97EC8076 /* BookSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953F5B32F02D9193D621DB2 /* BookSource.swift */; };
 		2341BDA25D7E920BBC65AF65 /* ReaderShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17BF23BD4D796F2EA402E7 /* ReaderShareUITests.swift */; };
-		26216AD1BAB65338921EF376 /* quill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42F658EAA6D4D08AEF3C9812 /* quill.mp3 */; };
 		3025824BD4C9EF0DB17DE2DB /* RetroFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B0D2C12D950F0ED890371 /* RetroFrame.swift */; };
 		331C378D65548FC622AA202C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3EA4600C94993534A30EAB /* Theme.swift */; };
 		36BF94B4C9D54922BA93D74B /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386AAB558B23B39BC3346BD5 /* SectionView.swift */; };
@@ -39,12 +38,12 @@
 		B654E032BD5FA910E7ADCEAB /* AttributedChapterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218156C1D54E901284B9F647 /* AttributedChapterBuilder.swift */; };
 		B89753C0C1C3CA05FEC08CA8 /* QuoteAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E491EDD161282833590950 /* QuoteAnimator.swift */; };
 		BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */; };
-		BDAC5A15963A958C72B70CCF /* typewriter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B5BE257AA88EC24CB9C9780 /* typewriter.mp3 */; };
 		C0D63A404D6FA1D8DBCD2C60 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = CDDE53494A0217F9B5FFC3B4 /* Fixtures */; };
 		C4CC5D89BB33BCE06160C117 /* CatalogLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */; };
 		D4351313EC667CB02D89F275 /* ReaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CF36F99DF559FFA82C0CD /* ReaderSettings.swift */; };
 		D79CE93563CCD46CAD50EC46 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0C6C718002E8456E4EC0E /* Bookmark.swift */; };
 		D96705A53605004BACBE66CE /* AttributedChapterBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3DCAFB22229FA6C27039B2 /* AttributedChapterBuilderTests.swift */; };
+		DAB3DAC1F1501DD669800909 /* typewriter.caf in Resources */ = {isa = PBXBuildFile; fileRef = 26C401F7D0DD37BD6C1CCEAD /* typewriter.caf */; };
 		DBF95EB9191247700E35C2DF /* BookLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5159BCBC1D777A0C670069ED /* BookLoaderTests.swift */; };
 		E21D73216A65B44C851F628A /* ChapterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6957ADA3CCBB16CB3E68744C /* ChapterTextView.swift */; };
 		E45AC7BFD6E575A77758FD05 /* ContinuousReadingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */; };
@@ -53,6 +52,7 @@
 		ECE44E62CA1C837E1DB28CFE /* DzzCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4703AEE269D9AF9314B978DD /* DzzCore */; };
 		EEB3CB14433CEE8E6A633E65 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6349296641D593FBB2295912 /* Book.swift */; };
 		F2579D274ADE2F3CC1FAEA06 /* ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17681B449024CFFBD9794F28 /* ReaderViewModel.swift */; };
+		FA9A64FEDB7B10A8DC6B5932 /* quill.caf in Resources */ = {isa = PBXBuildFile; fileRef = FD6E12AA39339EAB910585D8 /* quill.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,17 +82,16 @@
 		218156C1D54E901284B9F647 /* AttributedChapterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedChapterBuilder.swift; sourceTree = "<group>"; };
 		21E491EDD161282833590950 /* QuoteAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteAnimator.swift; sourceTree = "<group>"; };
 		26BFAB95EFF54E43BA66BB30 /* QuoteScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteScript.swift; sourceTree = "<group>"; };
+		26C401F7D0DD37BD6C1CCEAD /* typewriter.caf */ = {isa = PBXFileReference; path = typewriter.caf; sourceTree = "<group>"; };
 		2E1B00C989368D69C45F9772 /* QuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardView.swift; sourceTree = "<group>"; };
 		381266753F403BD40976D3F2 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
 		386AAB558B23B39BC3346BD5 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoader.swift; sourceTree = "<group>"; };
-		42F658EAA6D4D08AEF3C9812 /* quill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quill.mp3; sourceTree = "<group>"; };
 		45436F0672A06F30D7935B78 /* DzzReaderTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49080ABA9A3DE5050A9428E7 /* CatalogLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogLoaderTests.swift; sourceTree = "<group>"; };
 		4D3EA4600C94993534A30EAB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		503643486B3504BF98B5DFBD /* ShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
 		5159BCBC1D777A0C670069ED /* BookLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLoaderTests.swift; sourceTree = "<group>"; };
-		5B5BE257AA88EC24CB9C9780 /* typewriter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = typewriter.mp3; sourceTree = "<group>"; };
 		6349296641D593FBB2295912 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		65C13CB41671E634D4D5594C /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		668CF36F99DF559FFA82C0CD /* ReaderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderSettings.swift; sourceTree = "<group>"; };
@@ -122,6 +121,7 @@
 		EB78C8D517D239CD75800343 /* ShelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfUITests.swift; sourceTree = "<group>"; };
 		F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousReadingUITests.swift; sourceTree = "<group>"; };
 		F4F690827FF2B380C03BD78C /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		FD6E12AA39339EAB910585D8 /* quill.caf */ = {isa = PBXFileReference; path = quill.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +147,8 @@
 		0242A501F8440B1894CAF25F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				42F658EAA6D4D08AEF3C9812 /* quill.mp3 */,
-				5B5BE257AA88EC24CB9C9780 /* typewriter.mp3 */,
+				FD6E12AA39339EAB910585D8 /* quill.caf */,
+				26C401F7D0DD37BD6C1CCEAD /* typewriter.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -406,8 +406,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8971F569449BB4CC893773 /* Assets.xcassets in Resources */,
-				26216AD1BAB65338921EF376 /* quill.mp3 in Resources */,
-				BDAC5A15963A958C72B70CCF /* typewriter.mp3 in Resources */,
+				FA9A64FEDB7B10A8DC6B5932 /* quill.caf in Resources */,
+				DAB3DAC1F1501DD669800909 /* typewriter.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -88,8 +88,8 @@ final class QuoteAnimator {
     }
 }
 
-/// The two recordings, typewriter.mp3 and quill.mp3. Both are long, steady takes, so each
-/// playback starts at a random point and loops, and never sounds the same twice.
+/// The two recordings, typewriter.caf and quill.caf: short clips kept as uncompressed PCM so
+/// they loop without a gap. Each playback starts at a random point in the clip.
 @MainActor
 final class QuoteSounds {
     enum Effect: String, CaseIterable { case typewriter, quill }
@@ -101,7 +101,7 @@ final class QuoteSounds {
 
     init() {
         for effect in Effect.allCases {
-            guard let url = Bundle.main.url(forResource: effect.rawValue, withExtension: "mp3"),
+            guard let url = Bundle.main.url(forResource: effect.rawValue, withExtension: "caf"),
                   let player = try? AVAudioPlayer(contentsOf: url) else { continue }
             player.numberOfLoops = -1
             player.prepareToPlay()
@@ -116,7 +116,7 @@ final class QuoteSounds {
         try? session.setActive(true)
         generations[effect, default: 0] += 1
         player.volume = 1
-        player.currentTime = Double.random(in: 0..<max(0.1, player.duration - 5))
+        player.currentTime = Double.random(in: 0..<max(0.01, player.duration))
         player.play()
     }
 
