@@ -3,8 +3,12 @@ import UIKit
 
 enum PageCommand { case previous, next }
 
-/// The reading surface: a TextKit 2 UITextView showing one document (a whole book, or one chapter of a big one).
+/// The reading surface: a TextKit 1 UITextView showing one document (a whole book, or one chapter of a big one).
 /// All offsets crossing this boundary are RENDERED offsets (UTF-16 units into `attributedText`).
+///
+/// TextKit 1, not 2: a TextKit 2 UITextView redraws every paragraph on screen on every frame while it scrolls
+/// (measured: ~200 fragment draws/s during auto-scroll, and the same under a finger), which made auto-scroll cost
+/// about five times the CPU. TextKit 1 draws into tiles that only move.
 struct ChapterTextView: UIViewRepresentable {
     let attributedText: NSAttributedString
     let contentID: Int                       // changes when a different document is shown
@@ -31,7 +35,9 @@ struct ChapterTextView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
     func makeUIView(context: Context) -> UITextView {
-        let view = ReaderTextView(usingTextLayoutManager: true)
+        let view = ReaderTextView(usingTextLayoutManager: false)
+        // A whole book is up to 300K characters; lay out only what is needed instead of everything up front.
+        view.layoutManager.allowsNonContiguousLayout = true
         view.isEditable = false
         view.isSelectable = true
         view.isScrollEnabled = true
@@ -131,26 +137,66 @@ struct ChapterTextView: UIViewRepresentable {
         }
 
         private func visibleText() -> String? {
-            guard let layout = textLayoutManager, let content = layout.textContentManager else { return nil }
+            let length = textStorage.length
+            guard length > 0 else { return nil }
             let insets = verticalScrollIndicatorInsets
             // Container coordinates of the visible band between the status bar and the home indicator.
             let top = max(contentOffset.y + insets.top - textContainerInset.top, 0)
             let bottom = top + max(bounds.height - insets.top - insets.bottom, 1)
-            let documentStart = content.documentRange.location
-            let length = attributedText?.length ?? 0
-            var start = 0
-            if let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: top)) {
-                start = content.offset(from: documentStart, to: fragment.rangeInElement.location)
-                // Skip lines of a long paragraph that are already above the screen.
-                let frameY = fragment.layoutFragmentFrame.minY
-                if let line = fragment.textLineFragments.first(where: { frameY + $0.typographicBounds.maxY > top + 1 }) {
-                    start += line.characterRange.location
-                }
+            let start = firstLine(endingBelow: top + 1).map { characterRange(of: $0).location } ?? 0
+            let end = line(atY: bottom).map { NSMaxRange(characterRange(of: $0)) } ?? length
+            guard start < end, end <= length else { return textStorage.string }
+            return (textStorage.string as NSString).substring(with: NSRange(location: start, length: end - start))
+        }
+
+        // MARK: Line geometry (text-container coordinates)
+
+        /// One laid-out line: its glyphs and the rect its glyphs use (without line or paragraph spacing).
+        struct Line {
+            let glyphs: NSRange
+            let rect: CGRect
+        }
+
+        func line(forGlyphAt index: Int) -> Line? {
+            guard layoutManager.isValidGlyphIndex(index) else { return nil }
+            var glyphs = NSRange()
+            let rect = layoutManager.lineFragmentUsedRect(forGlyphAt: index, effectiveRange: &glyphs)
+            return Line(glyphs: glyphs, rect: rect)
+        }
+
+        /// The line at `y`, or the nearest one when `y` falls in spacing or past the text.
+        func line(atY y: CGFloat) -> Line? {
+            guard textStorage.length > 0 else { return nil }
+            let index = layoutManager.glyphIndex(for: CGPoint(x: 1, y: max(y, 0)), in: textContainer)
+            return line(forGlyphAt: index)
+        }
+
+        func line(after line: Line) -> Line? { self.line(forGlyphAt: NSMaxRange(line.glyphs)) }
+
+        func line(before line: Line) -> Line? {
+            line.glyphs.location > 0 ? self.line(forGlyphAt: line.glyphs.location - 1) : nil
+        }
+
+        /// The first line whose bottom is below `y`, starting from the line at `y`.
+        func firstLine(endingBelow y: CGFloat) -> Line? {
+            guard var current = line(atY: y) else { return nil }
+            for _ in 0..<8 where current.rect.maxY <= y {
+                guard let next = line(after: current) else { break }
+                current = next
             }
-            let end = layout.textLayoutFragment(for: CGPoint(x: 0, y: bottom))
-                .map { content.offset(from: documentStart, to: $0.rangeInElement.endLocation) } ?? length
-            guard start < end, end <= length else { return attributedText?.string }
-            return (attributedText.string as NSString).substring(with: NSRange(location: start, length: end - start))
+            return current
+        }
+
+        func characterRange(of line: Line) -> NSRange {
+            layoutManager.characterRange(forGlyphRange: line.glyphs, actualGlyphRange: nil)
+        }
+
+        /// False for collapsed empty lines and lines holding only whitespace.
+        func hasText(_ line: Line) -> Bool {
+            guard line.rect.height > 2 else { return false }
+            let range = characterRange(of: line)
+            return !(textStorage.string as NSString).substring(with: range)
+                .trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
 
         private func updateInsets() {
@@ -187,60 +233,45 @@ struct ChapterTextView: UIViewRepresentable {
 
         // MARK: Offsets
 
+        private var reader: ReaderTextView? { textView as? ReaderTextView }
+
         /// Rendered offset of the first visible line.
         func currentTopOffset() -> Int? {
-            guard let view = textView, let layout = view.textLayoutManager, let content = layout.textContentManager else { return nil }
+            guard let view = reader else { return nil }
             // The text inset is the window safe area plus the fixed top padding, so the first line below
             // the status bar sits `topPadding` above the container origin.
             let y = max(view.contentOffset.y - ReaderTextView.topPadding, 0)
-            guard let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: y)) else { return nil }
-            var location = fragment.rangeInElement.location
-            let frameY = fragment.layoutFragmentFrame.minY
-            for line in fragment.textLineFragments {
-                let lineBottom = frameY + line.typographicBounds.maxY
-                if lineBottom > y + 1 {
-                    if let loc = content.location(fragment.rangeInElement.location, offsetBy: line.characterRange.location) {
-                        location = loc
-                    }
-                    break
-                }
-            }
-            return content.offset(from: content.documentRange.location, to: location)
+            guard let line = view.firstLine(endingBelow: y + 1) else { return nil }
+            return view.characterRange(of: line).location
         }
 
         /// Rendered offset a scroll is still settling on; restyles keep this instead of a possibly stale top line.
         private(set) var pendingTarget: Int?
 
         /// Puts the line containing `offset` at the top, then checks on the next pass that it is really there.
-        /// TextKit 2 positions text it has not laid out by estimate, and UITextView re-anchors the viewport when
-        /// estimates are replaced, so a single attempt can land well off in a long document.
+        /// With non-contiguous layout, text above the target may only have estimated positions until it is laid
+        /// out, so a single attempt can land off in a long document.
         func scroll(toRenderedOffset offset: Int, attempt: Int = 0) {
-            guard let view = textView, let layout = view.textLayoutManager, let content = layout.textContentManager else { return }
+            guard let view = reader else { return }
+            let layout = view.layoutManager
             pendingTarget = offset
             view.layoutIfNeeded()
-            if attempt >= 2 {
-                layout.ensureLayout(for: content.documentRange)   // last resort: real positions for everything
-            }
-            let length = view.attributedText?.length ?? 0
-            let clamped = min(max(offset, 0), max(length - 1, 0))
-            guard let location = content.location(content.documentRange.location, offsetBy: clamped) else { return }
-            layout.ensureLayout(for: NSTextRange(location: content.documentRange.location, end: location) ?? content.documentRange)
-            guard let fragment = layout.textLayoutFragment(for: location) else { return }
-            var y = fragment.layoutFragmentFrame.minY
-            let within = content.offset(from: fragment.rangeInElement.location, to: location)
-            for line in fragment.textLineFragments where line.characterRange.contains(within) {
-                y += line.typographicBounds.minY
-                break
-            }
-            let target = y + ReaderTextView.topPadding
+            let length = view.textStorage.length
+            guard length > 0 else { return }
+            let clamped = min(max(offset, 0), length - 1)
+            // Non-contiguous layout only estimates where text it has not laid out sits, and corrects it later,
+            // moving the text after the jump. Lay out everything up to the target so its position is real.
+            layout.ensureLayout(forCharacterRange: NSRange(location: 0, length: clamped + 1))
+            let glyph = layout.glyphIndexForCharacter(at: clamped)
+            guard let line = view.line(forGlyphAt: glyph) else { return }
+            let target = line.rect.minY + ReaderTextView.topPadding
             var maxY = max(view.contentSize.height - view.bounds.height, 0)
             if target > maxY {
-                // TextKit 2 only estimates the height of text it has not laid out, so a long jump into a whole
-                // book can land past the estimated end and be clamped short. Lay out a screen beyond the target
-                // and take the real content height from the layout manager.
-                let below = content.location(location, offsetBy: min(4_000, max(length - clamped, 0))) ?? content.documentRange.endLocation
-                if let range = NSTextRange(location: location, end: below) { layout.ensureLayout(for: range) }
-                let used = layout.usageBoundsForTextContainer.height
+                // The content height may still be an estimate below the target. Lay out a screen beyond it and
+                // take the real height from the layout manager.
+                let ahead = NSRange(location: clamped, length: min(4_000, length - clamped))
+                layout.ensureLayout(forCharacterRange: ahead)
+                let used = layout.usedRect(for: view.textContainer).height
                 let height = used + view.textContainerInset.top + view.textContainerInset.bottom
                 if height > view.contentSize.height { view.contentSize.height = height }
                 maxY = max(view.contentSize.height - view.bounds.height, 0)
@@ -272,34 +303,20 @@ struct ChapterTextView: UIViewRepresentable {
         // MARK: Screen paging
 
         /// Top and bottom (text-container coordinates) of the line at `y`, or of the next line when `y` falls between lines.
-        private func line(at y: CGFloat, depth: Int = 0) -> (minY: CGFloat, maxY: CGFloat)? {
-            guard depth < 3, let layout = textView?.textLayoutManager,
-                  let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: max(y, 0))) else { return nil }
-            let frameY = fragment.layoutFragmentFrame.minY
-            for line in fragment.textLineFragments {
-                let bounds = line.typographicBounds
-                if frameY + bounds.maxY > y { return (frameY + bounds.minY, frameY + bounds.maxY) }
-            }
-            return line(at: fragment.layoutFragmentFrame.maxY + 0.5, depth: depth + 1)
+        private func line(at y: CGFloat) -> (minY: CGFloat, maxY: CGFloat)? {
+            guard let line = reader?.firstLine(endingBelow: y) else { return nil }
+            return (line.rect.minY, line.rect.maxY)
         }
 
         /// The last non-blank line that ends at or above `y` (skips paragraph spacing and collapsed empty lines).
         private func line(endingAtOrAbove y: CGFloat) -> (minY: CGFloat, maxY: CGFloat)? {
-            guard let layout = textView?.textLayoutManager else { return nil }
-            var probe = y - 0.5
-            for _ in 0..<8 where probe >= 0 {
-                guard let fragment = layout.textLayoutFragment(for: CGPoint(x: 0, y: probe)) else { return nil }
-                let frameY = fragment.layoutFragmentFrame.minY
-                for line in fragment.textLineFragments.reversed() {
-                    let bounds = line.typographicBounds
-                    let minY = frameY + bounds.minY, maxY = frameY + bounds.maxY
-                    if maxY <= y + 0.5, line.characterRange.length > 0, bounds.height > 2,
-                       !line.attributedString.attributedSubstring(from: line.characterRange).string
-                           .trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                        return (minY, maxY)
-                    }
+            guard let view = reader, var current = view.line(atY: max(y - 0.5, 0)) else { return nil }
+            for _ in 0..<16 {
+                if current.rect.maxY <= y + 0.5, view.hasText(current) {
+                    return (current.rect.minY, current.rect.maxY)
                 }
-                probe = frameY - 0.5
+                guard let previous = view.line(before: current) else { return nil }
+                current = previous
             }
             return nil
         }
