@@ -70,10 +70,14 @@ struct ChapterTextView: UIViewRepresentable {
     private func apply(to view: UITextView, context: Context, contentChanged: Bool) {
         let coordinator = context.coordinator
         coordinator.parent = self
-        view.backgroundColor = backgroundColor
-        view.tintColor = tintColor
-        view.linkTextAttributes = [.foregroundColor: tintColor]
-        (view as? ReaderTextView)?.horizontalMargin = margin
+        // SwiftUI calls this on every observed change (auto-scroll reports progress each second); setting
+        // link attributes can redraw the whole text, so only touch what actually changed.
+        if view.backgroundColor != backgroundColor { view.backgroundColor = backgroundColor }
+        if view.tintColor != tintColor {
+            view.tintColor = tintColor
+            view.linkTextAttributes = [.foregroundColor: tintColor]
+        }
+        (view as? ReaderTextView)?.horizontalMargin = margin   // its didSet already skips unchanged insets
 
         if contentChanged {
             let chapterChanged = coordinator.contentID != contentID
@@ -368,15 +372,32 @@ struct ChapterTextView: UIViewRepresentable {
                 autoY = nil
                 return
             }
+            let speedChanged = speed != autoScrollSpeed
             autoScrollSpeed = speed
-            guard displayLink == nil else { return }
+            if let link = displayLink {
+                if speedChanged { link.preferredFrameRateRange = Self.frameRateRange(speed: speed, scale: pixelScale) }
+                return
+            }
             endReported = false
             autoY = nil
             lastTick = CACurrentMediaTime()
             lastAutoReport = lastTick
             let link = CADisplayLink(target: self, selector: #selector(tick(_:)))
+            link.preferredFrameRateRange = Self.frameRateRange(speed: speed, scale: pixelScale)
             link.add(to: .main, forMode: .common)
             displayLink = link
+        }
+
+        private var pixelScale: CGFloat {
+            textView.map { $0.window?.screen.scale ?? $0.traitCollection.displayScale } ?? 3
+        }
+
+        /// Auto-scroll moves slowly, so redrawing at the display's full rate mostly re-renders sub-pixel moves.
+        /// Ask for about one frame per pixel travelled, capped at 30 Hz (at most a few pixels per step).
+        static func frameRateRange(speed: Double, scale: CGFloat) -> CAFrameRateRange {
+            let pixelsPerSecond = Float(speed) * Float(scale)
+            let preferred = min(max(pixelsPerSecond, 10), 30)
+            return CAFrameRateRange(minimum: min(10, preferred), maximum: 30, preferred: preferred)
         }
 
         func chapterDidChange() {
@@ -409,7 +430,12 @@ struct ChapterTextView: UIViewRepresentable {
             if abs(y - view.contentOffset.y) > 2 { y = view.contentOffset.y }
             y = min(y + CGFloat(autoScrollSpeed * dt), maxOffset)
             autoY = y
-            view.contentOffset = CGPoint(x: 0, y: y)
+            // Move in whole pixels only; a tick that would not change a pixel costs no redraw or relayout.
+            let scale = pixelScale
+            let snapped = y >= maxOffset ? maxOffset : (y * scale).rounded(.down) / scale
+            if abs(snapped - view.contentOffset.y) >= 0.5 / scale {
+                view.contentOffset = CGPoint(x: 0, y: snapped)
+            }
             if now - lastAutoReport > 1 {
                 lastAutoReport = now
                 report()

@@ -5,6 +5,7 @@ struct ReaderView: View {
     @State private var vm: ReaderViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var scheme
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(QuoteInbox.self) private var quoteInbox: QuoteInbox?
     @State private var showChapters = false
     @State private var showAppearance = false
@@ -81,7 +82,12 @@ struct ReaderView: View {
         .onChange(of: vm.settings.snapshot) { vm.restyle(scheme: scheme) }
         .onChange(of: scheme) { vm.restyle(scheme: scheme) }
         .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
-        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
+        .onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
+            vm.flushProgress()
+        }
+        .onChange(of: scenePhase) { if scenePhase != .active { vm.flushProgress() } }
+        .onChange(of: vm.showChrome) { if vm.showChrome { vm.flushProgress() } }   // auto-scroll paused
         .sheet(isPresented: $showChapters) { ChapterListSheet(vm: vm) }
         .sheet(isPresented: $showAppearance) {
             AppearanceSheet(settings: vm.settings)

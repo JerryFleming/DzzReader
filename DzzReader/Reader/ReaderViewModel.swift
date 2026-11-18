@@ -24,7 +24,9 @@ final class ReaderViewModel {
     private(set) var visibleSourceOffset = 0
     var scrollTarget: Int?                   // rendered offset handed to the text view
     var showChrome = false
-    var autoScrolling = false
+    var autoScrolling = false {
+        didSet { if !autoScrolling { flushProgress() } }
+    }
     var error: String?
     var toast: String?
 
@@ -203,6 +205,31 @@ final class ReaderViewModel {
 
     private func persistProgress() {
         guard !chapters.isEmpty else { return }
+        // Auto-scroll reports a new top line about every second. Any change to a model in the context makes every
+        // @Query re-fetch, and the shelf under the reader fetches the whole catalogue, so keep the position here
+        // and write it into the model only when saving: every 15 s, or when auto-scroll stops, pauses or leaves.
+        let now = Date.now
+        if autoScrolling, let lastSave, now.timeIntervalSince(lastSave) < Self.autoScrollSaveInterval {
+            unsavedProgress = true
+            return
+        }
+        writeProgress()
+    }
+
+    static let autoScrollSaveInterval: TimeInterval = 15
+    private var lastSave: Date?
+    private var unsavedProgress = false
+
+    /// Writes progress held back while auto-scrolling.
+    func flushProgress() {
+        guard unsavedProgress else { return }
+        writeProgress()
+    }
+
+    private func writeProgress() {
+        guard !chapters.isEmpty else { return }
+        lastSave = .now
+        unsavedProgress = false
         let fraction = self.fraction
         if let progress = book.progress {
             progress.chapterIndex = chapterIndex

@@ -140,6 +140,34 @@ import DzzCore
         #expect(!vm.autoScrolling && vm.toast == "已读完")
     }
 
+    @Test func autoScrollHoldsBackProgressSavesUntilStopped() async throws {
+        let (vm, context, container) = try await makeVM(wholeBook: true)
+        defer { _ = container }
+        vm.autoScrolling = true
+        vm.recordVisibleRenderedOffset(vm.renderedOffset(chapter: 1, sourceOffset: 10))
+        vm.recordVisibleRenderedOffset(vm.renderedOffset(chapter: 1, sourceOffset: 60))
+        // The second report fell inside the save interval: the reader knows the position, the model doesn't yet
+        // (touching the model would make every @Query, such as the shelf's, re-fetch).
+        #expect(vm.visibleSourceOffset == 60)
+        #expect(vm.book.progress?.characterOffset != 60)
+        #expect(!context.hasChanges)
+        vm.autoScrolling = false                         // stopping writes and saves it
+        #expect(vm.book.progress?.characterOffset == 60)
+        #expect(!context.hasChanges)
+
+        vm.recordVisibleRenderedOffset(vm.renderedOffset(chapter: 1, sourceOffset: 90))
+        #expect(!context.hasChanges)                     // manual reading saves straight away
+    }
+
+    @Test func autoScrollFrameRateFollowsSpeed() {
+        let slow = ChapterTextView.Coordinator.frameRateRange(speed: 5, scale: 3)
+        #expect(slow.preferred == 15 && slow.maximum == 30)
+        let fast = ChapterTextView.Coordinator.frameRateRange(speed: 150, scale: 3)
+        #expect(fast.preferred == 30)
+        let crawl = ChapterTextView.Coordinator.frameRateRange(speed: 1, scale: 2)
+        #expect(crawl.preferred == 10 && crawl.minimum <= 10)
+    }
+
     // MARK: Chapter-at-a-time documents
 
     @Test func largeBookShowsOneChapterAndPagesAtEdges() async throws {
