@@ -17,6 +17,9 @@ struct ReaderView: View {
 
     private var theme: Theme { vm.settings.theme }
 
+    /// Auto-scroll is on and not paused by the chrome.
+    private var isAutoScrollRunning: Bool { vm.autoScrolling && !vm.showChrome }
+
     var body: some View {
         ZStack {
             Color(theme.background(for: scheme)).ignoresSafeArea()
@@ -35,7 +38,7 @@ struct ReaderView: View {
                     tintColor: theme.foreground(for: scheme).withAlphaComponent(0.8),
                     margin: vm.settings.margin,
                     scrollTarget: $vm.scrollTarget,
-                    autoScrollSpeed: vm.autoScrolling && !vm.showChrome ? vm.settings.autoScrollSpeed : nil,
+                    autoScrollSpeed: isAutoScrollRunning ? vm.settings.autoScrollSpeed : nil,
                     onVisibleOffsetChanged: { vm.recordVisibleRenderedOffset($0) },
                     onNextChapter: { vm.next() },
                     onAddBookmark: { range, text in vm.addBookmark(renderedOffset: range.location, excerpt: text) },
@@ -81,7 +84,8 @@ struct ReaderView: View {
         .task { await vm.load(scheme: scheme) }
         .onChange(of: vm.settings.snapshot) { vm.restyle(scheme: scheme) }
         .onChange(of: scheme) { vm.restyle(scheme: scheme) }
-        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
+        // Keep the screen awake only while text moves by itself; reading by hand or paused, auto-lock applies.
+        .onChange(of: isAutoScrollRunning, initial: true) { UIApplication.shared.isIdleTimerDisabled = isAutoScrollRunning }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
             vm.flushProgress()
