@@ -5,7 +5,8 @@
 
 Needs `mutool` (brew install mupdf-tools). Output items:
   {"char": "大", "pinyin": "dà"}            pinyin empty for punctuation and text in （…）
-  {"type": "linebreak"}                     end of a printed row of Chinese text
+  {"type": "linebreak"}                     a new line: the next row is indented or starts a new passage
+                                            (rows that merely wrap at the margin are joined)
   {"type": "passage", "style": "title"}     colour of the text: black normal, red title, violet subtitle
                                             (a new heading size also starts a new title/subtitle passage)
 The PDF draws a few rare characters as graphics; only their pinyin is in the text layer. They are placed
@@ -65,7 +66,7 @@ for p in range(START_PAGE, NPAGES + 1):
                 first = min(row, key=lambda it: it["_x1"]) if row else None
                 ref = anchor or first
                 ph = {"char": manual.get(key, "□"), "pinyin": py, "_paren": False,
-                      "_y": ref["_y"], "_x1": cx + 8, "_page": p, "_color": ref["_color"], "_size": ref["_size"]}
+                      "_y": ref["_y"], "_x0": cx - 8, "_x1": cx + 8, "_page": p, "_color": ref["_color"], "_size": ref["_size"]}
                 if anchor is None:  # first char of row: insert before leftmost
                     idx = next(i for i, it in enumerate(items) if it is first) if first else len(items)
                 else:
@@ -77,7 +78,7 @@ for p in range(START_PAGE, NPAGES + 1):
             if c.isspace():
                 continue
             it = {"char": c, "pinyin": "", "_paren": depth > 0 and c not in "（(）)",
-                  "_y": q[5], "_x1": q[2], "_page": p, "_color": col, "_size": size}
+                  "_y": q[5], "_x0": q[0], "_x1": q[2], "_page": p, "_color": col, "_size": size}
             if c in "（(": depth += 1; it["_paren"] = False
             elif c in "）)": depth = max(0, depth - 1)
             items.append(it); page_items.append(it)
@@ -87,20 +88,77 @@ for i, it in enumerate(items):
         ctx = "".join(x["char"] for x in items[max(0, i-5):i+6])
         warnings.append(f"p{it['_page']}: no pinyin for {it['char']} in …{ctx}…")
 STYLE = {"#000000": "normal", "#c00000": "title", "#7030a0": "subtitle"}
+# A printed row is a new line only when it starts indented (a new paragraph or verse line; wrapped
+# continuation rows start at the left margin) or when it starts a new passage (colour or heading size
+# changes). Notes in （…） are dark blue but never count as a colour change.
+INDENT_X = 50           # body text starts at x≈28–36; indented rows at x≥58
 clean, style, size, prev = [], None, None, None
+row_start, row_broken, row_styled = None, False, False
 for it in items:
     if prev is not None and (it["_page"] != prev["_page"] or abs(it["_y"] - prev["_y"]) > 8):
         if it["_page"] == prev["_page"] and it["_y"] < prev["_y"] - 8:
             warnings.append(f"p{it['_page']}: row order goes up at {it['char']}")
-        clean.append({"type": "linebreak"})
+        row_start, row_broken, row_styled = len(clean), it["_x0"] > INDENT_X, False
+        if row_broken:
+            clean.append({"type": "linebreak"})
     s_ = STYLE.get(it["_color"]) if is_cjk(it["char"]) and not it["_paren"] else None
     if s_ and (s_ != style or (s_ != "normal" and it["_size"] != size)):
         style, size = s_, it["_size"]
+        if row_start is not None and not row_broken and not row_styled:
+            clean.insert(row_start, {"type": "linebreak"})   # the new passage starts this row
+            row_broken = True
         clean.append({"type": "passage", "style": style})
-    elif style is None and s_ is None and not clean:
-        pass
+    if s_:
+        row_styled = True
     clean.append({"char": it["char"], "pinyin": it["pinyin"]})
     prev = it
+
+# Inside （…）, Chinese numerals become digits: （五十九） → （59）, （三遍） → （3遍）, （五百声或千声） → （500声或1000声）.
+# 两 is left alone (「有两种读音」 reads as a word). A number wrapped across a row break is written whole
+# before the break.
+CN_DIGITS = {"零": 0, "〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+CN_UNITS = {"十": 10, "百": 100, "千": 1000}
+
+def cn_to_int(run):
+    if not any(ch in CN_UNITS for ch in run):          # 二〇〇五 style: digit by digit
+        return "".join(str(CN_DIGITS[ch]) for ch in run)
+    total, cur = 0, 0
+    for ch in run:
+        if ch in CN_DIGITS:
+            cur = CN_DIGITS[ch]
+        else:
+            total += (cur or 1) * CN_UNITS[ch]
+            cur = 0
+    return str(total + cur)
+
+def numerals_to_digits(items):
+    out, depth, run = [], 0, []          # run: indices into out of the current numeral characters
+    def flush():
+        if run:
+            digits = cn_to_int("".join(out[i]["char"] for i in run))
+            first = run[0]
+            for i in reversed(run):
+                del out[i]
+            for k, d in enumerate(digits):
+                out.insert(first + k, {"char": d, "pinyin": ""})
+            run.clear()
+    for it in items:
+        c = it.get("char")
+        if c is None:                    # linebreak / passage: a number may continue after it
+            out.append(it)
+            continue
+        if depth > 0 and (c in CN_DIGITS or c in CN_UNITS):
+            run.append(len(out))
+            out.append(it)
+            continue
+        flush()
+        if c in "（(": depth += 1
+        elif c in "）)": depth = max(0, depth - 1)
+        out.append(it)
+    flush()
+    return out
+
+clean = numerals_to_digits(clean)
 chars_only = [x for x in clean if "char" in x]
 with open(out, "w", encoding="utf-8") as f:
     json.dump(clean, f, ensure_ascii=False, indent=1)

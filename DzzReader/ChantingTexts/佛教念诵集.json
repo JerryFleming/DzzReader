@@ -55,23 +55,15 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -83,27 +75,19 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "千",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
-  "pinyin": ""
- },
- {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -162,7 +146,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -984,9 +968,6 @@
   "pinyin": "zhōng"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "涌",
   "pinyin": "yǒng"
  },
@@ -1061,9 +1042,6 @@
  {
   "char": "十",
   "pinyin": "shí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "道",
@@ -1142,9 +1120,6 @@
   "pinyin": "hé"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "沙",
   "pinyin": "shā"
  },
@@ -1219,9 +1194,6 @@
  {
   "char": "仰",
   "pinyin": "yǎng"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "观",
@@ -1302,9 +1274,6 @@
  {
   "char": "相",
   "pinyin": "xiàng"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "放",
@@ -1449,9 +1418,6 @@
   "pinyin": "pú"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "陀",
   "pinyin": "tuó"
  },
@@ -1464,7 +1430,7 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -1524,7 +1490,7 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -1550,9 +1516,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "勃",
@@ -1595,7 +1558,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -1655,9 +1618,6 @@
   "pinyin": "miǎo"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "三",
   "pinyin": "sān"
  },
@@ -1690,7 +1650,7 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -1738,7 +1698,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -1752,9 +1712,6 @@
  {
   "char": "無",
   "pinyin": "mó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "卢",
@@ -1797,7 +1754,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -1845,7 +1802,7 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -1855,9 +1812,6 @@
  {
   "char": "南",
   "pinyin": "ná"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "無",
@@ -1900,7 +1854,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -1948,15 +1902,12 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "三",
@@ -2007,7 +1958,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -2047,14 +2002,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -2126,11 +2078,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -2152,9 +2104,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "揭",
@@ -2209,11 +2158,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -2253,14 +2202,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -2296,11 +2242,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -2336,11 +2282,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -2356,9 +2302,6 @@
   "pinyin": "tuó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -2371,11 +2314,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -2403,11 +2346,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -2435,11 +2378,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -2459,9 +2402,6 @@
   "pinyin": "pó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "伽",
   "pinyin": "qié"
  },
@@ -2478,11 +2418,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -2514,15 +2454,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -2562,9 +2498,6 @@
   "pinyin": "tuó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -2573,15 +2506,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -2621,15 +2550,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -2661,22 +2586,15 @@
   "pinyin": "dì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -2708,15 +2626,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -2756,18 +2670,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -2815,15 +2722,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -2851,15 +2754,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -2869,9 +2768,6 @@
  {
   "char": "尸",
   "pinyin": "shī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "摩",
@@ -2910,15 +2806,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -2950,11 +2842,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -2972,9 +2864,6 @@
  {
   "char": "悉",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "羯",
@@ -2997,15 +2886,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -3041,15 +2926,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -3077,9 +2958,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "俱",
   "pinyin": "jù"
  },
@@ -3096,15 +2974,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -3152,15 +3026,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -3178,9 +3048,6 @@
  {
   "char": "跋",
   "pinyin": "bá"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阇",
@@ -3211,15 +3078,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -3263,15 +3126,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -3285,9 +3144,6 @@
  {
   "char": "無",
   "pinyin": "mó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "伽",
@@ -3318,15 +3174,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -3362,15 +3214,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -3394,9 +3242,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "输",
   "pinyin": "shū"
  },
@@ -3417,15 +3262,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -3473,11 +3314,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -3497,9 +3338,6 @@
   "pinyin": "qié"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "多",
   "pinyin": "duō"
  },
@@ -3512,15 +3350,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -3556,15 +3390,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -3596,9 +3426,6 @@
   "pinyin": "pó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "耶",
   "pinyin": "yē"
  },
@@ -3607,15 +3434,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -3647,15 +3470,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -3683,15 +3502,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -3701,9 +3516,6 @@
  {
   "char": "三",
   "pinyin": "sān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "藐",
@@ -3730,15 +3542,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -3774,15 +3582,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -3802,9 +3606,6 @@
   "pinyin": "pí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "耶",
   "pinyin": "yē"
  },
@@ -3813,15 +3614,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -3853,15 +3650,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -3889,11 +3682,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -3903,9 +3696,6 @@
  {
   "char": "三",
   "pinyin": "sān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "藐",
@@ -3932,15 +3722,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -3976,15 +3762,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -4002,9 +3784,6 @@
  {
   "char": "阇",
   "pinyin": "shé"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "耶",
@@ -4043,15 +3822,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -4087,15 +3862,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -4105,9 +3876,6 @@
  {
   "char": "跢",
   "pinyin": "duō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "他",
@@ -4130,15 +3898,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -4174,15 +3938,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -4206,9 +3966,6 @@
   "pinyin": "bì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "多",
   "pinyin": "duō"
  },
@@ -4217,15 +3974,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -4269,15 +4022,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -4309,18 +4058,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -4348,11 +4090,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -4388,15 +4130,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -4416,9 +4154,6 @@
   "pinyin": "pó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "伽",
   "pinyin": "qié"
  },
@@ -4435,15 +4170,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -4483,15 +4214,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -4519,22 +4246,15 @@
   "pinyin": "yē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -4562,15 +4282,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -4606,15 +4322,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -4624,9 +4336,6 @@
  {
   "char": "南",
   "pinyin": "ná"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "無",
@@ -4653,15 +4362,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -4709,15 +4414,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -4727,9 +4428,6 @@
  {
   "char": "跢",
   "pinyin": "duō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "他",
@@ -4752,15 +4450,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -4788,11 +4482,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -4828,18 +4522,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -4887,15 +4574,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -4935,18 +4618,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -4994,15 +4670,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -5042,18 +4714,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -5093,15 +4758,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -5141,18 +4802,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -5200,15 +4854,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -5248,9 +4898,6 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "诃",
   "pinyin": "hē"
  },
@@ -5263,15 +4910,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -5323,11 +4966,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -5355,9 +4998,6 @@
   "pinyin": "mì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "唎",
   "pinyin": "lì"
  },
@@ -5370,15 +5010,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -5430,15 +5066,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -5460,9 +5092,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "槃",
@@ -5497,15 +5126,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -5545,15 +5170,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -5567,9 +5188,6 @@
  {
   "char": "悉",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "乏",
@@ -5612,15 +5230,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -5660,23 +5274,16 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "羯",
@@ -5723,15 +5330,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -5771,22 +5374,15 @@
   "pinyin": "lì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -5830,15 +5426,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -5874,9 +5466,6 @@
   "pinyin": "ruò"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "阇",
   "pinyin": "shé"
  },
@@ -5885,11 +5474,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -5933,15 +5522,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -5969,18 +5554,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -6024,15 +5602,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -6076,18 +5650,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -6147,15 +5714,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -6191,9 +5754,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "难",
   "pinyin": "nán"
  },
@@ -6218,15 +5778,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -6266,15 +5822,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -6296,9 +5848,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "乌",
@@ -6333,15 +5882,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -6381,15 +5926,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -6399,9 +5940,6 @@
  {
   "char": "摩",
   "pinyin": "mó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "诃",
@@ -6428,11 +5966,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -6460,15 +6002,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -6496,15 +6038,12 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "摩",
@@ -6543,7 +6082,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -6603,15 +6142,12 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阿",
@@ -6638,7 +6174,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -6666,7 +6202,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -6698,7 +6234,7 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -6708,9 +6244,6 @@
  {
   "char": "跋",
   "pinyin": "bá"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阇",
@@ -6741,7 +6274,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -6769,7 +6302,7 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -6797,7 +6330,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -6807,9 +6344,6 @@
  {
   "char": "跋",
   "pinyin": "bá"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阇",
@@ -6852,19 +6386,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -6912,14 +6442,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -6955,11 +6482,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -6987,11 +6514,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -7017,9 +6544,6 @@
  {
   "char": "鞞",
   "pinyin": "pí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "提",
@@ -7050,11 +6574,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -7082,11 +6606,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -7114,19 +6638,16 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阿",
@@ -7153,11 +6674,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -7201,11 +6722,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -7227,9 +6748,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "商",
@@ -7260,11 +6778,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -7304,23 +6822,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -7330,9 +6840,6 @@
  {
   "char": "俱",
   "pinyin": "jù"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "蓝",
@@ -7351,15 +6858,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -7403,15 +6906,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -7437,9 +6936,6 @@
  {
   "char": "乾",
   "pinyin": "qián"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "遮",
@@ -7470,15 +6966,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -7526,15 +7018,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -7544,9 +7032,6 @@
  {
   "char": "鞞",
   "pinyin": "pí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚧",
@@ -7581,15 +7066,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -7629,15 +7110,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -7651,9 +7128,6 @@
  {
   "char": "折",
   "pinyin": "zhé"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "蓝",
@@ -7684,15 +7158,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -7752,18 +7222,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -7819,11 +7282,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -7863,26 +7326,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "百",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "三",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -7922,15 +7374,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -7958,15 +7406,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -7976,9 +7420,6 @@
  {
   "char": "母",
   "pinyin": "mǔ"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "陀",
@@ -8001,15 +7442,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -8037,15 +7474,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -8069,18 +7502,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -8120,15 +7546,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -8192,9 +7614,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "持",
   "pinyin": ""
  },
@@ -8241,15 +7660,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -8277,15 +7692,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -8321,14 +7732,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -8376,23 +7784,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "四",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -8412,15 +7812,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -8430,9 +7826,6 @@
  {
   "char": "都",
   "pinyin": "dū"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚧",
@@ -8447,15 +7840,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -8479,15 +7868,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -8507,15 +7892,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -8535,22 +7916,15 @@
   "pinyin": "yōng"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -8578,15 +7952,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -8606,15 +7976,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -8638,18 +8004,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -8713,11 +8072,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -8737,26 +8096,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "五",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -8780,15 +8128,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -8836,23 +8180,16 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "揭",
@@ -8883,15 +8220,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -8935,23 +8268,16 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "虎",
@@ -8966,15 +8292,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -8998,15 +8320,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -9046,18 +8364,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -9109,15 +8420,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -9157,14 +8464,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -9184,23 +8488,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "六",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -9224,15 +8520,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -9252,15 +8544,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -9270,9 +8558,6 @@
  {
   "char": "婆",
   "pinyin": "pó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "伽",
@@ -9287,15 +8572,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -9343,15 +8624,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -9375,9 +8652,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "阇",
   "pinyin": "shé"
  },
@@ -9394,15 +8668,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -9438,15 +8708,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -9478,9 +8744,6 @@
   "pinyin": "sà"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -9505,15 +8768,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -9565,15 +8824,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -9587,9 +8842,6 @@
  {
   "char": "弊",
   "pinyin": "bì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "提",
@@ -9620,11 +8872,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -9652,23 +8904,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "七",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -9696,9 +8940,6 @@
   "pinyin": "shé"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "嚧",
   "pinyin": "lú"
  },
@@ -9715,15 +8956,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -9759,15 +8996,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -9791,18 +9024,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -9822,15 +9048,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -9870,15 +9092,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -9898,18 +9116,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -9949,15 +9160,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -10019,9 +9226,6 @@
  {
   "char": "，",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "称",
@@ -10098,15 +9302,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -10134,11 +9334,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -10170,30 +9370,19 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "八",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -10229,15 +9418,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -10269,23 +9454,16 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "舍",
@@ -10320,15 +9498,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -10376,23 +9550,16 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "突",
@@ -10423,15 +9590,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -10463,15 +9626,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -10499,9 +9658,6 @@
   "pinyin": "mì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "唎",
   "pinyin": "lì"
  },
@@ -10526,15 +9682,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -10602,22 +9754,15 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -10661,11 +9806,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -10705,26 +9850,15 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "百",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "九",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -10752,15 +9886,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -10796,15 +9926,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -10818,9 +9944,6 @@
  {
   "char": "波",
   "pinyin": "bō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "囉",
@@ -10847,15 +9970,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -10891,15 +10010,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -10927,9 +10042,6 @@
   "pinyin": "jiē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -10942,15 +10054,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -10990,15 +10098,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -11034,22 +10138,15 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -11085,15 +10182,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -11133,19 +10226,20 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "補",
@@ -11180,15 +10274,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -11236,7 +10330,7 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -11246,9 +10340,6 @@
  {
   "char": "悉",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "乾",
@@ -11279,7 +10370,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -11327,7 +10418,7 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -11345,9 +10436,6 @@
  {
   "char": "摩",
   "pinyin": "mó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "陀",
@@ -11374,7 +10462,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -11406,7 +10494,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -11446,14 +10534,11 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -11489,7 +10574,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -11525,7 +10610,7 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -11553,9 +10638,6 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "唎",
   "pinyin": "lì"
  },
@@ -11568,7 +10650,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -11604,19 +10690,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -11652,14 +10734,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -11695,11 +10774,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -11735,11 +10814,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -11763,9 +10842,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "诃",
   "pinyin": "hē"
  },
@@ -11782,11 +10858,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -11822,11 +10898,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -11862,14 +10938,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -11909,11 +10982,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -11949,11 +11022,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -11967,9 +11040,6 @@
  {
   "char": "钐",
   "pinyin": "shān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "萨",
@@ -11988,11 +11058,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -12032,23 +11102,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -12076,9 +11138,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "瞋",
   "pinyin": "chēn"
  },
@@ -12099,15 +11158,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -12135,15 +11190,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -12179,9 +11230,6 @@
   "pinyin": "zhě"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "迦",
   "pinyin": "jiā"
  },
@@ -12206,15 +11254,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -12262,15 +11306,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -12280,9 +11320,6 @@
  {
   "char": "鸡",
   "pinyin": "jī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "囉",
@@ -12301,15 +11338,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -12349,15 +11382,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -12389,9 +11418,6 @@
   "pinyin": "chēn"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "陀",
   "pinyin": "tuó"
  },
@@ -12408,15 +11434,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -12444,15 +11466,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -12492,18 +11510,15 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -12543,23 +11558,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "三",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -12599,9 +11606,6 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "弥",
   "pinyin": "mí"
  },
@@ -12610,15 +11614,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -12646,15 +11646,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -12698,18 +11694,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -12757,15 +11746,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -12793,23 +11778,16 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "怛",
@@ -12860,15 +11838,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -12908,9 +11882,6 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "弥",
   "pinyin": "mí"
  },
@@ -12919,15 +11890,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -12955,15 +11922,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -13015,9 +11978,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "讫",
   "pinyin": "qì"
  },
@@ -13034,11 +11994,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -13086,23 +12046,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "四",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -13118,9 +12070,6 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "夜",
   "pinyin": "yè"
  },
@@ -13133,15 +12082,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -13185,15 +12130,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -13225,9 +12166,6 @@
   "pinyin": "chēn"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "陀",
   "pinyin": "tuó"
  },
@@ -13244,15 +12182,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -13280,15 +12214,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -13328,9 +12258,6 @@
   "pinyin": "jié"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -13339,15 +12266,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -13411,15 +12334,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -13433,9 +12352,6 @@
  {
   "char": "陀",
   "pinyin": "tuó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "夜",
@@ -13470,15 +12386,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -13506,15 +12418,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -13536,9 +12444,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "婆",
@@ -13573,11 +12478,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -13625,26 +12530,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "五",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -13672,15 +12566,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -13720,15 +12610,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -13746,9 +12632,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "鸡",
@@ -13787,15 +12670,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -13835,23 +12714,16 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "毗",
@@ -13894,15 +12766,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -13930,15 +12798,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -13952,9 +12816,6 @@
  {
   "char": "揭",
   "pinyin": "jiē"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "那",
@@ -14001,15 +12862,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -14053,22 +12910,15 @@
   "pinyin": "mí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -14096,11 +12946,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -14160,9 +13010,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "瞋",
   "pinyin": "chēn"
  },
@@ -14183,23 +13030,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "六",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -14227,15 +13066,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -14263,9 +13098,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "讫",
   "pinyin": "qì"
  },
@@ -14282,15 +13114,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -14338,15 +13166,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -14364,9 +13188,6 @@
  {
   "char": "夜",
   "pinyin": "yè"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "弥",
@@ -14401,15 +13222,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -14449,15 +13266,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -14471,9 +13284,6 @@
  {
   "char": "地",
   "pinyin": "dì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "般",
@@ -14504,15 +13314,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -14560,23 +13366,16 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "鸡",
@@ -14599,15 +13398,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -14631,11 +13426,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -14659,31 +13454,20 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "七",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "印",
@@ -14718,15 +13502,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -14824,15 +13604,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -14872,15 +13648,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -14900,9 +13672,6 @@
   "pinyin": "cuì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "都",
   "pinyin": "dū"
  },
@@ -14915,15 +13684,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -14967,15 +13732,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -15007,9 +13768,6 @@
   "pinyin": "pǔ"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "吒",
   "pinyin": "zhā"
  },
@@ -15018,15 +13776,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -15078,15 +13832,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -15114,9 +13864,6 @@
   "pinyin": "shí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "佛",
   "pinyin": "fó"
  },
@@ -15129,15 +13876,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -15165,11 +13908,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -15217,9 +13960,6 @@
   "pinyin": "tuó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "瞋",
   "pinyin": "chēn"
  },
@@ -15232,23 +13972,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "八",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -15268,15 +14000,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -15296,15 +14024,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -15324,18 +14048,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -15391,15 +14108,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -15419,15 +14132,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -15437,9 +14146,6 @@
  {
   "char": "醯",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "醯",
@@ -15454,15 +14160,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -15494,15 +14196,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -15542,22 +14240,15 @@
   "pinyin": "pàn"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -15597,11 +14288,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -15649,9 +14340,6 @@
   "pinyin": "jiā"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "泮",
   "pinyin": "pàn"
  },
@@ -15660,23 +14348,15 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "九",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -15720,15 +14400,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -15764,9 +14440,6 @@
   "pinyin": "bì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "泮",
   "pinyin": "pàn"
  },
@@ -15775,15 +14448,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -15827,15 +14496,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -15875,9 +14540,6 @@
   "pinyin": "bì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "泮",
   "pinyin": "pàn"
  },
@@ -15886,15 +14548,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -15942,15 +14600,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -15986,9 +14640,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "弊",
   "pinyin": "bì"
  },
@@ -16001,15 +14652,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -16061,15 +14708,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -16091,9 +14734,6 @@
  {
   "char": "突",
   "pinyin": "tū"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "涩",
@@ -16140,15 +14780,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -16196,14 +14832,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
+  "char": "0",
+  "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -16259,15 +14896,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -16311,9 +14948,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "弊",
   "pinyin": "bì"
  },
@@ -16326,7 +14960,7 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -16374,7 +15008,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -16418,9 +15052,6 @@
   "pinyin": "bì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "泮",
   "pinyin": "pàn"
  },
@@ -16429,7 +15060,7 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -16497,7 +15128,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -16525,9 +15156,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "摩",
   "pinyin": "mó"
  },
@@ -16548,7 +15176,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -16608,7 +15236,7 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -16630,9 +15258,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "遮",
@@ -16659,7 +15284,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -16711,7 +15336,7 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -16739,9 +15364,6 @@
   "pinyin": "jù"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "摩",
   "pinyin": "mó"
  },
@@ -16754,7 +15376,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -16802,19 +15428,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -16844,9 +15466,6 @@
  {
   "char": "丁",
   "pinyin": "dīng"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "羊",
@@ -16885,11 +15504,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -16933,11 +15552,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -16947,9 +15566,6 @@
  {
   "char": "波",
   "pinyin": "bō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "囉",
@@ -16988,11 +15604,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -17024,11 +15640,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -17046,9 +15662,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "末",
@@ -17075,11 +15688,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -17131,11 +15744,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -17149,9 +15762,6 @@
  {
   "char": "瑟",
   "pinyin": "sè"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "拏",
@@ -17178,11 +15788,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -17230,11 +15840,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -17258,9 +15868,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "曳",
   "pinyin": "yè"
  },
@@ -17273,11 +15880,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -17317,23 +15924,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -17365,9 +15964,6 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "泮",
   "pinyin": "pàn"
  },
@@ -17376,15 +15972,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -17420,15 +16012,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -17464,18 +16052,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -17511,15 +16092,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -17563,23 +16140,16 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "迦",
@@ -17610,15 +16180,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -17682,18 +16248,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -17729,15 +16288,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -17761,11 +16316,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -17793,30 +16348,19 @@
   "pinyin": "xiè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "三",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -17868,15 +16412,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -17906,9 +16446,6 @@
  {
   "char": "依",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "前",
@@ -17997,15 +16534,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -18045,15 +16578,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -18063,9 +16592,6 @@
  {
   "char": "乌",
   "pinyin": "wū"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阇",
@@ -18088,15 +16614,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -18128,15 +16650,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -18172,18 +16690,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -18215,15 +16726,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -18255,15 +16762,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -18287,9 +16790,6 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -18298,11 +16798,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -18338,23 +16838,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "四",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -18390,18 +16882,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -18433,15 +16918,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -18477,15 +16958,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -18505,9 +16982,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "诃",
   "pinyin": "hē"
  },
@@ -18520,15 +16994,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -18560,15 +17030,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -18600,23 +17066,16 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "突",
@@ -18647,15 +17106,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -18691,15 +17146,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -18723,9 +17174,6 @@
   "pinyin": "jiē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "囉",
   "pinyin": "là"
  },
@@ -18738,11 +17186,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -18782,23 +17230,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "五",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -18830,9 +17270,6 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "诃",
   "pinyin": "hē"
  },
@@ -18841,15 +17278,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -18889,15 +17322,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -18933,18 +17362,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -18984,15 +17406,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -19032,18 +17450,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -19087,15 +17498,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -19131,23 +17538,16 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阿",
@@ -19190,15 +17590,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -19250,18 +17646,15 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -19301,23 +17694,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "六",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -19357,18 +17742,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -19408,15 +17786,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -19468,22 +17842,15 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -19523,15 +17890,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -19575,18 +17938,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -19630,15 +17986,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -19666,15 +18018,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -19684,9 +18032,6 @@
  {
   "char": "怛",
   "pinyin": "dá"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "隷",
@@ -19709,15 +18054,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -19745,11 +18086,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -19789,9 +18130,6 @@
   "pinyin": "bì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "钐",
   "pinyin": "shān"
  },
@@ -19820,23 +18158,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "七",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -19860,15 +18190,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -19892,18 +18218,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -19939,15 +18258,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -19983,15 +18298,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -20011,9 +18322,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "什",
   "pinyin": "shí"
  },
@@ -20030,15 +18338,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -20066,15 +18370,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -20118,22 +18418,15 @@
   "pinyin": "jiàn"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -20161,15 +18454,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -20197,11 +18486,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -20221,9 +18510,6 @@
   "pinyin": "tū"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "嚧",
   "pinyin": "lú"
  },
@@ -20236,23 +18522,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "八",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -20288,15 +18566,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -20328,18 +18602,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -20371,15 +18638,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -20415,15 +18678,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -20443,9 +18702,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "输",
   "pinyin": "shū"
  },
@@ -20458,15 +18714,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -20506,15 +18758,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -20550,22 +18798,15 @@
   "pinyin": "lán"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -20601,15 +18842,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -20637,11 +18874,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -20655,9 +18892,6 @@
  {
   "char": "悉",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "帝",
@@ -20676,23 +18910,15 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "九",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -20720,15 +18946,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -20756,18 +18978,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -20803,15 +19018,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -20839,15 +19050,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -20865,9 +19072,6 @@
  {
   "char": "盎",
   "pinyin": "āng"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "伽",
@@ -20906,15 +19110,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -20950,15 +19150,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -20968,9 +19164,6 @@
  {
   "char": "茶",
   "pinyin": "chá"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "耆",
@@ -21001,15 +19194,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -21073,9 +19262,6 @@
   "pinyin": "duō"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "毗",
   "pinyin": "pí"
  },
@@ -21084,15 +19270,11 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -21132,11 +19314,15 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -21180,22 +19366,19 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -21223,7 +19406,7 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -21263,7 +19446,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -21285,9 +19468,6 @@
  {
   "char": "鞞",
   "pinyin": "pí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "囉",
@@ -21314,7 +19494,7 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -21374,7 +19554,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -21390,9 +19570,6 @@
   "pinyin": "lì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "剌",
   "pinyin": "lā"
  },
@@ -21405,7 +19582,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -21437,7 +19614,7 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -21469,7 +19646,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -21487,9 +19664,6 @@
  {
   "char": "伽",
   "pinyin": "qié"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "弊",
@@ -21540,7 +19714,7 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -21588,9 +19762,6 @@
   "pinyin": "pí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "钐",
   "pinyin": "shān"
  },
@@ -21599,7 +19770,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -21639,19 +19814,15 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -21691,9 +19862,6 @@
   "pinyin": "ní"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "钐",
   "pinyin": "shān"
  },
@@ -21702,11 +19870,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -21750,11 +19918,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -21790,9 +19958,6 @@
   "pinyin": "yù"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "阇",
   "pinyin": "shé"
  },
@@ -21805,11 +19970,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -21837,11 +20002,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -21889,14 +20054,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -21940,11 +20102,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -21992,18 +20154,15 @@
   "pinyin": "mí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -22027,11 +20186,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -22047,11 +20206,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -22075,23 +20234,15 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "二",
-  "pinyin": ""
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -22101,9 +20252,6 @@
  {
   "char": "毗",
   "pinyin": "pí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "舍",
@@ -22118,15 +20266,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -22174,15 +20318,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -22210,22 +20350,15 @@
   "pinyin": "nǐ"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -22265,15 +20398,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -22313,18 +20442,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -22348,15 +20470,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -23368,7 +21486,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -23411,7 +21533,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -23457,7 +21583,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -23528,7 +21654,7 @@
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -23564,15 +21690,12 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "婆",
@@ -23615,7 +21738,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -23651,7 +21774,7 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -23665,9 +21788,6 @@
  {
   "char": "诃",
   "pinyin": "hē"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "萨",
@@ -23690,7 +21810,7 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -23730,7 +21850,7 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -23754,7 +21874,7 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -23764,9 +21884,6 @@
  {
   "char": "萨",
   "pinyin": "sà"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "皤",
@@ -23789,7 +21906,7 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -23821,7 +21938,7 @@
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -23865,9 +21982,6 @@
   "pinyin": "yī"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "蒙",
   "pinyin": "méng"
  },
@@ -23888,7 +22002,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -23944,11 +22062,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -23958,9 +22076,6 @@
  {
   "char": "南",
   "pinyin": "ná"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "无",
@@ -23991,11 +22106,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -24043,11 +22158,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -24061,9 +22176,6 @@
  {
   "char": "婆",
   "pinyin": "pó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "阿",
@@ -24094,11 +22206,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -24122,11 +22234,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -24162,9 +22274,6 @@
   "pinyin": "mó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "婆",
   "pinyin": "pó"
  },
@@ -24177,11 +22286,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -24209,11 +22318,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -24237,11 +22346,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -24265,9 +22374,6 @@
   "pinyin": "pó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "卢",
   "pinyin": "lú"
  },
@@ -24280,11 +22386,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
   "pinyin": ""
  },
  {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -24308,11 +22414,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -24336,15 +22442,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -24368,18 +22470,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -24415,15 +22510,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -24451,15 +22542,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -24475,9 +22562,6 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "摩",
   "pinyin": "mó"
  },
@@ -24490,15 +22574,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -24542,15 +22622,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -24578,9 +22654,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "羯",
   "pinyin": "jié"
  },
@@ -24593,15 +22666,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -24649,15 +22718,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -24677,9 +22742,6 @@
   "pinyin": "fá"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "阇",
   "pinyin": "shé"
  },
@@ -24696,15 +22758,11 @@
   "pinyin": ""
  },
  {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -24732,11 +22790,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -24760,15 +22818,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -24778,9 +22832,6 @@
  {
   "char": "室",
   "pinyin": "shì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "佛",
@@ -24799,15 +22850,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -24835,15 +22882,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -24875,18 +22918,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -24910,15 +22946,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -24946,15 +22978,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -24982,18 +23010,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -25037,15 +23058,11 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -25073,23 +23090,16 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "佛",
@@ -25112,11 +23122,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -25152,15 +23162,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -25188,9 +23194,6 @@
   "pinyin": "xī"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "利",
   "pinyin": "lì"
  },
@@ -25199,15 +23202,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -25235,15 +23234,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -25271,15 +23266,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -25289,9 +23280,6 @@
  {
   "char": "苏",
   "pinyin": "sū"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚧",
@@ -25310,15 +23298,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -25358,15 +23342,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -25394,9 +23374,6 @@
   "pinyin": "pú"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "驮",
   "pinyin": "tuó"
  },
@@ -25409,15 +23386,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -25445,15 +23418,11 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -25481,23 +23450,16 @@
   "pinyin": ""
  },
  {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "地",
@@ -25524,11 +23486,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -25556,15 +23518,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -25588,18 +23546,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -25623,15 +23574,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -25655,15 +23602,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -25695,18 +23638,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -25730,15 +23666,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -25766,15 +23698,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -25802,18 +23730,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -25837,15 +23758,11 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -25873,11 +23790,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -25901,18 +23818,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "type": "linebreak"
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -25940,15 +23850,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -25972,15 +23878,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -26012,9 +23914,6 @@
   "pinyin": "mù"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "佉",
   "pinyin": "qié"
  },
@@ -26027,15 +23926,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -26059,15 +23954,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -26111,22 +24002,15 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "（",
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -26150,15 +24034,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -26202,23 +24082,16 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "娑",
@@ -26237,15 +24110,11 @@
   "pinyin": ""
  },
  {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -26289,11 +24158,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -26317,18 +24186,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -26376,15 +24238,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -26408,23 +24266,16 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "摩",
@@ -26463,15 +24314,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "四",
+  "char": "4",
   "pinyin": ""
  },
  {
@@ -26495,15 +24342,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
@@ -26525,9 +24368,6 @@
  {
   "char": "喝",
   "pinyin": "hē"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "啰",
@@ -26566,15 +24406,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "六",
+  "char": "6",
   "pinyin": ""
  },
  {
@@ -26610,15 +24446,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
@@ -26628,9 +24460,6 @@
  {
   "char": "婆",
   "pinyin": "pó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚧",
@@ -26649,15 +24478,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
@@ -26685,15 +24510,11 @@
   "pinyin": ""
  },
  {
-  "char": "七",
+  "char": "7",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "九",
+  "char": "9",
   "pinyin": ""
  },
  {
@@ -26717,11 +24538,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -26735,9 +24556,6 @@
  {
   "char": ".",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "悉",
@@ -26788,15 +24606,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "一",
+  "char": "1",
   "pinyin": ""
  },
  {
@@ -26820,15 +24634,11 @@
   "pinyin": ""
  },
  {
-  "char": "八",
+  "char": "8",
   "pinyin": ""
  },
  {
-  "char": "十",
-  "pinyin": ""
- },
- {
-  "char": "二",
+  "char": "2",
   "pinyin": ""
  },
  {
@@ -26977,9 +24787,6 @@
   "pinyin": "ná"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "无",
   "pinyin": "mó"
  },
@@ -27123,9 +24930,6 @@
   "pinyin": "hē"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "钵",
   "pinyin": "bō"
  },
@@ -27208,9 +25012,6 @@
  {
   "char": "夜",
   "pinyin": "yè"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "吽",
@@ -27299,9 +25100,6 @@
  {
   "char": "唵",
   "pinyin": "ān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "跋",
@@ -27454,9 +25252,6 @@
   "pinyin": "suō"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "曩",
   "pinyin": "nǎng"
  },
@@ -27545,9 +25340,6 @@
   "pinyin": "rù"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "嚩",
   "pinyin": "wā"
  },
@@ -27630,9 +25422,6 @@
  {
   "char": "瑟",
   "pinyin": "sè"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "姹",
@@ -27725,9 +25514,6 @@
  {
   "char": "扇",
   "pinyin": "shàn"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "底",
@@ -27924,9 +25710,6 @@
   "pinyin": "qié"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "耶",
   "pinyin": "yē"
  },
@@ -28017,9 +25800,6 @@
  {
   "char": "悉",
   "pinyin": "xī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "达",
@@ -28286,9 +26066,6 @@
   "pinyin": "zhí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "他",
   "pinyin": "tuō"
  },
@@ -28487,9 +26264,6 @@
   "pinyin": "ā"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "纳",
   "pinyin": "nà"
  },
@@ -28582,9 +26356,6 @@
   "pinyin": "ā"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "啰",
   "pinyin": "là"
  },
@@ -28663,9 +26434,6 @@
  {
   "char": "哩",
   "pinyin": "lī"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "巴",
@@ -28756,9 +26524,6 @@
   "pinyin": "sāng"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "马",
   "pinyin": "mǎ"
  },
@@ -28841,9 +26606,6 @@
  {
   "char": "瓦",
   "pinyin": "wǎ"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "哩",
@@ -28976,9 +26738,6 @@
   "pinyin": "là"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "婆",
   "pinyin": "pó"
  },
@@ -29061,9 +26820,6 @@
  {
   "char": "三",
   "pinyin": "sān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "勃",
@@ -29156,9 +26912,6 @@
  {
   "char": "三",
   "pinyin": "sān"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "没",
@@ -29291,9 +27044,6 @@
   "pinyin": "bā"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "达",
   "pinyin": "dá"
  },
@@ -29378,9 +27128,6 @@
   "pinyin": "xī"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "塔",
   "pinyin": "tǎ"
  },
@@ -29459,9 +27206,6 @@
  {
   "char": "嚧",
   "pinyin": "lú"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "吉",
@@ -29608,9 +27352,6 @@
  {
   "char": "诃",
   "pinyin": "hē"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "啰",
@@ -29839,9 +27580,6 @@
   "pinyin": "yè"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "他",
   "pinyin": "tuō"
  },
@@ -29926,9 +27664,6 @@
   "pinyin": "mí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "利",
   "pinyin": "lì"
  },
@@ -30007,9 +27742,6 @@
  {
   "char": "弥",
   "pinyin": "mí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "腻",
@@ -30182,9 +27914,6 @@
   "pinyin": "shì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "利",
   "pinyin": "lì"
  },
@@ -30267,9 +27996,6 @@
  {
   "char": "利",
   "pinyin": "lì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "三",
@@ -30356,9 +28082,6 @@
   "pinyin": "pí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "尼",
   "pinyin": "ní"
  },
@@ -30441,9 +28164,6 @@
  {
   "char": "利",
   "pinyin": "lì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚩",
@@ -30534,9 +28254,6 @@
   "pinyin": "dá"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "摩",
   "pinyin": "mó"
  },
@@ -30615,9 +28332,6 @@
  {
   "char": "祇",
   "pinyin": "qí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "帝",
@@ -30702,9 +28416,6 @@
  {
   "char": "婆",
   "pinyin": "pó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "罗",
@@ -30804,7 +28515,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -30893,9 +28604,6 @@
  {
   "char": "见",
   "pinyin": "jiàn"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "五",
@@ -31019,9 +28727,6 @@
  {
   "char": "，",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "空",
@@ -31167,9 +28872,6 @@
   "pinyin": "gòu"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "不",
   "pinyin": "bú"
  },
@@ -31273,9 +28975,6 @@
   "pinyin": "wú"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "眼",
   "pinyin": "yǎn"
  },
@@ -31358,9 +29057,6 @@
  {
   "char": "、",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "触",
@@ -31447,9 +29143,6 @@
   "pinyin": "wú"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "无",
   "pinyin": "wú"
  },
@@ -31532,9 +29225,6 @@
  {
   "char": "、",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "灭",
@@ -31660,9 +29350,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "心",
   "pinyin": "xīn"
  },
@@ -31737,9 +29424,6 @@
  {
   "char": "倒",
   "pinyin": "dǎo"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "梦",
@@ -31820,9 +29504,6 @@
  {
   "char": "多",
   "pinyin": "duō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "故",
@@ -31956,9 +29637,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "是",
   "pinyin": "shì"
  },
@@ -32029,9 +29707,6 @@
  {
   "char": "真",
   "pinyin": "zhēn"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "实",
@@ -32176,9 +29851,6 @@
   "pinyin": "tí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "萨",
   "pinyin": "sà"
  },
@@ -32230,7 +29902,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -32938,9 +30610,6 @@
   "pinyin": "fó"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "南",
   "pinyin": "ná"
  },
@@ -32969,11 +30638,15 @@
   "pinyin": ""
  },
  {
-  "char": "五",
+  "char": "5",
   "pinyin": ""
  },
  {
-  "char": "百",
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -32985,7 +30658,19 @@
   "pinyin": ""
  },
  {
-  "char": "千",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -32995,9 +30680,6 @@
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "（",
@@ -33060,9 +30742,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "南",
   "pinyin": "ná"
  },
@@ -33103,7 +30782,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -33115,7 +30794,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -33125,9 +30808,6 @@
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "（",
@@ -33210,9 +30890,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "南",
   "pinyin": "ná"
  },
@@ -33245,7 +30922,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -33257,7 +30934,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -33267,9 +30948,6 @@
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "南",
@@ -33304,7 +30982,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -33316,7 +30994,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -33326,9 +31008,6 @@
  {
   "char": "）",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "南",
@@ -33371,7 +31050,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -33383,7 +31062,11 @@
   "pinyin": ""
  },
  {
-  "char": "十",
+  "char": "1",
+  "pinyin": ""
+ },
+ {
+  "char": "0",
   "pinyin": ""
  },
  {
@@ -33517,9 +31200,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "广",
   "pinyin": "guǎng"
  },
@@ -33594,9 +31274,6 @@
  {
   "char": "功",
   "pinyin": "gōng"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "德",
@@ -33683,9 +31360,6 @@
   "pinyin": ""
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "常",
   "pinyin": "cháng"
  },
@@ -33760,9 +31434,6 @@
  {
   "char": "回",
   "pinyin": "huí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "向",
@@ -33850,9 +31521,6 @@
  {
   "char": "般",
   "pinyin": "bō"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "若",
@@ -34071,9 +31739,6 @@
   "pinyin": "wú"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "上",
   "pinyin": "shàng"
  },
@@ -34144,9 +31809,6 @@
  {
   "char": "，",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "智",
@@ -34227,9 +31889,6 @@
  {
   "char": "，",
   "pinyin": ""
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "一",
@@ -34342,7 +32001,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -34444,7 +32103,7 @@
   "pinyin": ""
  },
  {
-  "char": "三",
+  "char": "3",
   "pinyin": ""
  },
  {
@@ -34566,9 +32225,6 @@
   "pinyin": "shì"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "利",
   "pinyin": "lì"
  },
@@ -34651,9 +32307,6 @@
  {
   "char": "利",
   "pinyin": "lì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "三",
@@ -34740,9 +32393,6 @@
   "pinyin": "pí"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "尼",
   "pinyin": "ní"
  },
@@ -34825,9 +32475,6 @@
  {
   "char": "利",
   "pinyin": "lì"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "嚩",
@@ -34918,9 +32565,6 @@
   "pinyin": "dá"
  },
  {
-  "type": "linebreak"
- },
- {
   "char": "摩",
   "pinyin": "mó"
  },
@@ -34999,9 +32643,6 @@
  {
   "char": "祇",
   "pinyin": "qí"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "帝",
@@ -35086,9 +32727,6 @@
  {
   "char": "婆",
   "pinyin": "pó"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "罗",
@@ -35207,9 +32845,6 @@
  {
   "char": "杵",
   "pinyin": "chǔ"
- },
- {
-  "type": "linebreak"
  },
  {
   "char": "镇",

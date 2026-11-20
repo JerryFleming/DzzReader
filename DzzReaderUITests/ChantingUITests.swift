@@ -1,6 +1,6 @@
 import XCTest
 
-/// The 诵经 tab: a shelf of chanting texts, a pinyin reader, and remembered position across launches.
+/// The 诵经 tab: a shelf of chanting texts, a pinyin reader, and recently read texts.
 final class ChantingUITests: XCTestCase {
     var app: XCUIApplication!
 
@@ -33,14 +33,7 @@ final class ChantingUITests: XCTestCase {
         XCTAssertTrue(app.buttons["chantBackButton"].waitForExistence(timeout: 5))
     }
 
-    private func topVisibleRowID() -> Int? {
-        let rows = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'chantRow-'"))
-        let ids = rows.allElementsBoundByIndex.filter { $0.isHittable }
-            .compactMap { Int($0.identifier.dropFirst("chantRow-".count)) }
-        return ids.min()
-    }
-
-    func testBundledTextOpensWithPinyinAndRemembersPosition() {
+    func testBundledTextOpensWithPinyinAtTheStart() {
         openChantTab()
         let shelf = app.collectionViews["chantShelf"]
         let book = shelf.staticTexts["佛教念诵集"].firstMatch
@@ -48,43 +41,44 @@ final class ChantingUITests: XCTestCase {
         saveShot("chant-shelf")
         book.tap()
 
-        XCTAssertTrue(app.descendants(matching: .any)["chantText"].firstMatch.waitForExistence(timeout: 10))
         let title = app.descendants(matching: .any)["chantRow-0"]
-        // Fresh simulators start at the top; later runs resume, so go to the start through the contents.
-        showChrome()
-        app.buttons["chantContentsButton"].tap()
-        let first = app.buttons["大佛顶首楞严神咒"]
-        XCTAssertTrue(first.waitForExistence(timeout: 5))
-        first.tap()
-        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        let opened = Date()
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        XCTAssertLessThan(Date().timeIntervalSince(opened), 3, "text took too long to appear")
         XCTAssertEqual(title.label, "大佛顶首楞严神咒")
         XCTAssertTrue((title.value as? String ?? "").hasPrefix("dà fó dǐng shǒu léng yán shén zhòu"))
         saveShot("chant-reader-top")
 
-        // Scroll a few screens, then check the chrome reports progress.
+        // Scroll a few screens, then leave.
         for _ in 0..<4 { app.swipeUp(velocity: .fast) }
         sleep(1)
-        let reached = topVisibleRowID() ?? 0
-        XCTAssertGreaterThan(reached, 5)
-        saveShot("chant-reader-scrolled")
+        XCTAssertFalse(app.descendants(matching: .any)["chantRow-0"].isHittable, "scrolled past the title")
         showChrome()
-        XCTAssertNotEqual(app.staticTexts["chantProgressLabel"].label, "0%")
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label ENDSWITH '%'")).firstMatch.exists, "no progress shown")
         saveShot("chant-reader-chrome")
 
-        // Back on the shelf it is under 最近阅读; after relaunch it reopens where it was.
+        // The theme button flips between light and dark, and back.
+        let themeButton = app.buttons["chantThemeButton"]
+        let before = themeButton.label
+        themeButton.tap()
+        XCTAssertNotEqual(themeButton.label, before)
+        saveShot("chant-reader-theme-toggled")
+        themeButton.tap()
+        XCTAssertEqual(themeButton.label, before)
+
+        // Back on the shelf it is under 最近阅读, without a percentage; after relaunch it opens at the start again.
         app.buttons["chantBackButton"].tap()
         XCTAssertTrue(app.staticTexts["最近阅读"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.collectionViews["chantShelf"].staticTexts.matching(NSPredicate(format: "label ENDSWITH '%'")).firstMatch.exists)
         saveShot("chant-shelf-recents")
 
         app.terminate()
         app.launch()
         openChantTab()
         app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
-        XCTAssertTrue(app.descendants(matching: .any)["chantText"].firstMatch.waitForExistence(timeout: 10))
-        sleep(1)
-        let resumed = topVisibleRowID() ?? 0
-        XCTAssertLessThan(abs(resumed - reached), 3, "resumed at row \(resumed), left at \(reached)")
-        saveShot("chant-reader-resumed")
+        XCTAssertTrue(app.descendants(matching: .any)["chantRow-0"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["chantRow-0"].isHittable, "opens at the start")
+        saveShot("chant-reader-reopened")
     }
 
     func testContentsJumpsToPassage() {

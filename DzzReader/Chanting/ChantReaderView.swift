@@ -3,7 +3,7 @@ import SwiftUI
 import DzzCore
 
 /// Reads a chanting text: each character with its pinyin above it, row by row as printed in the source,
-/// titles in red and subtitles in violet. The row at the top of the screen is remembered.
+/// titles in red and subtitles in violet. Always opens at the start.
 struct ChantReaderView: View {
     let book: ChantBook
     let settings: ReaderSettings
@@ -11,8 +11,9 @@ struct ChantReaderView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var scheme
-    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("chant.fontSize") private var fontSize = ChantReaderView.defaultFontSize
+    /// "light" or "dark" once toggled here; empty follows the 书架 reader's appearance setting.
+    @AppStorage("chant.theme") private var chantTheme = ""
 
     @State private var document: ChantDocument?
     @State private var error: String?
@@ -23,15 +24,11 @@ struct ChantReaderView: View {
     static let defaultFontSize = 22.0
     static let fontSizeRange: ClosedRange<Double> = 16...40
 
-    private var theme: Theme { settings.theme }
+    private var theme: Theme { Theme(rawValue: chantTheme) ?? settings.theme }
+    private var isDark: Bool { theme.resolved(for: scheme).isDark }
     private var background: Color { Color(theme.background(for: scheme)) }
     private var palette: ChantPalette {
         ChantPalette(foreground: Color(theme.foreground(for: scheme)), dark: theme.resolved(for: scheme).isDark)
-    }
-
-    private var fraction: Double {
-        guard let document, document.rows.count > 1 else { return 0 }
-        return Double(min(topRow ?? 0, document.rows.count - 1)) / Double(document.rows.count - 1)
     }
 
     private var passageTitle: String {
@@ -58,9 +55,6 @@ struct ChantReaderView: View {
         .navigationBarBackButtonHidden(true)
         .statusBarHidden(!showChrome)
         .task { await load() }
-        .onDisappear { saveProgress() }
-        .onChange(of: scenePhase) { if scenePhase != .active { saveProgress() } }
-        .onChange(of: showChrome) { if showChrome { saveProgress() } }
         .sheet(isPresented: $showContents) { contents }
     }
 
@@ -129,10 +123,10 @@ struct ChantReaderView: View {
                 .disabled(fontSize >= Self.fontSizeRange.upperBound)
                 .accessibilityIdentifier("chantLargerButton")
                 Spacer()
-                Text(fraction, format: .percent.precision(.fractionLength(0)))
-                    .font(.caption).monospacedDigit().foregroundStyle(.secondary)
-                    .frame(minWidth: 44, alignment: .trailing)
-                    .accessibilityIdentifier("chantProgressLabel")
+                Button { chantTheme = isDark ? Theme.light.rawValue : Theme.dark.rawValue } label: {
+                    Label(isDark ? "浅色" : "深色", systemImage: isDark ? "sun.max" : "moon")
+                }
+                .accessibilityIdentifier("chantThemeButton")
             }
             .labelStyle(.iconOnly)
             .font(.title3)
@@ -168,36 +162,18 @@ struct ChantReaderView: View {
         .presentationDetents([.medium, .large])
     }
 
-    // MARK: Loading and progress
+    // MARK: Loading
 
     private func load() async {
         guard document == nil else { return }
         do {
-            let loaded = try await ChantLibrary.load(book)
-            document = loaded
-            book.lastOpened = .now
+            document = try await ChantLibrary.load(book)
+            topRow = 0
+            book.lastOpened = .now      // for 最近阅读
             try? context.save()
-            let saved = min(max(book.rowIndex, 0), loaded.rows.count - 1)
-            if saved > 0 {
-                // Let the rows exist before asking the scroll view to go to one.
-                try? await Task.sleep(for: .milliseconds(50))
-                topRow = saved
-            } else {
-                topRow = 0
-            }
         } catch {
             self.error = error.localizedDescription
         }
-    }
-
-    /// The scroll position lives in view state while reading and is written to the store only here
-    /// (leaving, backgrounding, or opening the chrome), so scrolling never makes the shelves re-fetch.
-    private func saveProgress() {
-        guard document != nil, let topRow else { return }
-        guard book.rowIndex != topRow || book.fraction != fraction else { return }
-        book.rowIndex = topRow
-        book.fraction = fraction
-        try? context.save()
     }
 }
 
@@ -235,6 +211,26 @@ struct ChantRowView: View {
         }
     }
 
+    /// Each note in （…） becomes one unit, so a line never breaks inside it (「（9」 / 「7）」).
+    static func units(_ cells: [ChantCell]) -> [ChantCell] {
+        var out: [ChantCell] = []
+        var note = ""
+        for cell in cells {
+            if cell.isAnnotation {
+                note += cell.char
+                if cell.char == "）" || cell.char == ")" {
+                    out.append(ChantCell(char: note, pinyin: "", isAnnotation: true))
+                    note = ""
+                }
+            } else {
+                if !note.isEmpty { out.append(ChantCell(char: note, pinyin: "", isAnnotation: true)); note = "" }
+                out.append(cell)
+            }
+        }
+        if !note.isEmpty { out.append(ChantCell(char: note, pinyin: "", isAnnotation: true)) }
+        return out
+    }
+
     private func font(_ size: Double) -> Font {
         fontFamily.isEmpty ? .system(size: size) : .custom(fontFamily, size: size)
     }
@@ -244,7 +240,7 @@ struct ChantRowView: View {
         let pinyinSize = fontSize * 0.5
         let color = palette.text(row.style)
         ChantFlowLayout(centered: row.style != .normal, spacing: fontSize * 0.08, lineSpacing: fontSize * 0.35) {
-            ForEach(Array(row.cells.enumerated()), id: \.offset) { _, cell in
+            ForEach(Array(Self.units(row.cells).enumerated()), id: \.offset) { _, cell in
                 VStack(spacing: 0) {
                     // An empty pinyin line still takes its height, so rows keep one baseline.
                     Text(cell.pinyin.isEmpty ? " " : cell.pinyin)

@@ -26,7 +26,7 @@ enum ChantLibrary {
         return url
     }
 
-    /// Registers every bundled JSON file and drops entries whose file is gone. Reading position is kept.
+    /// Registers every bundled JSON file and drops entries whose file is gone.
     static func syncBundled(resourceRoot: URL = Bundle.main.resourceURL!, context: ModelContext) throws {
         let folder = resourceRoot.appending(path: bundledFolder)
         let files = ((try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? [])

@@ -12,9 +12,6 @@ final class ChantBook {
     var catalogOrder: Int
     var dateAdded: Date
     var lastOpened: Date?
-    /// Row at the top of the screen when last read, and how far through the text that is.
-    var rowIndex: Int
-    var fraction: Double
 
     init(id: String, title: String, source: BookSource, relativePath: String, catalogOrder: Int = 0, dateAdded: Date = .now) {
         self.id = id
@@ -23,8 +20,6 @@ final class ChantBook {
         self.relativePath = relativePath
         self.catalogOrder = catalogOrder
         self.dateAdded = dateAdded
-        self.rowIndex = 0
-        self.fraction = 0
     }
 
     var source: BookSource {

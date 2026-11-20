@@ -44,7 +44,7 @@ cd .. && xcodebuild test -project DzzReader.xcodeproj -scheme DzzReader \
 - Catalog, reading progress and bookmarks: SwiftData store in the app's Application Support.
 - Imported books: `Documents/Imported/<uuid>.txt`, re-encoded as UTF-8. The 书架 picker accepts only plain text.
 - Imported chanting texts: `Documents/ImportedChanting/<uuid>.json`, validated before copying. The 诵经 picker accepts only JSON; a file opened from another app goes to the shelf matching its type.
-- Chanting position (top row) and font size: the row is written to the store when leaving the reader, backgrounding, or opening its chrome; the size is the `chant.fontSize` default.
+- Chanting texts always open at the start; no reading position is kept. 最近阅读 uses the last-opened time; the font size is the `chant.fontSize` default, and the reader's light/dark toggle is `chant.theme` (empty follows the 书架 appearance setting).
 - Appearance settings: `UserDefaults` keys prefixed `reader.`.
 
 ## Corpus notes the code depends on

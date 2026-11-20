@@ -39,7 +39,7 @@ import DzzCore
         #expect(titles.count == 28)
     }
 
-    @Test func syncBundledKeepsProgressAndDropsMissingFiles() throws {
+    @Test func syncBundledKeepsRecentsAndDropsMissingFiles() throws {
         let root = scratch.appending(path: "Res")
         let folder = root.appending(path: ChantLibrary.bundledFolder)
         _ = try write(sample, name: "甲.json", in: folder)
@@ -49,13 +49,14 @@ import DzzCore
         try ChantLibrary.syncBundled(resourceRoot: root, context: context)
         var books = try context.fetch(FetchDescriptor<ChantBook>())
         #expect(Set(books.map(\.title)) == ["甲", "乙"])
-        try #require(books.first { $0.title == "甲" }).rowIndex = 7
+        let opened = Date(timeIntervalSince1970: 1_000)
+        try #require(books.first { $0.title == "甲" }).lastOpened = opened
 
         try FileManager.default.removeItem(at: second)
         try ChantLibrary.syncBundled(resourceRoot: root, context: context)
         books = try context.fetch(FetchDescriptor<ChantBook>())
         #expect(books.map(\.title) == ["甲"])
-        #expect(books.first?.rowIndex == 7)   // re-syncing never resets where the reader was
+        #expect(books.first?.lastOpened == opened)   // re-syncing keeps it under 最近阅读
     }
 
     @Test func importsValidJSONUsingFileName() throws {

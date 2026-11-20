@@ -27,21 +27,21 @@ struct ChantShelfView: View {
             if !recents.isEmpty {
                 Section("最近阅读") {
                     ForEach(recents) { book in
-                        NavigationLink(value: book) { ChantBookRow(book: book, showsProgress: true) }
+                        NavigationLink(value: book) { ChantBookRow(book: book) }
                     }
                 }
             }
             if !bundled.isEmpty {
                 Section("念诵集") {
                     ForEach(bundled) { book in
-                        NavigationLink(value: book) { ChantBookRow(book: book, showsProgress: false) }
+                        NavigationLink(value: book) { ChantBookRow(book: book) }
                     }
                 }
             }
             if !imported.isEmpty {
                 Section("导入的文本") {
                     ForEach(imported) { book in
-                        NavigationLink(value: book) { ChantBookRow(book: book, showsProgress: false) }
+                        NavigationLink(value: book) { ChantBookRow(book: book) }
                     }
                     .onDelete { offsets in
                         for index in offsets { try? ChantLibrary.delete(imported[index], context: context) }
@@ -110,18 +110,8 @@ struct ChantShelfView: View {
 
 struct ChantBookRow: View {
     let book: ChantBook
-    let showsProgress: Bool
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text(book.title).lineLimit(2)
-            Spacer(minLength: 8)
-            if showsProgress || book.lastOpened != nil {
-                Text(book.fraction, format: .percent.precision(.fractionLength(0)))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
-            }
-        }
+        Text(book.title).lineLimit(2)
     }
 }
