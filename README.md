@@ -45,6 +45,7 @@ cd .. && xcodebuild test -project DzzReader.xcodeproj -scheme DzzReader \
 - Imported books: `Documents/Imported/<uuid>.txt`, re-encoded as UTF-8. The 书架 picker accepts only plain text.
 - Imported chanting texts: `Documents/ImportedChanting/<uuid>.json`, validated before copying. The 诵经 picker accepts only JSON; a file opened from another app goes to the shelf matching its type.
 - Chanting texts always open at the start; no reading position is kept. 最近阅读 uses the last-opened time; the font size is the `chant.fontSize` default, and the reader's light/dark toggle is `chant.theme` (empty follows the 书架 appearance setting).
+- Chanting auto-scroll highlights one character-with-pinyin block at a time (punctuation and notes are skipped) at `chant.autoSpeed` blocks per minute, and scrolls to keep the highlighted line mid-screen except near the ends. It pauses while the chrome shows; stopping clears the highlight. Stepping logic: `DzzReader/Chanting/ChantUnits.swift`.
 - Appearance settings: `UserDefaults` keys prefixed `reader.`.
 
 ## Corpus notes the code depends on

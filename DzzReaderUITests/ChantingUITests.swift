@@ -99,4 +99,47 @@ final class ChantingUITests: XCTestCase {
         saveShot("chant-heart-sutra")
         XCTAssertFalse(app.tabBars.firstMatch.isHittable, "tab bar hidden in the reader")
     }
+
+    /// Auto-scroll moves a highlight block by block and scrolls to keep its line in the middle.
+    func testAutoScrollHighlightsAndFollows() {
+        openChantTab()
+        app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
+        let title = app.descendants(matching: .any)["chantRow-0"]
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        let titleTop = title.frame.minY
+
+        showChrome()
+        app.buttons["chantAutoScrollButton"].tap()
+        let highlight = app.descendants(matching: .any)["chantHighlight"]
+        XCTAssertTrue(highlight.waitForExistence(timeout: 5))
+        XCTAssertLessThan(Int(highlight.label) ?? 99, 8, "starts at the title (it may have moved a few blocks already)")
+
+        // Pause to turn the speed up, then resume by tapping the text.
+        showChrome()
+        let slider = app.sliders["chantAutoSpeedSlider"]
+        XCTAssertTrue(slider.waitForExistence(timeout: 5))
+        slider.adjust(toNormalizedSliderPosition: 1)
+        XCTAssertEqual(app.staticTexts["chantAutoSpeedLabel"].label, "300字/分")
+        saveShot("chant-auto-paused")
+        app.descendants(matching: .any)["chantText"].firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(app.buttons["chantBackButton"].waitForNonExistence(timeout: 5))
+
+        // About 5 blocks a second. The middle of the screen is reached around block 100 (the 7th verse line);
+        // after that the text moves up to keep the highlighted line there.
+        sleep(30)
+        let reached = Int(highlight.label) ?? 0
+        XCTAssertGreaterThan(reached, 120)
+        XCTAssertLessThan(title.exists ? title.frame.minY : -1, titleTop, "text scrolled to follow the highlight")
+        saveShot("chant-auto-running")
+
+        // Paused while the chrome shows: the highlight stays put.
+        showChrome()
+        let paused = highlight.label
+        sleep(2)
+        XCTAssertEqual(highlight.label, paused)
+
+        // Stop clears the highlight.
+        app.buttons["chantAutoScrollButton"].tap()
+        XCTAssertTrue(highlight.waitForNonExistence(timeout: 5))
+    }
 }
