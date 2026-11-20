@@ -20,6 +20,11 @@ targets:
     platform: iOS
     sources:
       - path: DzzReader
+        excludes:
+          - ChantingTexts
+      - path: DzzReader/ChantingTexts   # bundled 诵经 texts, kept as a folder: ChantingTexts/… in the bundle
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: DzzCore
     settings:

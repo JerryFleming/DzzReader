@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import UniformTypeIdentifiers
 import DzzCore
 
 @main
@@ -28,6 +29,7 @@ struct RootView: View {
     @State private var ready = false
     @State private var loadError: String?
     @State private var path = NavigationPath()
+    @State private var chantPath = NavigationPath()
     @State private var tab = AppTab.shelf
     @State private var importRequested = false
     @State private var importErrors: [String] = []
@@ -51,7 +53,12 @@ struct RootView: View {
                         }
                     }
                     Tab("诵经", systemImage: "text.book.closed", value: AppTab.chanting) {
-                        ComingSoonView(title: "诵经", systemImage: "text.book.closed")
+                        NavigationStack(path: $chantPath) {
+                            ChantShelfView(path: $chantPath)
+                                .navigationDestination(for: ChantBook.self) { book in
+                                    ChantReaderView(book: book, settings: settings)
+                                }
+                        }
                     }
                     Tab("分享", systemImage: "square.and.arrow.up", value: AppTab.share) {
                         ShareView()
@@ -74,18 +81,29 @@ struct RootView: View {
             do {
                 let books = Bundle.main.resourceURL!.appending(path: "Books")
                 _ = try CatalogLoader.loadIfNeeded(booksDirectory: books, context: context)
+                try ChantLibrary.syncBundled(context: context)
                 ready = true
             } catch {
                 loadError = error.localizedDescription
             }
         }
-        .fileImporter(isPresented: $importRequested, allowedContentTypes: [.plainText, .text], allowsMultipleSelection: true) { result in
+        .fileImporter(isPresented: $importRequested, allowedContentTypes: [.plainText], allowsMultipleSelection: true) { result in
             switch result {
             case .success(let urls): importFiles(urls)
             case .failure(let error): importErrors = [error.localizedDescription]
             }
         }
-        .onOpenURL { url in importFiles([url]) }
+        .onOpenURL { url in
+            // Each shelf takes its own kind: JSON chanting texts go to 诵经, plain-text books to 书架.
+            let type = UTType(filenameExtension: url.pathExtension)
+            if type?.conforms(to: .json) == true {
+                importChantFile(url)
+            } else if type?.conforms(to: .plainText) == true {
+                importFiles([url])
+            } else {
+                importErrors = ["「\(url.lastPathComponent)」不是 txt 或 JSON 文件。"]
+            }
+        }
         .alert("部分文件未能导入", isPresented: Binding(get: { !importErrors.isEmpty }, set: { if !$0 { importErrors = [] } })) {
             Button("好", role: .cancel) {}
         } message: {
@@ -111,6 +129,19 @@ struct RootView: View {
     }
 }
 
+extension RootView {
+    /// A JSON file opened from another app is a chanting text: add it to the 诵经 shelf and open it.
+    private func importChantFile(_ url: URL) {
+        do {
+            let book = try ChantLibrary.importFile(at: url, context: context)
+            tab = .chanting
+            chantPath.append(book)
+        } catch {
+            importErrors = [error.localizedDescription]
+        }
+    }
+}
+
 /// Carries `书名•卷名::文字` markup from the reader to the 分享 tab. A single long-lived object in
 /// the environment (rather than a closure, which SwiftUI cannot compare) so readers of it are not
 /// invalidated on every update; RootView watches `pending` and delivers it.
@@ -123,18 +154,4 @@ final class QuoteInbox {
 
 enum AppTab: Hashable {
     case shelf, chanting, share
-}
-
-/// Placeholder for a tab whose feature is not built yet.
-struct ComingSoonView: View {
-    let title: String
-    let systemImage: String
-
-    var body: some View {
-        NavigationStack {
-            ContentUnavailableView(title, systemImage: systemImage, description: Text("即将推出"))
-                .navigationTitle(title)
-                .navigationBarTitleDisplayMode(.inline)
-        }
-    }
 }

@@ -10,6 +10,9 @@ Design: `docs/superpowers/specs/2026-11-15-dzz-reader-ios-design.md`.
 - `DzzReader/` — the SwiftUI app: SwiftData models, catalog loader, shelf, reader (TextKit 2 `UITextView`), bookmarks, appearance, import, and the 分享 tab (`Share/`: the vertical quote card ported from `../lecture/index.html`).
 - `DzzReaderTests/` — Swift Testing unit tests for the app layer (run on the simulator).
 - `DzzReaderUITests/` — XCUITest flows that drive the real app: shelf, reader, chapter list, slider, appearance, bookmarks, relaunch, import.
+- `DzzReader/Chanting/` — the 诵经 tab: a shelf of chanting texts (最近阅读, bundled 念诵集, imported) and a pinyin reader. Texts are JSON item lists (`{"char","pinyin"}`, `{"type":"linebreak"}`, `{"type":"passage","style":"normal|title|subtitle"}`) parsed by `DzzCore/ChantDocument`.
+- `DzzReader/ChantingTexts/` — bundled chanting texts (currently `佛教念诵集.json`), copied into the bundle as a folder.
+- `Scripts/extract-chanting.py` — regenerates the chanting JSON from `../佛教念诵集.pdf` (needs `mutool`); `Scripts/chanting-glyphs.json` names the rare characters the PDF draws as graphics.
 - `Scripts/copy-books.sh` — build phase that rsyncs `../dzz/toc.txt` and `../dzz/NN/*.txt` into the bundle's `Books/` folder (nothing else from `../dzz` is copied).
 
 ## Build
@@ -39,7 +42,9 @@ cd .. && xcodebuild test -project DzzReader.xcodeproj -scheme DzzReader \
 ## Where things live at runtime
 
 - Catalog, reading progress and bookmarks: SwiftData store in the app's Application Support.
-- Imported books: `Documents/Imported/<uuid>.txt`, re-encoded as UTF-8.
+- Imported books: `Documents/Imported/<uuid>.txt`, re-encoded as UTF-8. The 书架 picker accepts only plain text.
+- Imported chanting texts: `Documents/ImportedChanting/<uuid>.json`, validated before copying. The 诵经 picker accepts only JSON; a file opened from another app goes to the shelf matching its type.
+- Chanting position (top row) and font size: the row is written to the store when leaving the reader, backgrounding, or opening its chrome; the size is the `chant.fontSize` default.
 - Appearance settings: `UserDefaults` keys prefixed `reader.`.
 
 ## Corpus notes the code depends on

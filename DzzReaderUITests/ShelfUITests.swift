@@ -90,14 +90,14 @@ final class ShelfUITests: XCTestCase {
         XCTAssertLessThan(field.frame.maxX, importButton.frame.minX)
         XCTAssertLessThan(abs(field.frame.midY - importButton.frame.midY), 8)
 
-        // Bottom bar: 书架, 诵经, 分享; 诵经 is a placeholder for now.
+        // Bottom bar: 书架, 诵经, 分享.
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.exists)
         for name in ["书架", "诵经", "分享"] { XCTAssertTrue(tabs.buttons[name].exists, name) }
         XCTAssertGreaterThan(tabs.frame.minY, agama.frame.maxY)
 
         tabs.buttons["诵经"].tap()
-        XCTAssertTrue(app.staticTexts["即将推出"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.waitForExistence(timeout: 5))
         saveShot("tab-chanting")
         tabs.buttons["分享"].tap()
         XCTAssertTrue(app.otherElements["quoteCard"].waitForExistence(timeout: 5))
