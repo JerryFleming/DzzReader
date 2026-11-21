@@ -47,7 +47,30 @@ final class ReaderViewModel {
     var isWholeBook: Bool { loaded?.isWholeBook ?? false }
 
     var chapterTitle: String {
-        chapters.indices.contains(chapterIndex) ? chapters[chapterIndex].title : book.title
+        displayed(chapters.indices.contains(chapterIndex) ? chapters[chapterIndex].title : book.title)
+    }
+
+    // MARK: Script (繁 ⇄ 简)
+
+    /// The script the shown document is mostly written in.
+    private(set) var sourceScript = ChineseScript.traditional
+    /// The script on screen.
+    var shownScript: ChineseScript { settings.convertScript ? sourceScript.other : sourceScript }
+    /// The shown document converted to `shownScript`, kept so restyles don't convert it again.
+    @ObservationIgnored private var convertedText: (contentID: Int, script: ChineseScript, text: String)?
+
+    /// A title or other short text as it should appear on screen.
+    func displayed(_ text: String) -> String {
+        settings.convertScript ? shownScript.convert(text) : text
+    }
+
+    private func displayText(for rendered: RenderedChapter) -> String? {
+        guard settings.convertScript else { return nil }
+        let script = shownScript
+        if let cached = convertedText, cached.contentID == contentID, cached.script == script { return cached.text }
+        let text = script.convertKeepingOffsets(rendered.text)
+        convertedText = (contentID, script, text)
+        return text
     }
 
     var fraction: Double {
@@ -171,6 +194,8 @@ final class ReaderViewModel {
             document = span
             rendered = loaded.rendered(span)
             contentID += 1
+            // A sample is enough to tell; the whole document can be 300K characters.
+            sourceScript = ChineseScript.detect(String(rendered?.text.prefix(4_000) ?? ""))
             rebuildAttributed()
         }
         chapterIndex = index
@@ -188,8 +213,9 @@ final class ReaderViewModel {
 
     private func rebuildAttributed() {
         guard let rendered else { return }
-        attributed = AttributedChapterBuilder.build(rendered: rendered, settings: settings, theme: settings.theme,
-                                                    scheme: scheme, nextChapterTitle: nextDocumentTitle)
+        attributed = AttributedChapterBuilder.build(rendered: rendered, text: displayText(for: rendered),
+                                                    settings: settings, theme: settings.theme,
+                                                    scheme: scheme, nextChapterTitle: nextDocumentTitle.map(displayed))
     }
 
     // MARK: Progress

@@ -10,6 +10,7 @@ final class ReaderSettings {
         let fontSize: Double
         let lineSpacing: Double
         let margin: Double
+        let convertScript: Bool
     }
 
     static let curatedFonts: [(name: String, family: String)] = [
@@ -33,6 +34,8 @@ final class ReaderSettings {
     var fontSize: Double { didSet { defaults.set(fontSize, forKey: "reader.fontSize") } }
     var lineSpacing: Double { didSet { defaults.set(lineSpacing, forKey: "reader.lineSpacing") } }
     var margin: Double { didSet { defaults.set(margin, forKey: "reader.margin") } }
+    /// Show books converted to the other script (繁 ⇄ 简) from the one each is written in.
+    var convertScript: Bool { didSet { defaults.set(convertScript, forKey: "reader.convertScript") } }
     // Not part of `snapshot`: changing this must not rebuild the chapter text.
     var autoScrollSpeed: Double { didSet { defaults.set(autoScrollSpeed, forKey: "reader.autoScrollSpeed") } }
 
@@ -43,10 +46,12 @@ final class ReaderSettings {
         fontSize = defaults.object(forKey: "reader.fontSize") as? Double ?? 20
         lineSpacing = defaults.object(forKey: "reader.lineSpacing") as? Double ?? 1.6
         margin = defaults.object(forKey: "reader.margin") as? Double ?? 20
+        convertScript = defaults.bool(forKey: "reader.convertScript")
         autoScrollSpeed = defaults.object(forKey: "reader.autoScrollSpeed") as? Double ?? 30
     }
 
     var snapshot: Snapshot {
-        Snapshot(theme: theme, fontName: fontName, fontSize: fontSize, lineSpacing: lineSpacing, margin: margin)
+        Snapshot(theme: theme, fontName: fontName, fontSize: fontSize, lineSpacing: lineSpacing, margin: margin,
+                 convertScript: convertScript)
     }
 }

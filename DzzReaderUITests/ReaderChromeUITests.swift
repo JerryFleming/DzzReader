@@ -39,6 +39,46 @@ final class ReaderChromeUITests: XCTestCase {
         }
     }
 
+    /// The 繁/简 button shows the book in the other script and back, keeps the place, and converts titles.
+    func testScriptButtonConvertsTheBook() {
+        openChangAhan()
+        showChrome()
+        app.sliders["progressSlider"].adjust(toNormalizedSliderPosition: 0)   // the chapter list is lazy
+        sleep(1)
+        app.buttons["chaptersButton"].tap()
+        XCTAssertTrue(app.buttons["chapter-3"].waitForExistence(timeout: 5))
+        app.buttons["chapter-3"].tap()
+        let title = app.staticTexts["chapterTitle"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        XCTAssertEqual(title.label, "佛说长阿含经卷第三")
+        let text = app.textViews["chapterText"]
+        let before = text.value as? String ?? ""
+        XCTAssertFalse(before.isEmpty)
+
+        let button = app.buttons["scriptButton"]
+        XCTAssertEqual(button.label, "转为繁体")
+        button.tap()
+        XCTAssertEqual(title.label, "佛說長阿含經卷第三")
+        XCTAssertEqual(button.label, "转为简体")
+        let after = text.value as? String ?? ""
+        // The same lines on screen, now in traditional characters.
+        XCTAssertEqual(after.utf16.count, before.utf16.count, "same place, same length")
+        XCTAssertNotEqual(after, before)
+        XCTAssertEqual(after.applyingTransform(StringTransform("Hant-Hans"), reverse: false), before)
+        saveShot("reader-traditional")
+
+        app.buttons["chaptersButton"].tap()
+        XCTAssertTrue(app.buttons["chapter-3"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.buttons["chapter-3"].label, "佛說長阿含經卷第三")
+        app.buttons["chapter-3"].tap()
+
+        // Back to simplified (other tests expect it).
+        showChrome()
+        button.tap()
+        XCTAssertEqual(title.label, "佛说长阿含经卷第三")
+        XCTAssertEqual(button.label, "转为繁体")
+    }
+
     func testChapterListSliderAppearanceAndBookmarks() {
         openChangAhan()
         showChrome()

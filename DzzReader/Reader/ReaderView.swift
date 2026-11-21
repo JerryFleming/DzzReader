@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import DzzCore
 
 struct ReaderView: View {
     @State private var vm: ReaderViewModel
@@ -153,6 +154,17 @@ struct ReaderView: View {
                     Spacer()
                     Button { showAppearance = true } label: { Label("外观", systemImage: "textformat.size") }
                         .accessibilityIdentifier("appearanceButton")
+                    Spacer()
+                    Button { vm.settings.convertScript.toggle() } label: {
+                        // Names the script a tap switches to.
+                        let target = vm.shownScript.other
+                        Label {
+                            Text(target == .traditional ? "转为繁体" : "转为简体")
+                        } icon: {
+                            Text(target == .traditional ? "繁" : "简").font(.title3.weight(.medium))
+                        }
+                    }
+                    .accessibilityIdentifier("scriptButton")
                 }
                 .labelStyle(.iconOnly)
                 .font(.title3)

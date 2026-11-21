@@ -20,7 +20,7 @@ struct ChapterListSheet: View {
                             dismiss()
                         } label: {
                             HStack {
-                                Text(chapter.title)
+                                Text(vm.displayed(chapter.title))
                                     .fontWeight(isCurrent ? .semibold : .regular)
                                     .foregroundStyle(.primary)
                                 Spacer()
@@ -37,7 +37,7 @@ struct ChapterListSheet: View {
                                 vm.go(toChapter: index, sourceOffset: section.offset - chapter.startOffset)
                                 dismiss()
                             } label: {
-                                Text(section.title)
+                                Text(vm.displayed(section.title))
                                     .font(.subheadline)
                                     .fontWeight(isCurrentSection ? .semibold : .regular)
                                     .foregroundStyle(isCurrentSection ? .primary : .secondary)
@@ -176,9 +176,9 @@ struct BookmarkListSheet: View {
                         dismiss()
                     } label: {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(mark.excerpt).lineLimit(2).foregroundStyle(.primary)
+                            Text(vm.displayed(mark.excerpt)).lineLimit(2).foregroundStyle(.primary)
                             HStack {
-                                Text(vm.chapters.indices.contains(mark.chapterIndex) ? vm.chapters[mark.chapterIndex].title : "")
+                                Text(vm.chapters.indices.contains(mark.chapterIndex) ? vm.displayed(vm.chapters[mark.chapterIndex].title) : "")
                                 Spacer()
                                 Text(mark.createdAt, format: .relative(presentation: .named))
                             }

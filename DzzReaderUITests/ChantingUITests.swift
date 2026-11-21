@@ -100,6 +100,38 @@ final class ChantingUITests: XCTestCase {
         XCTAssertFalse(app.tabBars.firstMatch.isHittable, "tab bar hidden in the reader")
     }
 
+    /// The 繁/简 button shows the text in the other script and back, keeps the place, and is remembered.
+    func testScriptButtonConvertsBetweenSimplifiedAndTraditional() {
+        openChantTab()
+        app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
+        let title = app.descendants(matching: .any)["chantRow-0"]
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        XCTAssertEqual(title.label, "大佛顶首楞严神咒")
+        let pinyin = title.value as? String
+
+        showChrome()
+        let button = app.buttons["chantScriptButton"]
+        XCTAssertEqual(button.label, "转为繁体")
+        button.tap()
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        XCTAssertEqual(title.label, "大佛頂首楞嚴神咒")
+        XCTAssertEqual(title.value as? String, pinyin, "pinyin unchanged")
+        XCTAssertEqual(button.label, "转为简体")
+        saveShot("chant-traditional")
+
+        // Remembered when the text is opened again.
+        app.buttons["chantBackButton"].tap()
+        app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        XCTAssertEqual(title.label, "大佛頂首楞嚴神咒")
+
+        // Back to simplified (other tests expect it).
+        showChrome()
+        button.tap()
+        XCTAssertEqual(title.label, "大佛顶首楞严神咒")
+        XCTAssertEqual(button.label, "转为繁体")
+    }
+
     /// Auto-scroll moves a highlight block by block and scrolls to keep its line in the middle.
     func testAutoScrollHighlightsAndFollows() {
         openChantTab()

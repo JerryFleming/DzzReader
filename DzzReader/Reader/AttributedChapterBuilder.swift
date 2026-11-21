@@ -31,8 +31,9 @@ enum AttributedChapterBuilder {
         return base
     }
 
-    static func build(rendered: RenderedChapter, settings: ReaderSettings, theme: Theme, scheme: ColorScheme,
-                      nextChapterTitle: String?) -> NSAttributedString {
+    /// `text` replaces `rendered.text` (the same text in the other script, at the same UTF-16 offsets).
+    static func build(rendered: RenderedChapter, text: String? = nil, settings: ReaderSettings, theme: Theme,
+                      scheme: ColorScheme, nextChapterTitle: String?) -> NSAttributedString {
         let size = CGFloat(settings.fontSize)
         let foreground = theme.foreground(for: scheme)
 
@@ -41,7 +42,7 @@ enum AttributedChapterBuilder {
         bodyStyle.paragraphSpacing = 0.6 * size
         bodyStyle.lineBreakMode = .byWordWrapping
 
-        let body = NSMutableAttributedString(string: rendered.text, attributes: [
+        let body = NSMutableAttributedString(string: text ?? rendered.text, attributes: [
             .font: font(named: settings.fontName, size: size),
             .foregroundColor: foreground,
             .paragraphStyle: bodyStyle,
