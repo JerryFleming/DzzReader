@@ -1,14 +1,21 @@
 import CoreText
 import Foundation
 
-// Prints the outline of one character as an SVG path, fitted into a square box.
-// usage: glyph <font PostScript name> <char> <box size> <glyph height in box>
+// Prints the outline of one BMP character (a single UTF-16 code unit; no surrogate pairs) as an SVG path, fitted into a square box.
+// usage: glyph <font PostScript name> <one BMP character> <box size> <glyph height in box>
+let usage = "usage: glyph <font PostScript name> <one BMP character> <box size> <glyph height in box>"
 let args = CommandLine.arguments
+guard args.count == 5 else {
+    fputs(usage + "\n", stderr)
+    exit(2)
+}
+guard let box = Double(args[3]), let height = Double(args[4]) else {
+    fputs(usage + "\n", stderr)
+    exit(2)
+}
 let font = CTFontCreateWithName(args[1] as CFString, 1000, nil)
 guard (CTFontCopyPostScriptName(font) as String) == args[1] else { fatalError("font \(args[1]) not installed") }
 let char = Array(args[2].utf16)
-let box = Double(args[3])!
-let height = Double(args[4])!
 var glyph = CGGlyph()
 guard CTFontGetGlyphsForCharacters(font, char, &glyph, 1), let path = CTFontCreatePathForGlyph(font, glyph, nil) else {
     fatalError("no glyph")

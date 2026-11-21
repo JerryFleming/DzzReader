@@ -1,6 +1,6 @@
 """Generates DzzReader/AppIcon.icon (Icon Composer bundle): 藏 on a lotus throne.
 
-usage (from the repo root): python3 -I Scripts/make-app-icon.py
+usage: python3 -I Scripts/make-app-icon.py   (paths resolve from this file's location, so the working directory does not matter)
 
 Output is deterministic (fixed float formatting, fixed key order), so a rerun yields no diff.
 Needs Xcode's `swift` and the system font Songti SC Bold.
@@ -12,7 +12,7 @@ OUT = os.path.join(ROOT, "DzzReader", "AppIcon.icon")
 
 glyph_d = subprocess.run(
     ["swift", os.path.join(ROOT, "Scripts", "glyph-path.swift"), "STSongti-SC-Bold", "藏", "1024", "560"],
-    check=True, capture_output=True, text=True).stdout.strip()
+    check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
 
 BROWN = "#4A3426"
 ROSE_DEEP, ROSE_MID, ROSE_PALE = "#B8455E", "#DE8597", "#F7D6DC"

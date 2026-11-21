@@ -13,6 +13,7 @@ Design: `docs/superpowers/specs/2026-11-15-dzz-reader-ios-design.md`.
 - `DzzReader/Chanting/` — the 诵经 tab: a shelf of chanting texts (最近阅读, bundled 念诵集, imported) and a pinyin reader. Texts are JSON item lists (`{"char","pinyin"}`, `{"type":"linebreak"}`, `{"type":"passage","style":"normal|title|subtitle|verse"}`) parsed by `DzzCore/ChantDocument`. A passage item sets the style of the rows that follow, up to the next passage item: `title` (red, larger, centred, listed in 目录), `subtitle` (violet, centred), `verse` (body colour, centred: verse lines with one phrase per row) or `normal` (left-aligned body text).
 - `DzzReader/ChantingTexts/` — bundled chanting texts (currently `佛教念诵集.json`), copied into the bundle as a folder.
 - `Scripts/extract-chanting.py` — regenerates the chanting JSON from `../佛教念诵集.pdf` (needs `mutool`); `Scripts/chanting-glyphs.json` names the rare characters the PDF draws as graphics.
+- `Scripts/make-app-icon.py` regenerates `DzzReader/AppIcon.icon` (needs Xcode's `swift` and the Songti SC font); rerunning overwrites manual Icon Composer edits.
 
 ## Build
 
