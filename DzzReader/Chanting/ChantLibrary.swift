@@ -26,8 +26,13 @@ enum ChantLibrary {
         return url
     }
 
-    /// Registers every bundled JSON file and drops entries whose file is gone.
-    static func syncBundled(resourceRoot: URL = Bundle.main.resourceURL!, context: ModelContext) throws {
+    /// Ids of bundled texts the reader deleted; the files stay in the app bundle, so they are skipped on sync.
+    static let deletedBundledKey = "chant.deletedBundled"
+
+    /// Registers every bundled JSON file (except deleted ones) and drops entries whose file is gone.
+    static func syncBundled(resourceRoot: URL = Bundle.main.resourceURL!, context: ModelContext,
+                            defaults: UserDefaults = .standard) throws {
+        let deleted = Set(defaults.stringArray(forKey: deletedBundledKey) ?? [])
         let folder = resourceRoot.appending(path: bundledFolder)
         let files = ((try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? [])
             .filter { $0.pathExtension.lowercased() == "json" }
@@ -40,6 +45,7 @@ enum ChantLibrary {
         for (order, file) in files.enumerated() {
             let name = file.lastPathComponent
             let id = "bundled:\(name)"
+            if deleted.contains(id) { continue }
             let title = (name as NSString).deletingPathExtension
             if let book = byID.removeValue(forKey: id) {
                 book.title = title
@@ -86,12 +92,23 @@ enum ChantLibrary {
         return book
     }
 
-    static func delete(_ book: ChantBook, context: ModelContext) throws {
-        if book.source == .imported {
-            try? FileManager.default.removeItem(at: book.fileURL)
+    /// Imported texts lose their file; bundled ones are remembered as deleted so launch doesn't re-add them.
+    static func delete(_ books: [ChantBook], context: ModelContext, defaults: UserDefaults = .standard) throws {
+        var deleted = defaults.stringArray(forKey: deletedBundledKey) ?? []
+        for book in books {
+            if book.source == .imported {
+                try? FileManager.default.removeItem(at: book.fileURL)
+            } else if !deleted.contains(book.id) {
+                deleted.append(book.id)
+            }
+            context.delete(book)
         }
-        context.delete(book)
+        defaults.set(deleted, forKey: deletedBundledKey)
         try context.save()
+    }
+
+    static func delete(_ book: ChantBook, context: ModelContext, defaults: UserDefaults = .standard) throws {
+        try delete([book], context: context, defaults: defaults)
     }
 
     /// Parses off the main thread.

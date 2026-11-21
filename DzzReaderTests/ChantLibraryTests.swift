@@ -76,4 +76,19 @@ import DzzCore
         #expect(throws: ChantImportError.self) { try ChantLibrary.importFile(at: url, context: context) }
         #expect(try context.fetch(FetchDescriptor<ChantBook>()).isEmpty)
     }
+
+    @Test func deletedBundledTextStaysDeletedAfterSync() throws {
+        let defaults = UserDefaults(suiteName: "ChantLibraryTests-\(UUID().uuidString)")!
+        let root = scratch.appending(path: "Res")
+        let folder = root.appending(path: ChantLibrary.bundledFolder)
+        _ = try write(sample, name: "甲.json", in: folder)
+        _ = try write(sample, name: "乙.json", in: folder)
+        try ChantLibrary.syncBundled(resourceRoot: root, context: context, defaults: defaults)
+        let jia = try #require(try context.fetch(FetchDescriptor<ChantBook>()).first { $0.title == "甲" })
+
+        try ChantLibrary.delete(jia, context: context, defaults: defaults)
+        try ChantLibrary.syncBundled(resourceRoot: root, context: context, defaults: defaults)
+        #expect(try context.fetch(FetchDescriptor<ChantBook>()).map(\.title) == ["乙"])
+        #expect(FileManager.default.fileExists(atPath: folder.appending(path: "甲.json").path))   // bundle untouched
+    }
 }

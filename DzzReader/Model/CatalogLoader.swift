@@ -1,102 +1,117 @@
-import CryptoKit
 import Foundation
 import SwiftData
 import DzzCore
 
-/// Builds the shelf from the bundled corpus: toc.txt joined with the files that actually exist.
+/// Builds the shelf from downloaded archives: toc.txt joined with the files that actually exist.
 @MainActor
 enum CatalogLoader {
-    static let hashKey = "catalogHash"
-
-    /// 部 from the bundled toc.txt keyed by name, for showing each 部's 经号 range. Parsed once.
-    static let bundledSections: [String: TocSection] = {
-        let url = Bundle.main.resourceURL!.appending(path: "Books/toc.txt")
+    /// 部 from the downloaded toc.txt keyed by name, for showing each 部's 经号 range.
+    /// Parsed once it is there (it is missing until the first-run download finishes).
+    static var bundledSections: [String: TocSection] {
+        if let cachedSections { return cachedSections }
+        let url = Corpus.booksDirectory.appending(path: "toc.txt")
         guard let text = try? String(contentsOf: url, encoding: .utf8) else { return [:] }
-        return Dictionary(TocParser.parse(text).sections.map { ($0.name, $0) }, uniquingKeysWith: { a, _ in a })
-    }()
-
-    /// Loads only when the bundled toc.txt or file count changed since the last load. Returns books upserted.
-    static func loadIfNeeded(booksDirectory: URL, context: ModelContext, defaults: UserDefaults = .standard) throws -> Int {
-        let hash = try catalogHash(booksDirectory: booksDirectory)
-        if defaults.string(forKey: hashKey) == hash { return 0 }
-        let count = try load(booksDirectory: booksDirectory, context: context)
-        defaults.set(hash, forKey: hashKey)
-        return count
+        let sections = Dictionary(TocParser.parse(text).sections.map { ($0.name, $0) }, uniquingKeysWith: { a, _ in a })
+        cachedSections = sections
+        return sections
     }
+    private static var cachedSections: [String: TocSection]?
 
+    /// Drops the parsed toc so the next read picks up a newly downloaded toc.txt.
+    static func resetSections() { cachedSections = nil }
+
+    /// Adds or updates books from `booksDirectory` (an unpacked archive; `relativePath` is "Books/" plus the
+    /// path inside it). Books already on the shelf are never removed. With a toc.txt, `NN/<经号><title>.txt` files are grouped into
+    /// its 部; without one, every .txt file is listed by name with no 部 (the shelf's unnamed group).
     static func load(booksDirectory: URL, context: ModelContext) throws -> Int {
-        let tocText = try String(contentsOf: booksDirectory.appending(path: "toc.txt"), encoding: .utf8)
-        let toc = TocParser.parse(tocText)
-        let entries = Dictionary(toc.entries.map { ($0.number, $0) }, uniquingKeysWith: { a, _ in a })
+        cachedSections = nil
+        let tocURL = booksDirectory.appending(path: "toc.txt")
+        let toc = FileManager.default.fileExists(atPath: tocURL.path)
+            ? TocParser.parse(try String(contentsOf: tocURL, encoding: .utf8)) : nil
 
         var existing: [String: Book] = [:]
         let bundled = BookSource.bundled.rawValue
         let descriptor = FetchDescriptor<Book>(predicate: #Predicate { $0.sourceRaw == bundled })
         for book in try context.fetch(descriptor) { existing[book.id] = book }
 
-        var count = 0
-        for file in try bookFiles(in: booksDirectory) {
-            guard let number = CanonNumber.parse(filename: file.name) else { continue }
-            let entry = entries[number]
-            let id = "T" + number
-            let title = entry?.title ?? String(file.name.dropFirst(number.count).dropLast(4))
-            let section = toc.section(forNumber: number)?.name
-            let relativePath = "Books/\(file.directory)/\(file.name)"
-
+        var seen = Set<String>()
+        func upsert(id: String, title: String, relativePath: String, section: String?, entry: TocEntry?,
+                    order: Int, size: Int) {
+            seen.insert(id)
             if let book = existing[id] {
                 book.title = title
                 book.section = section
                 book.juanCount = entry?.juanCount
                 book.author = entry?.author
-                book.catalogOrder = CanonNumber.sortKey(number)
+                book.catalogOrder = order
                 book.relativePath = relativePath
-                book.byteSize = file.size
+                book.byteSize = size
             } else {
-                let book = Book(id: id, title: title, source: .bundled, relativePath: relativePath,
-                                section: section, juanCount: entry?.juanCount, author: entry?.author,
-                                catalogOrder: CanonNumber.sortKey(number), byteSize: file.size, encodingName: "utf-8")
-                context.insert(book)
+                context.insert(Book(id: id, title: title, source: .bundled, relativePath: relativePath,
+                                    section: section, juanCount: entry?.juanCount, author: entry?.author,
+                                    catalogOrder: order, byteSize: size, encodingName: "utf-8"))
             }
-            count += 1
+        }
+
+        let files = try bookFiles(in: booksDirectory, hasToc: toc != nil)
+        if let toc {
+            let entries = Dictionary(toc.entries.map { ($0.number, $0) }, uniquingKeysWith: { a, _ in a })
+            for file in files {
+                let name = file.name
+                guard let number = CanonNumber.parse(filename: name) else { continue }
+                let entry = entries[number]
+                upsert(id: "T" + number,
+                       title: entry?.title ?? String(name.dropFirst(number.count).dropLast(4)),
+                       relativePath: "Books/\(file.path)", section: toc.section(forNumber: number)?.name,
+                       entry: entry, order: CanonNumber.sortKey(number), size: file.size)
+            }
+        } else {
+            for (order, file) in files.enumerated() {
+                upsert(id: "F:" + file.path, title: String(file.name.dropLast(4)),
+                       relativePath: "Books/\(file.path)", section: nil, entry: nil, order: order, size: file.size)
+            }
         }
         try context.save()
-        return count
+        return seen.count
     }
 
     // MARK: - Files
 
     private struct BookFile {
-        let directory: String
-        let name: String
+        let path: String          // relative to the books folder: "00/0001长阿含经.txt"
         let size: Int
+        var name: String { String(path.split(separator: "/").last ?? "") }
     }
 
-    private static func bookFiles(in root: URL) throws -> [BookFile] {
+    /// With a toc: the .txt files in the two-digit volume folders. Without: every .txt file, in name order.
+    private static func bookFiles(in root: URL, hasToc: Bool) throws -> [BookFile] {
         let fm = FileManager.default
         var result: [BookFile] = []
-        let dirs = try fm.contentsOfDirectory(at: root, includingPropertiesForKeys: [.isDirectoryKey])
-            .filter { $0.lastPathComponent.range(of: #"^\d\d$"#, options: .regularExpression) != nil }
-            .sorted { $0.lastPathComponent < $1.lastPathComponent }
-        for dir in dirs {
-            let files = try fm.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey])
-                .filter { $0.pathExtension == "txt" }
+        func size(_ url: URL) -> Int { (try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0 }
+        if hasToc {
+            let dirs = try fm.contentsOfDirectory(at: root, includingPropertiesForKeys: [.isDirectoryKey])
+                .filter { $0.lastPathComponent.range(of: #"^\d\d$"#, options: .regularExpression) != nil }
                 .sorted { $0.lastPathComponent < $1.lastPathComponent }
-            for file in files {
-                let size = (try? file.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0
-                result.append(BookFile(directory: dir.lastPathComponent, name: file.lastPathComponent, size: size))
+            for dir in dirs {
+                let files = try fm.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey])
+                    .filter { $0.pathExtension == "txt" }
+                    .sorted { $0.lastPathComponent < $1.lastPathComponent }
+                for file in files {
+                    result.append(BookFile(path: "\(dir.lastPathComponent)/\(file.lastPathComponent)", size: size(file)))
+                }
             }
+            return result
         }
-        return result
-    }
-
-    /// Changes when toc.txt, the file count, or any file size changes, so a replaced corpus invalidates cached indexes.
-    private static func catalogHash(booksDirectory: URL) throws -> String {
-        let toc = try Data(contentsOf: booksDirectory.appending(path: "toc.txt"))
-        let files = try bookFiles(in: booksDirectory)
-        let totalSize = files.reduce(0) { $0 + $1.size }
-        var hasher = SHA256()
-        hasher.update(data: toc)
-        hasher.update(data: Data("\(files.count):\(totalSize)".utf8))
-        return hasher.finalize().map { String(format: "%02x", $0) }.joined()
+        let rootPath = root.standardizedFileURL.path + "/"
+        let walker = fm.enumerator(at: root, includingPropertiesForKeys: [.fileSizeKey, .isRegularFileKey],
+                                   options: [.skipsHiddenFiles])
+        while let url = walker?.nextObject() as? URL {
+            guard url.pathExtension.lowercased() == "txt",
+                  (try? url.resourceValues(forKeys: [.isRegularFileKey]).isRegularFile) == true else { continue }
+            let full = url.standardizedFileURL.path
+            guard full.hasPrefix(rootPath) else { continue }
+            result.append(BookFile(path: String(full.dropFirst(rootPath.count)), size: size(url)))
+        }
+        return result.sorted { $0.path.localizedStandardCompare($1.path) == .orderedAscending }
     }
 }

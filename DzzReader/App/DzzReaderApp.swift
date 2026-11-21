@@ -79,8 +79,6 @@ struct RootView: View {
         }
         .task {
             do {
-                let books = Bundle.main.resourceURL!.appending(path: "Books")
-                _ = try CatalogLoader.loadIfNeeded(booksDirectory: books, context: context)
                 try ChantLibrary.syncBundled(context: context)
                 ready = true
             } catch {

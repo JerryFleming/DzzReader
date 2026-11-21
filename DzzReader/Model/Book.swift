@@ -4,7 +4,7 @@ import DzzCore
 
 @Model
 final class Book {
-    @Attribute(.unique) var id: String          // "T0026", "T0894a", or a UUID string for imports
+    @Attribute(.unique) var id: String          // "T0026", "T0894a", "F:<path>" (downloaded, no toc), or a UUID for imports
     var title: String
     var sourceRaw: String                        // BookSource.rawValue; predicates cannot capture enums
     var relativePath: String                     // "Books/00/0026中阿含经.txt" | "Imported/<uuid>.txt"
@@ -59,14 +59,14 @@ final class Book {
     var fileURL: URL {
         switch source {
         case .bundled:
-            return Bundle.main.resourceURL!.appending(path: relativePath)
+            return Corpus.root.appending(path: relativePath)   // downloaded from the 书架
         case .imported:
             return URL.documentsDirectory.appending(path: relativePath)
         }
     }
 
-    /// "0026" for bundled books, nil for imports.
+    /// "0026" for downloaded books catalogued by a toc.txt ("T0026"), nil otherwise.
     var canonNumber: String? {
-        source == .bundled ? String(id.dropFirst()) : nil
+        source == .bundled && id.hasPrefix("T") ? String(id.dropFirst()) : nil
     }
 }

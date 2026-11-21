@@ -7,11 +7,18 @@ struct ShelfView: View {
     @State private var searchText = ""
     @FocusState private var searchFocused: Bool
     @Binding var importRequested: Bool
+    @State private var downloadShown = false
+    @State private var pendingDelete: GroupDeletion?
 
     private var recents: [Book] {
         books.filter { $0.lastOpened != nil }
             .sorted { ($0.lastOpened ?? .distantPast) > ($1.lastOpened ?? .distantPast) }
             .prefix(5).map { $0 }
+    }
+
+    /// Downloaded books with no 部: everything from an archive without toc.txt, or files its toc doesn't list.
+    private var ungrouped: [Book] {
+        books.filter { $0.source == .bundled && $0.section == nil }
     }
 
     private var imported: [Book] {
@@ -23,7 +30,7 @@ struct ShelfView: View {
         var firstOrder: [String: Int] = [:]
         var counts: [String: Int] = [:]
         for book in books where book.source == .bundled {
-            let name = book.section ?? "其它"
+            guard let name = book.section else { continue }   // listed in the unnamed group instead
             counts[name, default: 0] += 1
             firstOrder[name] = min(firstOrder[name] ?? .max, book.catalogOrder)
         }
@@ -56,6 +63,8 @@ struct ShelfView: View {
                 }
             }
             .onDisappear { endSearchFocus() }
+            .sheet(isPresented: $downloadShown) { DownloadBooksSheet() }
+            .confirmsGroupDeletion($pendingDelete)
     }
 
     /// True from the moment the field gains focus until the reader deliberately ends the search.
@@ -66,7 +75,7 @@ struct ShelfView: View {
         searchFocused = false
     }
 
-    /// Search field with the import button beside it, in place of the navigation bar.
+    /// Search field with the import and download buttons beside it, in place of the navigation bar.
     private var topBar: some View {
         HStack(spacing: 12) {
             HStack(spacing: 6) {
@@ -108,6 +117,16 @@ struct ShelfView: View {
                     .labelStyle(.iconOnly)
                     .font(.title3)
             }
+
+            Button {
+                endSearchFocus()
+                downloadShown = true
+            } label: {
+                Label("下载", systemImage: "icloud.and.arrow.down")
+                    .labelStyle(.iconOnly)
+                    .font(.title3)
+            }
+            .accessibilityIdentifier("downloadBooks")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
@@ -127,6 +146,7 @@ struct ShelfView: View {
                 Section("导入的书") {
                     ForEach(imported) { book in
                         NavigationLink(value: book) { BookRow(book: book, showsChapter: false) }
+                            .contextMenu { deleteMenu(book, groupName: "导入的书", group: imported) }
                     }
                     .onDelete(perform: deleteImported)
                 }
@@ -149,12 +169,61 @@ struct ShelfView: View {
                                 .monospacedDigit()
                         }
                     }
+                    // Not role: .destructive, which would hide the row before the reader confirms.
+                    .swipeActions {
+                        Button("删除") { askToDeleteSection(section.name) }
+                            .tint(.red)
+                    }
+                    .contextMenu {
+                        Button("删除整个\(section.name)", systemImage: "trash", role: .destructive) {
+                            askToDeleteSection(section.name)
+                        }
+                    }
+                }
+            }
+            if !ungrouped.isEmpty {
+                Section {   // the unnamed group: no header
+                    ForEach(ungrouped) { book in
+                        NavigationLink(value: book) { BookRow(book: book, showsChapter: false) }
+                            .contextMenu { deleteMenu(book, groupName: "未分组的书", group: ungrouped) }
+                    }
+                    .onDelete { offsets in
+                        try? Importer.delete(offsets.map { ungrouped[$0] }, context: context)
+                    }
+                }
+            }
+            if books.isEmpty {
+                Section {
+                    Button("下载经文…") { downloadShown = true }
+                } footer: {
+                    Text("书架是空的。可从网上下载《大正藏》，或用右上角的按钮导入 txt 文件。")
                 }
             }
         }
     }
 
     @Environment(\.modelContext) private var context
+
+    @ViewBuilder
+    private func deleteMenu(_ book: Book, groupName: String, group: [Book]) -> some View {
+        Button("删除这本书", systemImage: "trash", role: .destructive) {
+            try? Importer.delete(book, context: context)
+        }
+        Button("删除整组", systemImage: "trash.slash", role: .destructive) {
+            pendingDelete = GroupDeletion(name: groupName, count: group.count, message: Self.deleteMessage) {
+                try? Importer.delete(group, context: context)
+            }
+        }
+    }
+
+    private func askToDeleteSection(_ name: String) {
+        let members = books.filter { $0.source == .bundled && $0.section == name }
+        pendingDelete = GroupDeletion(name: name, count: members.count, message: Self.deleteMessage) {
+            try? Importer.delete(members, context: context)
+        }
+    }
+
+    static let deleteMessage = "文件、阅读进度和书签都会删除。下载过的书可再次下载找回。"
 
     private func deleteImported(at offsets: IndexSet) {
         for index in offsets {

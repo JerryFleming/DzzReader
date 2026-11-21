@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0DEB0528F027D7A14B07DD4C /* Sheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80454FA4134B577CF9CF95B9 /* Sheets.swift */; };
+		1356A722A4931195D2F4B7C3 /* DownloadBooksSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EAB6ECA44AF398A47709 /* DownloadBooksSheet.swift */; };
+		19DABD9B80E1D323412C0164 /* DownloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C8CF0B0790BA364A5C70F0 /* DownloadUITests.swift */; };
 		2047B7ED1D02BD7F97EC8076 /* BookSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953F5B32F02D9193D621DB2 /* BookSource.swift */; };
 		2341BDA25D7E920BBC65AF65 /* ReaderShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17BF23BD4D796F2EA402E7 /* ReaderShareUITests.swift */; };
 		3025824BD4C9EF0DB17DE2DB /* RetroFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B0D2C12D950F0ED890371 /* RetroFrame.swift */; };
@@ -17,6 +19,7 @@
 		3BFF8A0DC36D0B641298DD55 /* ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAE0079103672F885A102C /* ReaderUITests.swift */; };
 		3C03ACA760593BB124EAC04B /* BookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41AA864CB9DBD089FEF35A4 /* BookRow.swift */; };
 		3C5A6CE2A8A3BEF2B092BDAC /* ShelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78C8D517D239CD75800343 /* ShelfUITests.swift */; };
+		3E1748FEAA6B5E4896B331C9 /* GroupDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAE9B56F2B7A1DAA75E1EE /* GroupDeletion.swift */; };
 		3F5D3512AB8C4AD5506DEEF9 /* QuoteCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BBBE8C29909AA38E11040D /* QuoteCardTests.swift */; };
 		401A20879FB02A62F0CEA816 /* ChantReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBDC1B052BBF7F945F8DCA3 /* ChantReaderView.swift */; };
 		446CC6A4094A690D6F55D0B8 /* BookLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592562D8BF0B441685B6F52 /* BookLoader.swift */; };
@@ -47,6 +50,7 @@
 		BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */; };
 		C0D63A404D6FA1D8DBCD2C60 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = CDDE53494A0217F9B5FFC3B4 /* Fixtures */; };
 		C4CC5D89BB33BCE06160C117 /* CatalogLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */; };
+		CB43B1F2ACD1CEB67DEB49E2 /* Corpus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1C4AB1A641C8E465C0490 /* Corpus.swift */; };
 		D4351313EC667CB02D89F275 /* ReaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CF36F99DF559FFA82C0CD /* ReaderSettings.swift */; };
 		D79CE93563CCD46CAD50EC46 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0C6C718002E8456E4EC0E /* Bookmark.swift */; };
 		D96705A53605004BACBE66CE /* AttributedChapterBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3DCAFB22229FA6C27039B2 /* AttributedChapterBuilderTests.swift */; };
@@ -115,6 +119,7 @@
 		7E5B0D2C12D950F0ED890371 /* RetroFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroFrame.swift; sourceTree = "<group>"; };
 		80454FA4134B577CF9CF95B9 /* Sheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheets.swift; sourceTree = "<group>"; };
 		83BBBE8C29909AA38E11040D /* QuoteCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardTests.swift; sourceTree = "<group>"; };
+		84FAE9B56F2B7A1DAA75E1EE /* GroupDeletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeletion.swift; sourceTree = "<group>"; };
 		85DBE8A7D858423933D4E5F9 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContainer+App.swift"; sourceTree = "<group>"; };
 		93CFB5A8591A0161FCA93C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 		A0142C0EA21FA88AB3F832E4 /* DzzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DzzCore; path = DzzCore; sourceTree = SOURCE_ROOT; };
 		A41AA864CB9DBD089FEF35A4 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
 		AB1BB8E961A8D1D61E179F88 /* ReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModelTests.swift; sourceTree = "<group>"; };
+		B5B7EAB6ECA44AF398A47709 /* DownloadBooksSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadBooksSheet.swift; sourceTree = "<group>"; };
 		B9C2AF9D8EA0AE663AC968F6 /* DzzReaderUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DzzReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C725ABABA0935B11072D3E /* ImportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportUITests.swift; sourceTree = "<group>"; };
 		B9CBF19041FA94EB6F2D4D31 /* ChantLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChantLibrary.swift; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 		CDDE53494A0217F9B5FFC3B4 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = DzzReaderTests/Fixtures; sourceTree = SOURCE_ROOT; };
 		D1EAE0079103672F885A102C /* ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderUITests.swift; sourceTree = "<group>"; };
 		DD7847DBAFA2D8379CF6174B /* ShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUITests.swift; sourceTree = "<group>"; };
+		E0C8CF0B0790BA364A5C70F0 /* DownloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadUITests.swift; sourceTree = "<group>"; };
+		E4E1C4AB1A641C8E465C0490 /* Corpus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corpus.swift; sourceTree = "<group>"; };
 		E925D60E92A2E866DDA217BD /* AutoScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScrollUITests.swift; sourceTree = "<group>"; };
 		EB78C8D517D239CD75800343 /* ShelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfUITests.swift; sourceTree = "<group>"; };
 		EEBDC1B052BBF7F945F8DCA3 /* ChantReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChantReaderView.swift; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 				1953F5B32F02D9193D621DB2 /* BookSource.swift */,
 				3E9F03955DBC272BC9255F0E /* CatalogLoader.swift */,
 				2E19009AD8CC039F99D54F8B /* ChantBook.swift */,
+				E4E1C4AB1A641C8E465C0490 /* Corpus.swift */,
 				8B2540290C6DCC8DFD17E449 /* ModelContainer+App.swift */,
 				941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */,
 			);
@@ -239,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				A41AA864CB9DBD089FEF35A4 /* BookRow.swift */,
+				B5B7EAB6ECA44AF398A47709 /* DownloadBooksSheet.swift */,
+				84FAE9B56F2B7A1DAA75E1EE /* GroupDeletion.swift */,
 				386AAB558B23B39BC3346BD5 /* SectionView.swift */,
 				1A9ACBB95078CF2B140F097E /* ShelfSearchResults.swift */,
 				503643486B3504BF98B5DFBD /* ShelfView.swift */,
@@ -253,6 +264,7 @@
 				0A2FCE72237810128A21862D /* BlankLineUITests.swift */,
 				F0B6BF4121CF6A01C9A5DB78 /* ChantingUITests.swift */,
 				F380A1B3137B79C3A7A73FD3 /* ContinuousReadingUITests.swift */,
+				E0C8CF0B0790BA364A5C70F0 /* DownloadUITests.swift */,
 				B9C725ABABA0935B11072D3E /* ImportUITests.swift */,
 				0DF821E48195ED0BBC38F2F1 /* ReaderChromeUITests.swift */,
 				7A17BF23BD4D796F2EA402E7 /* ReaderShareUITests.swift */,
@@ -359,7 +371,6 @@
 			buildConfigurationList = 9476ABDEEA646D0C113A16E4 /* Build configuration list for PBXNativeTarget "DzzReader" */;
 			buildPhases = (
 				BD5063C5347EFE5303D8D4C0 /* Sources */,
-				DC00F2D4204F53524E591F66 /* Copy Books */,
 				788D16260C8CDEDA661C9F92 /* Resources */,
 				7AA782B375649F3BB207530D /* Frameworks */,
 			);
@@ -457,29 +468,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		DC00F2D4204F53524E591F66 /* Copy Books */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../dzz/toc.txt",
-			);
-			name = "Copy Books";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Books/toc.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/Scripts/copy-books.sh\"";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		68BC2399F94E213779C31125 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -489,6 +477,7 @@
 				7616B59C71EAA1E0510598C6 /* BlankLineUITests.swift in Sources */,
 				7A8E04AB09F1B3393FDD9D86 /* ChantingUITests.swift in Sources */,
 				E45AC7BFD6E575A77758FD05 /* ContinuousReadingUITests.swift in Sources */,
+				19DABD9B80E1D323412C0164 /* DownloadUITests.swift in Sources */,
 				A9769BB12EC96CD0F41F8FB1 /* ImportUITests.swift in Sources */,
 				E742E9FA79D714172326D058 /* ReaderChromeUITests.swift in Sources */,
 				2341BDA25D7E920BBC65AF65 /* ReaderShareUITests.swift in Sources */,
@@ -530,7 +519,10 @@
 				E8C599B35F83357C8E8E5D6B /* ChantShelfView.swift in Sources */,
 				5C86FEB71B49A6572A175A2C /* ChantUnits.swift in Sources */,
 				E21D73216A65B44C851F628A /* ChapterTextView.swift in Sources */,
+				CB43B1F2ACD1CEB67DEB49E2 /* Corpus.swift in Sources */,
+				1356A722A4931195D2F4B7C3 /* DownloadBooksSheet.swift in Sources */,
 				BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */,
+				3E1748FEAA6B5E4896B331C9 /* GroupDeletion.swift in Sources */,
 				687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */,
 				81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */,
 				B89753C0C1C3CA05FEC08CA8 /* QuoteAnimator.swift in Sources */,
@@ -711,7 +703,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBX6ZRW9H9;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = DzzReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -749,7 +740,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBX6ZRW9H9;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = DzzReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

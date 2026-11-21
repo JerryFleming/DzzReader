@@ -9,6 +9,7 @@ struct ChantShelfView: View {
     @Binding var path: NavigationPath
     @State private var importRequested = false
     @State private var importErrors: [String] = []
+    @State private var pendingDelete: GroupDeletion?
 
     private var recents: [ChantBook] {
         books.filter { $0.lastOpened != nil }
@@ -35,6 +36,10 @@ struct ChantShelfView: View {
                 Section("念诵集") {
                     ForEach(bundled) { book in
                         NavigationLink(value: book) { ChantBookRow(book: book) }
+                            .contextMenu { deleteMenu(book, groupName: "念诵集", group: bundled) }
+                    }
+                    .onDelete { offsets in
+                        try? ChantLibrary.delete(offsets.map { bundled[$0] }, context: context)
                     }
                 }
             }
@@ -42,6 +47,7 @@ struct ChantShelfView: View {
                 Section("导入的文本") {
                     ForEach(imported) { book in
                         NavigationLink(value: book) { ChantBookRow(book: book) }
+                            .contextMenu { deleteMenu(book, groupName: "导入的文本", group: imported) }
                     }
                     .onDelete { offsets in
                         for index in offsets { try? ChantLibrary.delete(imported[index], context: context) }
@@ -55,6 +61,7 @@ struct ChantShelfView: View {
                                        description: Text("轻点右上角导入 JSON 文本"))
             }
         }
+        .confirmsGroupDeletion($pendingDelete)
         .accessibilityIdentifier("chantShelf")
         .navigationTitle("诵经")                       // back-button title on pushed pages
         .toolbar(.hidden, for: .navigationBar)
@@ -69,6 +76,19 @@ struct ChantShelfView: View {
             Button("好", role: .cancel) {}
         } message: {
             Text(importErrors.joined(separator: "\n"))
+        }
+    }
+
+    @ViewBuilder
+    private func deleteMenu(_ book: ChantBook, groupName: String, group: [ChantBook]) -> some View {
+        Button("删除这篇", systemImage: "trash", role: .destructive) {
+            try? ChantLibrary.delete(book, context: context)
+        }
+        Button("删除整组", systemImage: "trash.slash", role: .destructive) {
+            pendingDelete = GroupDeletion(name: groupName, count: group.count,
+                                          message: "删除后不会再出现在诵经书架上。") {
+                try? ChantLibrary.delete(group, context: context)
+            }
         }
     }
 

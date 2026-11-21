@@ -54,34 +54,6 @@ enum TestFixtures {
         #expect(b?.juanCount == nil)
     }
 
-    @Test func secondLoadIsNoOp() throws {
-        let defaults = UserDefaults(suiteName: "CatalogLoaderTests-\(UUID().uuidString)")!
-        let first = try CatalogLoader.loadIfNeeded(booksDirectory: TestFixtures.miniBooks, context: context, defaults: defaults)
-        let second = try CatalogLoader.loadIfNeeded(booksDirectory: TestFixtures.miniBooks, context: context, defaults: defaults)
-        #expect(first == 4)
-        #expect(second == 0)
-        #expect(try context.fetch(FetchDescriptor<Book>()).count == 4)
-    }
-
-    @Test func reloadsWhenAFileChangesSize() throws {
-        // Copy the fixture so we can modify it.
-        let copy = FileManager.default.temporaryDirectory.appending(path: "MiniBooks-\(UUID().uuidString)")
-        try FileManager.default.copyItem(at: TestFixtures.miniBooks, to: copy)
-        let defaults = UserDefaults(suiteName: "CatalogLoaderTests-\(UUID().uuidString)")!
-        #expect(try CatalogLoader.loadIfNeeded(booksDirectory: copy, context: context, defaults: defaults) == 4)
-        let book = try #require(try context.fetch(FetchDescriptor<Book>()).first { $0.id == "T9999" })
-        book.chapters = [ChapterRange(title: "旧", startOffset: 0, endOffset: 1, sections: [])]
-        book.indexedByteSize = book.byteSize
-        #expect(!book.needsIndexing)
-
-        // Same file count, different content: the index cache must be invalidated.
-        let file = copy.appending(path: "00/9999无目录经.txt")
-        try Data("无目录经正文。第二版，长了一些。\n".utf8).write(to: file)
-        #expect(try CatalogLoader.loadIfNeeded(booksDirectory: copy, context: context, defaults: defaults) == 4)
-        #expect(book.needsIndexing)
-        #expect(book.chapters.count == 1)   // cached index still there until the book is opened
-    }
-
     @Test func deletingBookCascades() throws {
         let book = Book(id: "X", title: "测试", source: .imported, relativePath: "Imported/x.txt",
                         section: nil, juanCount: nil, author: nil, catalogOrder: 0, byteSize: 1, encodingName: "utf-8")
@@ -101,5 +73,59 @@ enum TestFixtures {
         #expect(try context.fetch(FetchDescriptor<Book>()).count == 0)
         #expect(try context.fetch(FetchDescriptor<ReadingProgress>()).count == 0)
         #expect(try context.fetch(FetchDescriptor<Bookmark>()).count == 0)
+    }
+
+    /// A books folder without toc.txt: every .txt (any depth, hidden files skipped) in name order, no 部.
+    private func makeTocless() throws -> URL {
+        let root = FileManager.default.temporaryDirectory.appending(path: "Tocless-\(UUID().uuidString)")
+        let files = ["心经.txt": "观自在菩萨", "卷/金刚经.txt": "如是我闻", ".hidden/x.txt": "skip", "notes.md": "skip"]
+        for (path, text) in files {
+            let url = root.appending(path: path)
+            try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try Data(text.utf8).write(to: url)
+        }
+        return root
+    }
+
+    @Test func withoutTocBooksGoInTheUnnamedGroup() throws {
+        let root = try makeTocless()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let count = try CatalogLoader.load(booksDirectory: root, context: context)
+        #expect(count == 2)
+        let books = try context.fetch(FetchDescriptor<Book>(sortBy: [SortDescriptor(\.catalogOrder)]))
+        #expect(books.map(\.title) == ["金刚经", "心经"])   // "卷/金刚经.txt" sorts before "心经.txt"
+        #expect(books.allSatisfy { $0.section == nil && $0.source == .bundled && $0.canonNumber == nil })
+        #expect(books.first?.relativePath == "Books/卷/金刚经.txt")
+        #expect(books.first?.id == "F:卷/金刚经.txt")
+    }
+
+    @Test func downloadingMoreBooksKeepsExistingOnes() throws {
+        _ = try CatalogLoader.load(booksDirectory: TestFixtures.miniBooks, context: context)
+        let imported = Book(id: UUID().uuidString, title: "导入", source: .imported, relativePath: "Imported/x.txt",
+                            section: nil, juanCount: nil, author: nil, catalogOrder: 0, byteSize: 1, encodingName: "utf-8")
+        context.insert(imported)
+        try context.save()
+
+        let root = try makeTocless()
+        defer { try? FileManager.default.removeItem(at: root) }
+        _ = try CatalogLoader.load(booksDirectory: root, context: context)
+        let books = try context.fetch(FetchDescriptor<Book>())
+        #expect(books.count == 7)                                   // 4 + 2 downloaded, plus the imported one
+        #expect(books.contains { $0.id.hasPrefix("T") })
+        #expect(books.contains { $0.source == .imported })
+    }
+
+    @Test func deletingDownloadedBooksRemovesTheirFiles() throws {
+        let book = Book(id: "F:test-\(UUID().uuidString).txt", title: "删", source: .bundled,
+                        relativePath: "Books/test-\(UUID().uuidString).txt", section: nil, juanCount: nil,
+                        author: nil, catalogOrder: 0, byteSize: 1, encodingName: "utf-8")
+        try FileManager.default.createDirectory(at: book.fileURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try Data("x".utf8).write(to: book.fileURL)
+        context.insert(book)
+        try context.save()
+
+        try Importer.delete([book], context: context)
+        #expect(!FileManager.default.fileExists(atPath: book.fileURL.path))
+        #expect(try context.fetch(FetchDescriptor<Book>()).isEmpty)
     }
 }

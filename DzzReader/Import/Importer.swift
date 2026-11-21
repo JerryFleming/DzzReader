@@ -61,12 +61,18 @@ enum Importer {
         return book
     }
 
-    static func delete(_ book: Book, context: ModelContext) throws {
-        if book.source == .imported {
+    /// Removes books from the shelf along with their files (imported or downloaded), progress and bookmarks.
+    /// A deleted downloaded book comes back only if an archive containing it is downloaded again.
+    static func delete(_ books: [Book], context: ModelContext) throws {
+        for book in books {
             try? FileManager.default.removeItem(at: book.fileURL)
+            context.delete(book)
         }
-        context.delete(book)
         try context.save()
+    }
+
+    static func delete(_ book: Book, context: ModelContext) throws {
+        try delete([book], context: context)
     }
 
     /// Title from the canon header line when present, else the filename without extension.

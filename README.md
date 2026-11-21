@@ -1,19 +1,18 @@
 # DzzReader（大藏经）
 
-A personal iOS reader for the 大正藏 plain-text corpus in `../dzz`. Every text ships inside the app bundle; more `.txt` books can be imported at runtime from the Files app or the share sheet.
+A personal iOS reader for the 大正藏 plain-text corpus at https://github.com/JerryFleming/dzz. The books are not in the app bundle: the 书架 download button fetches a `.tar.gz` (that repo by default, any URL allowed) and unpacks it on the device. More `.txt` books can be imported from the Files app or the share sheet.
 
 Design: `docs/superpowers/specs/2026-11-15-dzz-reader-ios-design.md`.
 
 ## Layout
 
-- `DzzCore/` — Swift package with all Foundation-only logic: toc parsing, chapter indexing (卷 + 品 sections, oversized-卷 splitting), chapter rendering with a source/rendered offset map, text decoding, progress maths. Test with `swift test` on macOS.
+- `DzzCore/` — Swift package with all Foundation-only logic: `.tar.gz` unpacking (`TarGzExtractor`, streaming, no dependencies), toc parsing, chapter indexing (卷 + 品 sections, oversized-卷 splitting), chapter rendering with a source/rendered offset map, text decoding, progress maths. Test with `swift test` on macOS.
 - `DzzReader/` — the SwiftUI app: SwiftData models, catalog loader, shelf, reader (TextKit 2 `UITextView`), bookmarks, appearance, import, and the 分享 tab (`Share/`: the vertical quote card ported from `../lecture/index.html`).
 - `DzzReaderTests/` — Swift Testing unit tests for the app layer (run on the simulator).
 - `DzzReaderUITests/` — XCUITest flows that drive the real app: shelf, reader, chapter list, slider, appearance, bookmarks, relaunch, import.
 - `DzzReader/Chanting/` — the 诵经 tab: a shelf of chanting texts (最近阅读, bundled 念诵集, imported) and a pinyin reader. Texts are JSON item lists (`{"char","pinyin"}`, `{"type":"linebreak"}`, `{"type":"passage","style":"normal|title|subtitle|verse"}`) parsed by `DzzCore/ChantDocument`. A passage item sets the style of the rows that follow, up to the next passage item: `title` (red, larger, centred, listed in 目录), `subtitle` (violet, centred), `verse` (body colour, centred: verse lines with one phrase per row) or `normal` (left-aligned body text).
 - `DzzReader/ChantingTexts/` — bundled chanting texts (currently `佛教念诵集.json`), copied into the bundle as a folder.
 - `Scripts/extract-chanting.py` — regenerates the chanting JSON from `../佛教念诵集.pdf` (needs `mutool`); `Scripts/chanting-glyphs.json` names the rare characters the PDF draws as graphics.
-- `Scripts/copy-books.sh` — build phase that rsyncs `../dzz/toc.txt` and `../dzz/NN/*.txt` into the bundle's `Books/` folder (nothing else from `../dzz` is copied).
 
 ## Build
 
@@ -26,22 +25,27 @@ xcodebuild -project DzzReader.xcodeproj -scheme DzzReader \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' build
 ```
 
-The corpus must be present at `../dzz` relative to this folder. The first build copies ~350 MB of text into the app; later builds skip it unless `toc.txt` changes.
+No corpus is needed to build. On a fresh install the shelf is empty until books are downloaded (书架 → cloud button).
 
 ## Tests
 
 ```sh
 cd DzzReader/DzzCore && swift test                      # core, fast
 DZZ_CORPUS=/path/to/dzz swift test --filter CorpusSmoke # index every file, report 卷数 mismatches
+DZZ_TARBALL=/path/to/dzz.tar.gz swift test --filter TarGz # unpack the real GitHub archive
 cd .. && xcodebuild test -project DzzReader.xcodeproj -scheme DzzReader \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
 ```
+
+`DownloadUITests` needs network access (it downloads the dzz archive if the shelf lacks it) and `TEST_RUNNER_DZZ_TOCLESS=/path/to/sample.tar.gz`, an archive without toc.txt holding `念佛.txt` and `sub/心经.txt` (e.g. `COPYFILE_DISABLE=1 tar czf sample.tar.gz mybooks`).
 
 `ImportUITests` expects a `dzz-import-sample.txt` in the simulator's *On My iPhone* storage; see the test file.
 
 ## Where things live at runtime
 
 - Catalog, reading progress and bookmarks: SwiftData store in the app's Application Support.
+- Downloaded books: `Application Support/Books/` (excluded from backup), source `bundled` in the store. A download unpacks the archive's `.txt` files (hidden entries skipped; a single wrapping folder removed) into `Books.partial/`, catalogues them from there, then merges them into `Books/`: same-path files are overwritten, nothing is removed. If that archive has a `toc.txt`, its `NN/<经号><title>.txt` files get ids `T<经号>` and are grouped into its 部; otherwise every `.txt` gets id `F:<path>`, no 部, and shows in the unnamed group at the bottom of the shelf.
+- Deleting: swipe a book (部 page, unnamed group, 导入的书) to delete it with its file, progress and bookmarks; swipe or long-press a 部 row to delete the whole 部; long-press a book for 删除整组. Group deletes ask first. On 诵经 the same works for 念诵集 and 导入的文本; deleted bundled texts are listed in the `chant.deletedBundled` default so launch doesn't re-add them (there is no undo in the UI).
 - Imported books: `Documents/Imported/<uuid>.txt`, re-encoded as UTF-8. The 书架 picker accepts only plain text.
 - Imported chanting texts: `Documents/ImportedChanting/<uuid>.json`, validated before copying. The 诵经 picker accepts only JSON; a file opened from another app goes to the shelf matching its type.
 - Chanting texts always open at the start; no reading position is kept. 最近阅读 uses the last-opened time; the font size is the `chant.fontSize` default, and the reader's light/dark toggle is `chant.theme` (empty follows the 书架 appearance setting).
