@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import UIKit
 @testable import DzzReader
 
 struct QuoteScriptTests {
@@ -96,5 +97,30 @@ struct QuoteScriptTests {
         #expect(animator.revealed == 4)
         try? await Task.sleep(for: .milliseconds(20))
         #expect(animator.revealed == 4)
+    }
+}
+
+@MainActor struct QuoteCardImageTests {
+    /// Alpha of the pixel at (x, y) of a PNG, read back through Core Graphics.
+    private func alpha(_ png: Data, x: Int, y: Int) throws -> (alpha: UInt8, width: Int, height: Int) {
+        let image = try #require(UIImage(data: png)?.cgImage)
+        var pixel = [UInt8](repeating: 0, count: 4)
+        let context = try #require(CGContext(data: &pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4,
+                                             space: CGColorSpaceCreateDeviceRGB(),
+                                             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
+        // Shift the image so that pixel (x, y), counted from the top left, lands on the 1×1 context.
+        context.draw(image, in: CGRect(x: -x, y: y - image.height + 1, width: image.width, height: image.height))
+        return (pixel[3], image.width, image.height)
+    }
+
+    @Test func sharedPictureHasATransparentBackground() throws {
+        let png = try #require(QuoteCardImage(markup: QuoteScript.sample, fontSize: 24, minWidth: 360).pngData())
+        // 8 bits per channel, RGBA: share targets handle the alpha of 16-bit PNGs badly and show it as black.
+        #expect(png[24] == 8, "bit depth")
+        #expect(png[25] == 6, "colour type RGBA")
+        let corner = try alpha(png, x: 1, y: 1)
+        #expect(corner.alpha == 0, "the margin around the card is transparent")
+        let middle = try alpha(png, x: corner.width / 2, y: corner.height / 2)
+        #expect(middle.alpha == 255, "the card itself is opaque")
     }
 }

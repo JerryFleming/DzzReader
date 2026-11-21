@@ -32,14 +32,6 @@ struct ShareView: View {
             .navigationTitle("分享")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button("恢复示例", systemImage: "arrow.counterclockwise") { markup = QuoteScript.sample }
-                        Button("清空", systemImage: "trash", role: .destructive) { markup = "" }
-                    } label: {
-                        Label("更多", systemImage: "ellipsis")
-                    }
-                }
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("完成") { editing = false }
@@ -53,10 +45,13 @@ struct ShareView: View {
 
     private var controls: some View {
         HStack(spacing: 8) {
-            Button("开始") { editing = false; animator.start(script) }
+            // Symbols as labels; VoiceOver (and the UI tests) still read the Chinese names.
+            Button("▶\u{FE0E}") { editing = false; animator.start(script) }
                 .buttonStyle(.borderedProminent)
-            Button("标线") { editing = false; animator.underline(script) }
+                .accessibilityLabel("开始")
+            Button("✎\u{FE0E}") { editing = false; animator.underline(script) }
                 .buttonStyle(.bordered)
+                .accessibilityLabel("标线")
                 .disabled(script.highlightCount == 0)
             Spacer(minLength: 0)
             Button("A-") { fontSize = max(QuoteCardView.fontRange.lowerBound, fontSize - 1) }
@@ -67,10 +62,22 @@ struct ShareView: View {
                 .accessibilityLabel("放大字号")
             ShareLink(item: QuoteCardImage(markup: markup, fontSize: fontSize, minWidth: cardWidth),
                       preview: SharePreview(script.source, image: Image("QuotePaper"))) {
-                Label("图片", systemImage: "square.and.arrow.up")
+                Text("⇪\u{FE0E}")
             }
+            .accessibilityLabel("图片")
             .buttonStyle(.bordered)
             .disabled(script.glyphs.isEmpty)
+        }
+        // Editing the text: centred on the row, in the gap between playback and the card's size and sharing.
+        .overlay {
+            HStack(spacing: 8) {
+                Button("↺\u{FE0E}") { markup = QuoteScript.sample }
+                    .accessibilityLabel("恢复示例")
+                Button("⌫\u{FE0E}", role: .destructive) { markup = "" }
+                    .disabled(markup.isEmpty)
+                    .accessibilityLabel("清空")
+            }
+            .buttonStyle(.bordered)
         }
         .tint(.green)
         .controlSize(.small)

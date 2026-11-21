@@ -148,6 +148,16 @@ struct QuoteCardImage: Transferable {
             .padding(12)   // room for the drop shadow
         let renderer = ImageRenderer(content: card)
         renderer.scale = 3
-        return renderer.uiImage?.pngData()
+        renderer.isOpaque = false
+        guard let image = renderer.uiImage else { return nil }
+        // ImageRenderer draws in extended range, which makes a 16-bit PNG; many apps that receive it drop its
+        // alpha and show the margin around the card as black. Redraw into a plain 8-bit sRGB canvas with alpha.
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        format.opaque = false
+        format.preferredRange = .standard
+        return UIGraphicsImageRenderer(size: image.size, format: format).pngData { _ in
+            image.draw(at: .zero)
+        }
     }
 }

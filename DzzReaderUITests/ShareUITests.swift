@@ -58,9 +58,31 @@ final class ShareUITests: XCTestCase {
         app.buttons["缩小字号"].tap()
         XCTAssertTrue(wait(card, "value ENDSWITH '字号\(size)'", timeout: 3), value(card))
 
+        // 恢复示例 and 清空 sit in the middle of the button row, between 标线 and 缩小字号.
+        let clear = app.buttons["清空"], reset = app.buttons["恢复示例"]
+        let underline = app.buttons["标线"], smaller = app.buttons["缩小字号"]
+        XCTAssertTrue(clear.exists && reset.exists)
+        XCTAssertEqual(reset.frame.midY, underline.frame.midY, accuracy: 2, "same row")
+        XCTAssertGreaterThan(reset.frame.minX, underline.frame.maxX)
+        XCTAssertLessThan(clear.frame.maxX, smaller.frame.minX)
+        XCTAssertEqual((reset.frame.minX + clear.frame.maxX) / 2, app.windows.firstMatch.frame.midX, accuracy: 2,
+                       "centred on the row")
+        saveShot("share-editor-buttons")
+
         app.buttons["图片"].tap()
         let sheet = app.otherElements["ActivityListView"]
         XCTAssertTrue(sheet.waitForExistence(timeout: 10), "share sheet did not open")
         saveShot("share-sheet")
+
+        // The card can be saved to the photo library (the first time, iOS asks for permission).
+        let save = sheet.cells["保存图像"].firstMatch
+        XCTAssertTrue(save.waitForExistence(timeout: 5), "保存图像 is offered")
+        save.tap()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let allow = springboard.alerts.buttons.matching(NSPredicate(format: "label IN %@", ["允许访问", "允许", "Allow Access", "Allow"])).firstMatch
+        if allow.waitForExistence(timeout: 5) { allow.tap() }
+        XCTAssertTrue(sheet.waitForNonExistence(timeout: 10), "the sheet closes once the picture is saved")
+        XCTAssertEqual(app.state, .runningForeground)
+        saveShot("share-saved")
     }
 }
