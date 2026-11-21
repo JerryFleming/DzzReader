@@ -5,7 +5,7 @@ usage (from the repo root): python3 -I Scripts/make-app-icon.py
 Output is deterministic (fixed float formatting, fixed key order), so a rerun yields no diff.
 Needs Xcode's `swift` and the system font Songti SC Bold.
 """
-import json, math, os, subprocess, sys
+import json, math, os, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "DzzReader", "AppIcon.icon")
@@ -17,9 +17,9 @@ glyph_d = subprocess.run(
 BROWN = "#4A3426"
 ROSE_DEEP, ROSE_MID, ROSE_PALE = "#B8455E", "#DE8597", "#F7D6DC"
 
-CANG_SCALE, CANG_DY = 0.72, -105
-BACK_BASE, BACK_SIZE = 905, 300
-FRONT_BASE, FRONT_SIZE = 915, 270
+CANG_SCALE, CANG_DY = 0.72, -95
+BACK_BASE, BACK_SIZE = 975, 185
+FRONT_BASE, FRONT_SIZE = 985, 165
 
 # Tinted: 藏 solid near-white, lotus layers dimmed so 藏 is clearly the brightest element.
 TINTED_CANG = "srgb:1,1,1,1"
