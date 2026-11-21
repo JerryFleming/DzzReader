@@ -23,7 +23,7 @@ lotus throne.
 
 - **Layers, back to front:** sepia gradient fill → 藏 group → lotus group (back petals and front petals as
   separate layers, so the throne has its own depth).
-- **藏:** the Songti SC Bold outline as an SVG path, about 72% of the canvas, set above centre.
+- **藏:** the Songti SC Bold outline as an SVG path, about 40% of the canvas height (the prototype the owner chose: a 560 pt outline drawn at 0.72), set above centre.
   Brown `#4A3426` in light mode; warm ivory in dark mode.
 - **Lotus:** six fanned back petals in a pale-to-mid rose gradient, five upright front petals in mid-to-deep rose,
   in the lower part of the canvas. Its top just reaches the foot of 藏 without covering any stroke.
