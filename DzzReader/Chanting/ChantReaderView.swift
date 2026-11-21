@@ -373,6 +373,7 @@ struct ChantRowView: View {
         let pinyinSize = fontSize * 0.5
         let color = palette.text(row.style)
         ChantFlowLayout(centered: row.style != .normal, spacing: fontSize * 0.08, lineSpacing: fontSize * 0.35,
+                        minSlotWidth: row.style == .verse ? charSize * 1.5 : 0,
                         onLines: { geometry.lines[row.id] = $0 }) {
             ForEach(Array(blocks.enumerated()), id: \.offset) { i, cell in
                 VStack(spacing: 0) {
@@ -415,6 +416,11 @@ struct ChantFlowLayout: Layout {
     var centered = false
     var spacing: CGFloat = 0
     var lineSpacing: CGFloat = 0
+    /// Each child sits centred in a slot at least this wide, at its natural size (nothing is stretched). Verse rows
+    /// use 1.5 character widths, so lines with the same number of characters come out the same width whatever
+    /// their pinyin. When a row would not fit on one line, every slot shrinks by the same amount (never below a
+    /// child's natural width), so a verse line stays on one line and stays balanced.
+    var minSlotWidth: CGFloat = 0
     /// Told where each line goes when the layout places its children.
     var onLines: (@Sendable ([ChantLine]) -> Void)? = nil
 
@@ -443,9 +449,17 @@ struct ChantFlowLayout: Layout {
         return lines
     }
 
+    /// Slot sizes: each child's natural size, widened to the minimum slot width that lets the row fit.
+    private func slots(_ sizes: [CGSize], maxWidth: CGFloat) -> [CGSize] {
+        guard minSlotWidth > 0, !sizes.isEmpty else { return sizes }
+        let fit = (maxWidth - spacing * CGFloat(sizes.count - 1)) / CGFloat(sizes.count)
+        let slot = min(minSlotWidth, fit)
+        return sizes.map { CGSize(width: max($0.width, slot), height: $0.height) }
+    }
+
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
         let maxWidth = proposal.width ?? .infinity
+        let sizes = slots(subviews.map { $0.sizeThatFits(.unspecified) }, maxWidth: maxWidth)
         let lines = lines(maxWidth: maxWidth, sizes: sizes)
         let height = lines.reduce(0) { $0 + $1.height } + lineSpacing * CGFloat(max(lines.count - 1, 0))
         let width = lines.map(\.width).max() ?? 0
@@ -453,16 +467,19 @@ struct ChantFlowLayout: Layout {
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        let natural = subviews.map { $0.sizeThatFits(.unspecified) }
+        let sizes = slots(natural, maxWidth: bounds.width)
         var y = bounds.minY
         var placed: [ChantLine] = []
         for line in lines(maxWidth: bounds.width, sizes: sizes) {
             placed.append(ChantLine(first: line.indices.first ?? 0, y: y - bounds.minY, height: line.height))
             var x = bounds.minX + (centered ? max(0, (bounds.width - line.width) / 2) : 0)
             for i in line.indices {
-                let size = sizes[i]
-                subviews[i].place(at: CGPoint(x: x, y: y + line.height - size.height), proposal: ProposedViewSize(size))
-                x += size.width + spacing
+                let size = natural[i]
+                let slot = sizes[i].width
+                subviews[i].place(at: CGPoint(x: x + (slot - size.width) / 2, y: y + line.height - size.height),
+                                  proposal: ProposedViewSize(size))
+                x += slot + spacing
             }
             y += line.height + lineSpacing
         }
