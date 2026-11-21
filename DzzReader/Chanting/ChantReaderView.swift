@@ -22,7 +22,12 @@ struct ChantReaderView: View {
 
     @State private var document: ChantDocument?
     @State private var error: String?
+    /// First row mostly on screen; read from the scroll view, never written back to it.
     @State private var topRow: Int?
+    /// A row to bring to the top of the screen (目录). A new value each time, so the same row can be asked for twice.
+    @State private var jump: ChantJump?
+    /// Where rows, their lines and the visible area are, for placing the highlight. Not observed.
+    @State private var geometry = ChantGeometry()
     @State private var showChrome = false
     @State private var showContents = false
     @State private var units: ChantUnits?
@@ -94,34 +99,57 @@ struct ChantReaderView: View {
                         // Only the row holding the highlight gets it, so the others are left alone as it moves.
                         let local = highlight.flatMap { $0 >= base && $0 < base + blocks.count ? $0 - base : nil }
                         ChantRowView(row: row, blocks: blocks, baseIndex: base, highlight: local,
-                                     fontSize: fontSize, fontFamily: settings.fontName, palette: palette)
+                                     fontSize: fontSize, fontFamily: settings.fontName, palette: palette,
+                                     geometry: geometry)
                             .padding(.top, row.startsPassage && row.id > 0 ? fontSize * 0.8 : 0)
                     }
                 }
                 .scrollTargetLayout()
                 .padding(.horizontal, settings.margin)
                 .padding(.vertical, 24)
+                .coordinateSpace(.named(ChantGeometry.space))
+            }
+            .onScrollGeometryChange(for: ChantGeometry.Visible.self) {
+                ChantGeometry.Visible(top: $0.contentOffset.y + $0.contentInsets.top,
+                                      bottom: $0.contentOffset.y + $0.containerSize.height - $0.contentInsets.bottom)
+            } action: { _, visible in
+                geometry.visible = visible
+            }
+            // Read which rows are on screen rather than binding a scroll position: a bound position is not
+            // updated by `scrollTo`, and SwiftUI re-applies the stale value whenever lazy rows re-measure,
+            // which threw the text back to an old place during auto-scroll.
+            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.01) { visible in
+                if let first = visible.min() { topRow = first }
+            }
+            .onChange(of: jump) {
+                guard let jump else { return }
+                proxy.scrollTo(jump.row, anchor: .top)
+            }
+            .onChange(of: fontSize) {
+                // Rows reflow; stay on the same one (auto-scroll re-centres the highlight on its next step).
+                guard let row = topRow else { return }
+                DispatchQueue.main.async { proxy.scrollTo(row, anchor: .top) }
             }
             .onChange(of: highlight) {
-                // Centre the highlighted line; the scroll view stops at the ends, so the first and last
-                // lines stay where they are. Within a line the centre does not move, so nothing scrolls.
+                // Scroll only once the highlighted line passes the middle of the screen (or is off screen), then
+                // keep it there. The highlight starts at the top of the screen, so starting does not move the text;
+                // the scroll view stops at the end, so the last lines stay where they are.
                 guard let highlight else { return }
+                if let line = geometry.line(of: highlight, units), let visible = geometry.visible,
+                   line.minY >= visible.top, line.maxY <= visible.bottom,
+                   line.midY <= (visible.top + visible.bottom) / 2 + 1 {
+                    return
+                }
                 withAnimation(.easeInOut(duration: 0.35)) {
                     proxy.scrollTo(ChantBlockID(index: highlight), anchor: .center)
                 }
             }
         }
-        .scrollPosition(id: $topRow, anchor: .top)
         .contentShape(Rectangle())
         .onTapGesture { withAnimation(.easeInOut(duration: 0.2)) { showChrome.toggle() } }
         // Keep the status-bar band clear of scrolling text.
         .overlay(alignment: .top) {
             Color.clear.frame(height: 0).background(background, ignoresSafeAreaEdges: .top)
-        }
-        .onChange(of: fontSize) {
-            // Rows reflow; stay on the same one.
-            let row = topRow
-            DispatchQueue.main.async { topRow = row }
         }
         .accessibilityIdentifier("chantText")
         // Where the highlight is, for UI tests and VoiceOver users following along.
@@ -130,6 +158,7 @@ struct ChantReaderView: View {
                 Color.clear.frame(width: 1, height: 1)
                     .accessibilityElement()
                     .accessibilityLabel("\(highlight)")
+                    .accessibilityValue("\(units.row(of: highlight))")
                     .accessibilityIdentifier("chantHighlight")
             }
         }
@@ -137,13 +166,11 @@ struct ChantReaderView: View {
 
     // MARK: Auto-scroll
 
-    /// Starts from the highlight if it is still at or below the top of the screen, else from the top row.
+    /// Starts from the first block wholly on screen.
     private func startAutoScroll() {
         guard let units else { return }
         let top = topRow ?? 0
-        if highlight.map({ units.row(of: $0) < top }) ?? true {
-            highlight = units.firstStop(inOrAfterRow: top)
-        }
+        highlight = geometry.firstStopOnScreen(fromRow: top, units) ?? units.firstStop(inOrAfterRow: top)
         guard highlight != nil else { return }
         autoScrolling = true
         withAnimation(.easeInOut(duration: 0.2)) { showChrome = false }
@@ -251,7 +278,9 @@ struct ChantReaderView: View {
         NavigationStack {
             List(document?.titleRows ?? []) { row in
                 Button {
-                    topRow = row.id
+                    // Bring the passage to the top: the lazy stack has not built far-off rows, so scrolling straight
+                    // to a block inside one does nothing. The highlight then moves down from the top as usual.
+                    jump = ChantJump(row: row.id)
                     if autoScrolling { highlight = units?.firstStop(inOrAfterRow: row.id) }
                     showContents = false
                     showChrome = false
@@ -325,6 +354,7 @@ struct ChantRowView: View {
     let fontSize: Double
     let fontFamily: String
     let palette: ChantPalette
+    let geometry: ChantGeometry
 
     private var scale: Double {
         switch row.style {
@@ -342,7 +372,8 @@ struct ChantRowView: View {
         let charSize = fontSize * scale
         let pinyinSize = fontSize * 0.5
         let color = palette.text(row.style)
-        ChantFlowLayout(centered: row.style != .normal, spacing: fontSize * 0.08, lineSpacing: fontSize * 0.35) {
+        ChantFlowLayout(centered: row.style != .normal, spacing: fontSize * 0.08, lineSpacing: fontSize * 0.35,
+                        onLines: { geometry.lines[row.id] = $0 }) {
             ForEach(Array(blocks.enumerated()), id: \.offset) { i, cell in
                 VStack(spacing: 0) {
                     // An empty pinyin line still takes its height, so rows keep one baseline.
@@ -366,6 +397,10 @@ struct ChantRowView: View {
                 .id(ChantBlockID(index: baseIndex + i))
             }
         }
+        // In content coordinates this changes only when rows lay out again, not while scrolling.
+        .onGeometryChange(for: CGFloat.self) { $0.frame(in: .named(ChantGeometry.space)).minY } action: {
+            geometry.rowTops[row.id] = $0
+        }
         .frame(maxWidth: .infinity, alignment: row.style == .normal ? .leading : .center)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(row.text)
@@ -380,6 +415,8 @@ struct ChantFlowLayout: Layout {
     var centered = false
     var spacing: CGFloat = 0
     var lineSpacing: CGFloat = 0
+    /// Told where each line goes when the layout places its children.
+    var onLines: (@Sendable ([ChantLine]) -> Void)? = nil
 
     private struct Line {
         var indices: [Int] = []
@@ -418,7 +455,9 @@ struct ChantFlowLayout: Layout {
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
         var y = bounds.minY
+        var placed: [ChantLine] = []
         for line in lines(maxWidth: bounds.width, sizes: sizes) {
+            placed.append(ChantLine(first: line.indices.first ?? 0, y: y - bounds.minY, height: line.height))
             var x = bounds.minX + (centered ? max(0, (bounds.width - line.width) / 2) : 0)
             for i in line.indices {
                 let size = sizes[i]
@@ -427,5 +466,57 @@ struct ChantFlowLayout: Layout {
             }
             y += line.height + lineSpacing
         }
+        onLines?(placed)
+    }
+}
+
+/// A request to bring a row to the top of the screen.
+struct ChantJump: Equatable {
+    let row: Int
+    let token = UUID()
+}
+
+/// A laid-out line of a row: its first block (index within the row) and where it sits in the row.
+struct ChantLine: Equatable {
+    let first: Int
+    let y: CGFloat
+    let height: CGFloat
+}
+
+/// Where things are in the reader, in the scroll content's coordinates: the top of each built row, the lines
+/// of each row, and the visible area. Written by layout and geometry callbacks; read when the highlight
+/// starts or moves. A plain reference so that writing it never redraws anything. Only touched on the main
+/// thread (layout and view callbacks run there), hence the unchecked conformance.
+final class ChantGeometry: @unchecked Sendable {
+    static let space = "chantContent"
+
+    struct Visible: Equatable {
+        let top: CGFloat
+        let bottom: CGFloat
+    }
+
+    var rowTops: [Int: CGFloat] = [:]
+    var lines: [Int: [ChantLine]] = [:]
+    var visible: Visible?
+
+    /// Top and bottom of the line holding block `index`.
+    func line(of index: Int, _ units: ChantUnits) -> (minY: CGFloat, midY: CGFloat, maxY: CGFloat)? {
+        let row = units.row(of: index)
+        guard let top = rowTops[row], let line = lines[row]?.last(where: { $0.first <= index - units.starts[row] })
+        else { return nil }
+        let minY = top + line.y
+        return (minY, minY + line.height / 2, minY + line.height)
+    }
+
+    /// The first stop in a line that starts at or below the top of the screen, looking from `row` on.
+    func firstStopOnScreen(fromRow row: Int, _ units: ChantUnits) -> Int? {
+        guard let visible else { return nil }
+        for r in row..<min(row + 50, units.starts.count) {
+            guard let top = rowTops[r], let lines = lines[r] else { return nil }
+            guard let line = lines.first(where: { top + $0.y >= visible.top - 0.5 }) else { continue }
+            guard top + line.y < visible.bottom else { return nil }
+            return units.firstStop(atOrAfter: units.starts[r] + line.first)
+        }
+        return nil
     }
 }

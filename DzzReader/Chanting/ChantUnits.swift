@@ -52,7 +52,8 @@ struct ChantUnits: Sendable {
         return firstStop(atOrAfter: starts[row])
     }
 
-    private func firstStop(atOrAfter index: Int) -> Int? {
+    /// First stop at or after block `index`.
+    func firstStop(atOrAfter index: Int) -> Int? {
         var lo = 0, hi = stops.count
         while lo < hi {
             let mid = (lo + hi) / 2

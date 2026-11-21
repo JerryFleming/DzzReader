@@ -142,4 +142,103 @@ final class ChantingUITests: XCTestCase {
         app.buttons["chantAutoScrollButton"].tap()
         XCTAssertTrue(highlight.waitForNonExistence(timeout: 5))
     }
+
+    /// Samples once a second that the row holding the highlight is on screen.
+    private func highlightMisses(seconds: Int, tag: String) -> [String] {
+        let highlight = app.descendants(matching: .any)["chantHighlight"]
+        let screen = app.windows.firstMatch.frame
+        var misses: [String] = []
+        for second in 0..<seconds {
+            sleep(1)
+            let row = highlight.value as? String ?? "?"
+            let element = app.descendants(matching: .any)["chantRow-\(row)"]
+            let frame = element.exists ? element.frame : .null
+            if !frame.intersects(screen) {
+                misses.append("\(tag) t=\(second)s block \(highlight.label) row \(row) frame \(frame)")
+                saveShot("chant-miss-\(tag)-\(second)")
+            }
+        }
+        return misses
+    }
+
+    private func resumeByTappingText() {
+        app.descendants(matching: .any)["chantText"].firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(app.buttons["chantBackButton"].waitForNonExistence(timeout: 5))
+    }
+
+    /// The highlight stays on screen after a 目录 jump and after starting from a manually scrolled position.
+    func testAutoScrollKeepsHighlightOnScreen() {
+        openChantTab()
+        app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
+        XCTAssertTrue(app.descendants(matching: .any)["chantRow-0"].waitForExistence(timeout: 10))
+        var misses: [String] = []
+
+        // 1. Auto-scroll on, then jump far ahead with 目录.
+        showChrome()
+        app.buttons["chantAutoScrollButton"].tap()
+        showChrome()
+        app.buttons["chantContentsButton"].tap()
+        let heart = app.buttons["般若波罗蜜多心经"]
+        XCTAssertTrue(app.buttons["大佛顶首楞严神咒"].waitForExistence(timeout: 5))
+        for _ in 0..<6 where !heart.exists { app.swipeUp() }
+        heart.tap()
+        misses += highlightMisses(seconds: 8, tag: "contents")
+
+        // 2. Stop, scroll by hand, start again.
+        showChrome()
+        app.buttons["chantAutoScrollButton"].tap()
+        resumeByTappingText()
+        for _ in 0..<10 { app.swipeUp(velocity: .fast) }
+        sleep(2)
+        showChrome()
+        app.buttons["chantAutoScrollButton"].tap()
+        misses += highlightMisses(seconds: 8, tag: "manual")
+
+        // 3. Pause, change font size, resume.
+        showChrome()
+        app.buttons["chantLargerButton"].tap()
+        app.buttons["chantLargerButton"].tap()
+        resumeByTappingText()
+        misses += highlightMisses(seconds: 8, tag: "font")
+
+        XCTAssertTrue(misses.isEmpty, "highlight off screen:\n" + misses.joined(separator: "\n"))
+    }
+
+
+    /// Starting auto-scroll after scrolling by hand highlights the first block on screen, without scrolling.
+    func testAutoScrollStartsAtFirstBlockOnScreen() {
+        // Slowest speed (a block every 3 s), so the highlight is still on its first block when checked.
+        app.terminate()
+        app.launchArguments += ["-chant.autoSpeed", "20"]
+        app.launch()
+        openChantTab()
+        app.collectionViews["chantShelf"].staticTexts["佛教念诵集"].firstMatch.tap()
+        XCTAssertTrue(app.descendants(matching: .any)["chantRow-0"].waitForExistence(timeout: 10))
+        let text = app.descendants(matching: .any)["chantText"].firstMatch
+        for _ in 0..<4 { text.swipeUp() }
+        // Leave a partly hidden row at the top.
+        text.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.1, thenDragTo: text.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.42)))
+        sleep(2)
+
+        showChrome()
+        app.buttons["chantAutoScrollButton"].tap()
+        let highlight = app.descendants(matching: .any)["chantHighlight"]
+        XCTAssertTrue(highlight.waitForExistence(timeout: 5))
+        saveShot("chant-auto-start-first-block")
+        let rowID = Int(highlight.value as? String ?? "") ?? -1
+        XCTAssertGreaterThan(rowID, 5, "not the beginning of the book")
+        let row = app.descendants(matching: .any)["chantRow-\(rowID)"]
+        let screenTop = app.windows.firstMatch.frame.minY + 62   // below the status-bar band
+        XCTAssertTrue(row.frame.intersects(app.windows.firstMatch.frame), "highlighted row is on screen")
+        XCTAssertLessThan(row.frame.minY, screenTop + 200, "highlighted row is at the top of the screen")
+        let previous = app.descendants(matching: .any)["chantRow-\(rowID - 1)"]
+        if previous.exists {
+            XCTAssertLessThan(previous.frame.minY, screenTop, "the row above does not start on screen")
+        }
+        let before = row.frame.minY
+        sleep(1)
+        XCTAssertEqual(row.frame.minY, before, accuracy: 4, "starting does not scroll the text")
+        saveShot("chant-auto-start-on-screen")
+    }
 }
