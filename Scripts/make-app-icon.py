@@ -11,15 +11,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "DzzReader", "AppIcon.icon")
 
 glyph_d = subprocess.run(
-    ["swift", os.path.join(ROOT, "Scripts", "glyph-path.swift"), "STSongti-SC-Bold", "藏", "1024", "1024"],
+    ["swift", os.path.join(ROOT, "Scripts", "glyph-path.swift"), "STSongti-SC-Bold", "藏", "1024", "560"],
     check=True, capture_output=True, text=True).stdout.strip()
 
 BROWN = "#4A3426"
 ROSE_DEEP, ROSE_MID, ROSE_PALE = "#B8455E", "#DE8597", "#F7D6DC"
 
-CANG_SCALE, CANG_DY = 0.72, -95
-BACK_BASE, BACK_SIZE = 975, 185
-FRONT_BASE, FRONT_SIZE = 985, 165
+CANG_SCALE, CANG_DY = 0.72, -120
+BACK_BASE, BACK_SIZE = 905, 300
+FRONT_BASE, FRONT_SIZE = 915, 270
 
 # Tinted: 藏 solid near-white, lotus layers dimmed so 藏 is clearly the brightest element.
 TINTED_CANG = "srgb:1,1,1,1"
