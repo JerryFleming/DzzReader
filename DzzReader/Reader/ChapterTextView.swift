@@ -149,6 +149,45 @@ struct ChapterTextView: UIViewRepresentable {
             updateInsets()
         }
 
+        // MARK: Selection highlight
+
+        /// The highlight and its handles would cover each line's whole fragment, line spacing included, which
+        /// leaves a wide band of empty highlight above and below the characters. Trim them to the glyphs.
+        override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+            super.selectionRects(for: range).map { selection in
+                guard let tight = glyphBand(around: selection.rect) else { return selection }
+                return TrimmedSelectionRect(selection, rect: tight)
+            }
+        }
+
+        override func caretRect(for position: UITextPosition) -> CGRect {
+            let caret = super.caretRect(for: position)
+            return glyphBand(around: caret) ?? caret
+        }
+
+        /// `rect` (view coordinates, one line tall) narrowed vertically to the line's glyphs: from the font's
+        /// ascender to its descender around the baseline, plus a little air. Nil when that would not be smaller.
+        private func glyphBand(around rect: CGRect) -> CGRect? {
+            guard textStorage.length > 0, rect.height > 0, !rect.isNull, !rect.isInfinite else { return nil }
+            let inset = textContainerInset
+            let point = CGPoint(x: max(rect.midX - inset.left, 0), y: max(rect.midY - inset.top, 0))
+            let glyph = layoutManager.glyphIndex(for: point, in: textContainer)
+            guard layoutManager.isValidGlyphIndex(glyph) else { return nil }
+            let character = layoutManager.characterIndexForGlyph(at: glyph)
+            guard character < textStorage.length,
+                  let font = textStorage.attribute(.font, at: character, effectiveRange: nil) as? UIFont else { return nil }
+            let fragment = layoutManager.lineFragmentRect(forGlyphAt: glyph, effectiveRange: nil)
+            let baseline = fragment.minY + layoutManager.location(forGlyphAt: glyph).y + inset.top
+            let air = font.pointSize * Self.selectionAir
+            let top = baseline - font.ascender - air
+            let bottom = baseline - font.descender + air
+            guard bottom - top < rect.height - 1 else { return nil }
+            return CGRect(x: rect.minX, y: top, width: rect.width, height: bottom - top)
+        }
+
+        /// Room above and below the glyphs inside the highlight, as a fraction of the font size.
+        static let selectionAir: CGFloat = 0.08
+
         /// Only the text on screen. A whole book can be hundreds of thousands of characters; handing all of it to
         /// accessibility clients makes every query slow (XCUITest snapshots took ~5 s per query).
         override var accessibilityValue: String? {
@@ -226,6 +265,24 @@ struct ChapterTextView: UIViewRepresentable {
             if textContainerInset != insets { textContainerInset = insets }
             verticalScrollIndicatorInsets = UIEdgeInsets(top: safe.top, left: 0, bottom: safe.bottom, right: 0)
         }
+    }
+
+    /// A system selection rect with its frame replaced; everything else is the original's.
+    final class TrimmedSelectionRect: UITextSelectionRect {
+        private let original: UITextSelectionRect
+        private let trimmed: CGRect
+
+        init(_ original: UITextSelectionRect, rect: CGRect) {
+            self.original = original
+            self.trimmed = rect
+        }
+
+        override var rect: CGRect { trimmed }
+        override var writingDirection: NSWritingDirection { original.writingDirection }
+        override var containsStart: Bool { original.containsStart }
+        override var containsEnd: Bool { original.containsEnd }
+        override var isVertical: Bool { original.isVertical }
+        override var transform: CGAffineTransform { original.transform }
     }
 
     // MARK: - Coordinator
