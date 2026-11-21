@@ -51,6 +51,17 @@ import Testing
         #expect(doc.rows[2].cells[0].pinyin == "")
     }
 
+    @Test func versePassagesAreTheirOwnStyle() throws {
+        let doc = try parse("""
+        [{"char":"甲","pinyin":"jiǎ"},{"type":"passage","style":"verse"},{"char":"乙","pinyin":"yǐ"},
+         {"type":"linebreak"},{"char":"丙","pinyin":"bǐng"},{"type":"passage","style":"normal"},{"char":"丁"}]
+        """)
+        #expect(doc.rows.map(\.text) == ["甲", "乙", "丙", "丁"])
+        #expect(doc.rows.map(\.style) == [.normal, .verse, .verse, .normal])
+        #expect(doc.rows.map(\.startsPassage) == [false, true, false, true])
+        #expect(doc.titleRows.isEmpty)
+    }
+
     @Test func rejectsBadInput() {
         #expect(throws: ChantDocumentError.notAnItemList) { try parse(#"{"char":"大"}"#) }
         #expect(throws: ChantDocumentError.badItem(1)) { try parse(#"[{"char":"大"},{"type":"page"}]"#) }

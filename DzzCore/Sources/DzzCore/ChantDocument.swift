@@ -7,7 +7,8 @@ import Foundation
 ///      {"type": "linebreak"}, …]
 ///
 /// Character items carry one character and its pinyin (empty for punctuation and parenthesised notes);
-/// `linebreak` items end a printed row; `passage` items start a passage styled `normal`, `title` or `subtitle`.
+/// `linebreak` items end a printed row; `passage` items start a passage styled `normal`, `title`, `subtitle`
+/// or `verse` (verse lines, one phrase per row, shown centred).
 public struct ChantDocument: Sendable, Equatable {
     public let rows: [ChantRow]
 
@@ -87,7 +88,7 @@ public struct ChantDocument: Sendable, Equatable {
 }
 
 public enum ChantStyle: String, Sendable, Equatable {
-    case normal, title, subtitle
+    case normal, title, subtitle, verse
 }
 
 public struct ChantCell: Sendable, Equatable, Hashable {

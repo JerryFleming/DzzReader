@@ -6,9 +6,11 @@
 Needs `mutool` (brew install mupdf-tools). Output items:
   {"char": "大", "pinyin": "dà"}            pinyin empty for punctuation and text in （…）
   {"type": "linebreak"}                     a new line: the next row is indented or starts a new passage
-                                            (rows that merely wrap at the margin are joined)
+                                            (rows that merely wrap at the margin are joined), and in the
+                                            middle of a verse row, between its two phrases
   {"type": "passage", "style": "title"}     colour of the text: black normal, red title, violet subtitle
-                                            (a new heading size also starts a new title/subtitle passage)
+                                            (a new heading size also starts a new title/subtitle passage);
+                                            "verse" for black verse rows split into phrases (shown centred)
 The PDF draws a few rare characters as graphics; only their pinyin is in the text layer. They are placed
 by position and named in chanting-glyphs.json (key p<page>@<x>,<y>); unknown ones come out as □.
 The script prints any such glyphs, orphan pinyin and unannotated characters for review.
@@ -92,6 +94,39 @@ STYLE = {"#000000": "normal", "#c00000": "title", "#7030a0": "subtitle"}
 # continuation rows start at the left margin) or when it starts a new passage (colour or heading size
 # changes). Notes in （…） are dark blue but never count as a colour change.
 INDENT_X = 50           # body text starts at x≈28–36; indented rows at x≥58
+
+# A verse row holds two phrases with a wider space between them (妙湛总持不动尊　首楞严王世希有). It is
+# split there, so each phrase gets its own line on a phone. Verse rows are indented and stop short of the
+# right margin; paragraph rows run to the margin and are spaced out by justification, so they are left alone,
+# and so are titles and subtitles.
+VERSE_GAP = 11          # the gap between phrases is ≈12–19pt; letter spacing elsewhere stays under ≈10pt
+FULL_X1 = 470           # rows that reach the right margin end at x≈476–498; verse rows end by ≈450
+verse_splits = set()    # ids of the items that start the second phrase of a verse row
+verse_items = set()     # ids of every item in a verse row: they make a "verse" passage
+# A short row that ends a verse (南無金刚藏菩萨: one phrase, no gap) belongs to it when it follows a verse
+# row at the same indent.
+row, verse_x0 = [], None   # verse_x0: indent of the row above when that row is verse
+for it in items + [None]:
+    if row and (it is None or it["_page"] != row[-1]["_page"] or abs(it["_y"] - row[-1]["_y"]) > 8):
+        body = all(STYLE.get(x["_color"]) == "normal" for x in row if is_cjk(x["char"]) and not x["_paren"])
+        verse = False
+        if body and row[0]["_x0"] > INDENT_X and max(x["_x1"] for x in row) < FULL_X1:
+            if len(row) >= 6:
+                # The widest gap away from the ends (a row can open with a wide gap after its first character).
+                gaps = [(b["_x0"] - a["_x1"], k + 1) for k, (a, b) in enumerate(zip(row, row[1:])) if 3 <= k + 1 <= len(row) - 3]
+                gap, k = max(gaps)
+                if gap >= VERSE_GAP:
+                    verse_splits.add(id(row[k]))
+                    verse = True
+            if not verse and verse_x0 is not None and abs(row[0]["_x0"] - verse_x0) <= 8:
+                verse = True
+        if verse:
+            verse_items.update(id(x) for x in row)
+        verse_x0 = row[0]["_x0"] if verse else None
+        row = []
+    if it is not None:
+        row.append(it)
+
 clean, style, size, prev = [], None, None, None
 row_start, row_broken, row_styled = None, False, False
 for it in items:
@@ -102,7 +137,9 @@ for it in items:
         if row_broken:
             clean.append({"type": "linebreak"})
     s_ = STYLE.get(it["_color"]) if is_cjk(it["char"]) and not it["_paren"] else None
-    if s_ and (s_ != style or (s_ != "normal" and it["_size"] != size)):
+    if s_ == "normal" and id(it) in verse_items:
+        s_ = "verse"
+    if s_ and (s_ != style or (s_ in ("title", "subtitle") and it["_size"] != size)):
         style, size = s_, it["_size"]
         if row_start is not None and not row_broken and not row_styled:
             clean.insert(row_start, {"type": "linebreak"})   # the new passage starts this row
@@ -110,6 +147,8 @@ for it in items:
         clean.append({"type": "passage", "style": style})
     if s_:
         row_styled = True
+    if id(it) in verse_splits:
+        clean.append({"type": "linebreak"})
     clean.append({"char": it["char"], "pinyin": it["pinyin"]})
     prev = it
 

@@ -3,7 +3,7 @@ import SwiftUI
 import DzzCore
 
 /// Reads a chanting text: each character with its pinyin above it, row by row as printed in the source,
-/// titles in red and subtitles in violet. Always opens at the start.
+/// titles in red and subtitles in violet, verses centred. Always opens at the start.
 ///
 /// Auto-scroll highlights one character-and-pinyin block at a time at the chosen speed (blocks per minute)
 /// and keeps the highlighted line in the middle of the screen, except near the start and end of the text.
@@ -328,7 +328,7 @@ struct ChantPalette {
 
     func text(_ style: ChantStyle) -> Color {
         switch style {
-        case .normal: foreground
+        case .normal, .verse: foreground
         case .title: dark ? Color(red: 1, green: 0.45, blue: 0.42) : Color(red: 0.75, green: 0, blue: 0)
         case .subtitle: dark ? Color(red: 0.78, green: 0.6, blue: 0.95) : Color(red: 0.44, green: 0.19, blue: 0.63)
         }
@@ -358,7 +358,7 @@ struct ChantRowView: View {
 
     private var scale: Double {
         switch row.style {
-        case .normal: 1
+        case .normal, .verse: 1
         case .subtitle: 1.08
         case .title: 1.3
         }

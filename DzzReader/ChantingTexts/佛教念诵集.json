@@ -162,7 +162,7 @@
  },
  {
   "type": "passage",
-  "style": "normal"
+  "style": "verse"
  },
  {
   "char": "妙",
@@ -191,6 +191,9 @@
  {
   "char": "尊",
   "pinyin": "zūn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "首",
@@ -252,6 +255,9 @@
   "pinyin": "xiǎng"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "不",
   "pinyin": "bú"
  },
@@ -309,6 +315,9 @@
  {
   "char": "王",
   "pinyin": "wáng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "还",
@@ -370,6 +379,9 @@
   "pinyin": "chà"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "是",
   "pinyin": "shì"
  },
@@ -427,6 +439,9 @@
  {
   "char": "明",
   "pinyin": "míng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "五",
@@ -488,6 +503,9 @@
   "pinyin": "fó"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "终",
   "pinyin": "zhōng"
  },
@@ -545,6 +563,9 @@
  {
   "char": "悲",
   "pinyin": "bēi"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "希",
@@ -606,6 +627,9 @@
   "pinyin": "jué"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "于",
   "pinyin": "yú"
  },
@@ -663,6 +687,9 @@
  {
   "char": "亡",
   "pinyin": "wáng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "烁",
@@ -724,6 +751,9 @@
   "pinyin": "fó"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "南",
   "pinyin": "ná"
  },
@@ -783,6 +813,9 @@
   "pinyin": "sēng"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "南",
   "pinyin": "ná"
  },
@@ -840,6 +873,9 @@
  {
   "char": "严",
   "pinyin": "yán"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "南",
@@ -902,6 +938,10 @@
  },
  {
   "type": "linebreak"
+ },
+ {
+  "type": "passage",
+  "style": "normal"
  },
  {
   "char": "尔",
@@ -20564,7 +20604,7 @@
  },
  {
   "type": "passage",
-  "style": "normal"
+  "style": "verse"
  },
  {
   "char": "南",
@@ -20593,6 +20633,9 @@
  {
   "char": "音",
   "pinyin": "yīn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "愿",
@@ -20654,6 +20697,9 @@
   "pinyin": "yīn"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "愿",
   "pinyin": "yuàn"
  },
@@ -20711,6 +20757,9 @@
  {
   "char": "音",
   "pinyin": "yīn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "愿",
@@ -20772,6 +20821,9 @@
   "pinyin": "yīn"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "愿",
   "pinyin": "yuàn"
  },
@@ -20829,6 +20881,9 @@
  {
   "char": "音",
   "pinyin": "yīn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "愿",
@@ -20890,6 +20945,9 @@
   "pinyin": "yīn"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "愿",
   "pinyin": "yuàn"
  },
@@ -20947,6 +21005,9 @@
  {
   "char": "音",
   "pinyin": "yīn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "愿",
@@ -21008,6 +21069,9 @@
   "pinyin": "yīn"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "愿",
   "pinyin": "yuàn"
  },
@@ -21065,6 +21129,9 @@
  {
   "char": "音",
   "pinyin": "yīn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "愿",
@@ -21126,6 +21193,9 @@
   "pinyin": "yīn"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "愿",
   "pinyin": "yuàn"
  },
@@ -21177,6 +21247,9 @@
   "pinyin": "shān"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "刀",
   "pinyin": "dāo"
  },
@@ -21218,6 +21291,9 @@
  {
   "char": "汤",
   "pinyin": "tāng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "火",
@@ -21263,6 +21339,9 @@
   "pinyin": "yù"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "地",
   "pinyin": "dì"
  },
@@ -21304,6 +21383,9 @@
  {
   "char": "鬼",
   "pinyin": "guǐ"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "饿",
@@ -21349,6 +21431,9 @@
   "pinyin": "luó"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "恶",
   "pinyin": "è"
  },
@@ -21390,6 +21475,9 @@
  {
   "char": "生",
   "pinyin": "shēng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "自",
@@ -25873,7 +25961,7 @@
  },
  {
   "type": "passage",
-  "style": "normal"
+  "style": "verse"
  },
  {
   "char": "稽",
@@ -25902,6 +25990,9 @@
  {
   "char": "帝",
   "pinyin": "dì"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "头",
@@ -25963,6 +26054,9 @@
   "pinyin": "tí"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "唯",
   "pinyin": "wéi"
  },
@@ -25992,6 +26086,10 @@
  },
  {
   "type": "linebreak"
+ },
+ {
+  "type": "passage",
+  "style": "normal"
  },
  {
   "char": "南",
@@ -29918,7 +30016,7 @@
  },
  {
   "type": "passage",
-  "style": "normal"
+  "style": "verse"
  },
  {
   "char": "上",
@@ -29947,6 +30045,9 @@
  {
   "char": "众",
   "pinyin": "zhòng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "讽",
@@ -30008,6 +30109,9 @@
   "pinyin": "tiān"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "守",
   "pinyin": "shǒu"
  },
@@ -30065,6 +30169,9 @@
  {
   "char": "苦",
   "pinyin": "kǔ"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "四",
@@ -30126,6 +30233,9 @@
   "pinyin": "xiāo"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "风",
   "pinyin": "fēng"
  },
@@ -30183,6 +30293,9 @@
  {
   "char": "进",
   "pinyin": "jìn"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "十",
@@ -30244,6 +30357,9 @@
   "pinyin": "yú"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "众",
   "pinyin": "zhòng"
  },
@@ -30303,7 +30419,7 @@
  },
  {
   "type": "passage",
-  "style": "normal"
+  "style": "verse"
  },
  {
   "char": "阿",
@@ -30332,6 +30448,9 @@
  {
   "char": "色",
   "pinyin": "sè"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "相",
@@ -30393,6 +30512,9 @@
   "pinyin": "mí"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "绀",
   "pinyin": "gān"
  },
@@ -30452,6 +30574,9 @@
   "pinyin": "yì"
  },
  {
+  "type": "linebreak"
+ },
+ {
   "char": "化",
   "pinyin": "huà"
  },
@@ -30509,6 +30634,9 @@
  {
   "char": "生",
   "pinyin": "shēng"
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "九",
@@ -31546,6 +31674,10 @@
   "type": "linebreak"
  },
  {
+  "type": "passage",
+  "style": "verse"
+ },
+ {
   "char": "四",
   "pinyin": "sì"
  },
@@ -31564,6 +31696,9 @@
  {
   "char": "，",
   "pinyin": ""
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "同",
@@ -31615,6 +31750,9 @@
  {
   "char": "，",
   "pinyin": ""
+ },
+ {
+  "type": "linebreak"
  },
  {
   "char": "共",
