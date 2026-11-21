@@ -326,11 +326,12 @@ struct ChantReaderView: View {
 
     private var shownScript: ChineseScript { convertScript ? sourceScript.other : sourceScript }
 
-    /// Swaps in the text in the chosen script. Rows and blocks match one for one, so the reading position,
+    /// Swaps in the text in the chosen script. It is converted even when shown in its own script, so the
+    /// other script's characters mixed into it (南無, 囉 in a simplified text) match the rest. Rows and blocks match one for one, so the reading position,
     /// the highlight and auto-scroll carry on where they were.
     private func showConverted() {
         guard let source else { return }
-        let shown = convertScript ? source.converted(to: sourceScript.other) : source
+        let shown = source.converted(to: shownScript)
         units = ChantUnits(shown)
         document = shown
     }
@@ -342,7 +343,7 @@ struct ChantReaderView: View {
         do {
             let loaded = try await ChantLibrary.load(book)
             let script = ChineseScript.detect(loaded.rows.map(\.text).joined())
-            let shown = convertScript ? loaded.converted(to: script.other) : loaded
+            let shown = loaded.converted(to: convertScript ? script.other : script)
             source = loaded
             sourceScript = script
             units = ChantUnits(shown)

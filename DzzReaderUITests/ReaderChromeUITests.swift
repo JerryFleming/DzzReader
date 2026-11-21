@@ -54,6 +54,8 @@ final class ReaderChromeUITests: XCTestCase {
         let text = app.textViews["chapterText"]
         let before = text.value as? String ?? ""
         XCTAssertFalse(before.isEmpty)
+        // The corpus keeps a few traditional characters (卷三 has 數); they are shown simplified like the rest.
+        XCTAssertFalse(before.contains("數"))
 
         let button = app.buttons["scriptButton"]
         XCTAssertEqual(button.label, "转为繁体")
@@ -64,7 +66,12 @@ final class ReaderChromeUITests: XCTestCase {
         // The same lines on screen, now in traditional characters.
         XCTAssertEqual(after.utf16.count, before.utf16.count, "same place, same length")
         XCTAssertNotEqual(after, before)
-        XCTAssertEqual(after.applyingTransform(StringTransform("Hant-Hans"), reverse: false), before)
+        // Everything round-trips except characters the app leaves alone in both scripts: 俱 (ICU makes it 具,
+        // but 俱 is simplified too) and 綖 (ICU's simplified form is outside the BMP, which would move offsets).
+        let back = Array(after.applyingTransform(StringTransform("Hant-Hans"), reverse: false) ?? "")
+        let b = Array(before), a = Array(after)
+        XCTAssertEqual(back.count, b.count)
+        XCTAssertTrue(b.indices.allSatisfy { b[$0] == back[$0] || b[$0] == a[$0] })
         saveShot("reader-traditional")
 
         app.buttons["chaptersButton"].tap()

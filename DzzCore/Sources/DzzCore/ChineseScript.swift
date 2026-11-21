@@ -13,6 +13,19 @@ public enum ChineseScript: String, Sendable, Equatable {
 
     /// `text` in this script, or `text` itself when the conversion fails.
     public func convert(_ text: String) -> String {
+        if self == .simplified, text.contains(where: Self.simplifiedKeeps.contains) {
+            // Convert the runs between the kept characters.
+            var result = "", run = ""
+            for character in text {
+                if Self.simplifiedKeeps.contains(character) {
+                    result += convert(run) + String(character)
+                    run = ""
+                } else {
+                    run.append(character)
+                }
+            }
+            return result + convert(run)
+        }
         guard var converted = text.applyingTransform(transform, reverse: false) else { return text }
         if self == .traditional {
             for (wrong, right) in Self.traditionalFixes where converted.contains(wrong) {
@@ -32,6 +45,10 @@ public enum ChineseScript: String, Sendable, Equatable {
         ("僧捨", "僧舍"), ("寺捨", "寺舍"), ("捨脂", "舍脂"), ("迦捨", "迦舍"), ("捨那", "舍那"),
         ("佈施", "布施"),
     ]
+
+    /// Characters ICU's traditional → simplified conversion changes although they are standard simplified
+    /// characters too, used in Buddhist names and mantras: 俱胝, 俱舍 (not 具), 乾闼婆 (not 干), 突瑟吒 (not 咤).
+    static let simplifiedKeeps: Set<Character> = ["俱", "乾", "吒"]
 
     /// `text` in this script with every character at the same UTF-16 offset, so offsets into the original
     /// (bookmarks, reading position, styled spans) still point at the same characters. A character whose

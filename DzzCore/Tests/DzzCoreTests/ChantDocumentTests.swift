@@ -109,4 +109,13 @@ import Testing
         #expect(ChineseScript.traditional.convertKeepingOffsets(text)
                 == "爾時佛住王舍城。舍利弗白佛言。云何布施。佛陀耶舍譯。舍衛國祇樹給孤獨園精舍。捨身喜捨。")
     }
+
+    /// A simplified text that keeps some traditional characters (the chanting book writes 南無, 囉) is made
+    /// all simplified, but characters that are standard simplified in their own right stay: ICU would turn
+    /// 俱胝 into 具胝, 乾闼婆 into 干闼婆 and 突瑟吒 into 突瑟咤.
+    @Test func mixedTextIsMadeAllSimplified() {
+        let text = "南無佛陀俱胝。萨婆乾闼婆。突瑟吒。娑囉。"
+        #expect(ChineseScript.simplified.convertKeepingOffsets(text) == "南无佛陀俱胝。萨婆乾闼婆。突瑟吒。娑啰。")
+        #expect(ChineseScript.traditional.convertKeepingOffsets(text) == "南無佛陀俱胝。薩婆乾闥婆。突瑟吒。娑囉。")
+    }
 }

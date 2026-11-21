@@ -108,6 +108,9 @@ final class ChantingUITests: XCTestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 10))
         XCTAssertEqual(title.label, "大佛顶首楞严神咒")
         let pinyin = title.value as? String
+        // The book writes 南無 in a simplified text; it is shown in the same script as the rest.
+        let mixed = app.descendants(matching: .any)["chantRow-2"]
+        XCTAssertEqual(mixed.label, "南无楞严会上佛菩萨（3称）")
 
         showChrome()
         let button = app.buttons["chantScriptButton"]
@@ -116,6 +119,7 @@ final class ChantingUITests: XCTestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 5))
         XCTAssertEqual(title.label, "大佛頂首楞嚴神咒")
         XCTAssertEqual(title.value as? String, pinyin, "pinyin unchanged")
+        XCTAssertEqual(mixed.label, "南無楞嚴會上佛菩薩（3稱）")
         XCTAssertEqual(button.label, "转为简体")
         saveShot("chant-traditional")
 
