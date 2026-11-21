@@ -186,7 +186,7 @@ struct ChapterTextView: UIViewRepresentable {
         }
 
         /// Room above and below the glyphs inside the highlight, as a fraction of the font size.
-        static let selectionAir: CGFloat = 0.08
+        static let selectionAir: CGFloat = 0.2
 
         /// Only the text on screen. A whole book can be hundreds of thousands of characters; handing all of it to
         /// accessibility clients makes every query slow (XCUITest snapshots took ~5 s per query).
