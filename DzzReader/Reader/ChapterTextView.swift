@@ -45,6 +45,8 @@ struct ChapterTextView: UIViewRepresentable {
         view.showsVerticalScrollIndicator = true
         view.delegate = context.coordinator
         view.textContainer.lineFragmentPadding = 0
+        assert(view.layoutManager.delegate == nil, "UITextView now uses its layout manager's delegate itself")
+        view.layoutManager.delegate = view
         // The hidden navigation bar still reports a safe area; use the window's own insets instead.
         view.contentInsetAdjustmentBehavior = .never
         view.keyboardDismissMode = .onDrag
@@ -114,7 +116,25 @@ struct ChapterTextView: UIViewRepresentable {
     // MARK: - Text view
 
     /// UITextView that pads its text by the window safe area (status bar / home indicator) plus reading margins.
-    final class ReaderTextView: UITextView {
+    final class ReaderTextView: UITextView, @preconcurrency NSLayoutManagerDelegate {   // a UITextView lays out on the main thread
+        /// TextKit 1 puts a paragraph's whole `lineSpacing` under each line, and the selection highlight covers
+        /// the line fragment, so it hung far below the glyphs. Lower the glyphs by half the spacing so they sit
+        /// in the middle of their fragment: the highlight then has as much room above the text as below it.
+        /// Fragment rects are unchanged, so the line geometry used for scrolling and paging is unaffected.
+        func layoutManager(_ layoutManager: NSLayoutManager,
+                           shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<CGRect>,
+                           lineFragmentUsedRect: UnsafeMutablePointer<CGRect>,
+                           baselineOffset: UnsafeMutablePointer<CGFloat>,
+                           in textContainer: NSTextContainer,
+                           forGlyphRange glyphRange: NSRange) -> Bool {
+            let character = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+            guard character < textStorage.length,
+                  let style = textStorage.attribute(.paragraphStyle, at: character, effectiveRange: nil) as? NSParagraphStyle,
+                  style.lineSpacing > 0 else { return false }
+            baselineOffset.pointee += style.lineSpacing / 2
+            return true
+        }
+
         var horizontalMargin: CGFloat = 20 { didSet { updateInsets() } }
         static let topPadding: CGFloat = 24
         static let bottomPadding: CGFloat = 64
