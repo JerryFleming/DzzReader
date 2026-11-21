@@ -76,6 +76,41 @@ public enum ChineseScript: String, Sendable, Equatable {
     }
 }
 
+/// What the 繁/简 button shows: the text as written (which may mix the two scripts), or all of it in one
+/// script. Each tap moves to `next`.
+public enum ScriptChoice: String, Sendable, CaseIterable {
+    case original, simplified, traditional
+
+    public var next: ScriptChoice {
+        switch self {
+        case .original: .simplified
+        case .simplified: .traditional
+        case .traditional: .original
+        }
+    }
+
+    /// The script everything is converted to, or nil to show the text as written.
+    public var script: ChineseScript? {
+        switch self {
+        case .original: nil
+        case .simplified: .simplified
+        case .traditional: .traditional
+        }
+    }
+
+    /// `text` as this choice shows it.
+    public func apply(_ text: String) -> String { script?.convert(text) ?? text }
+
+    /// The button's label (what the next tap does) and its one-character icon.
+    public var buttonLabel: (title: String, icon: String) {
+        switch next {
+        case .original: ("显示原文", "原")
+        case .simplified: ("转为简体", "简")
+        case .traditional: ("转为繁体", "繁")
+        }
+    }
+}
+
 extension ChantDocument {
     /// The script most of the text is in.
     public var script: ChineseScript {

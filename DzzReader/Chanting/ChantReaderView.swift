@@ -19,13 +19,12 @@ struct ChantReaderView: View {
     @AppStorage("chant.theme") private var chantTheme = ""
     /// Auto-scroll speed in blocks (characters with pinyin) per minute.
     @AppStorage("chant.autoSpeed") private var autoSpeed = ChantReaderView.defaultAutoSpeed
-    /// Show the text converted to the other script (繁 ⇄ 简) from the one it is written in.
-    @AppStorage("chant.convertScript") private var convertScript = false
+    /// Show the text as written, or all simplified / all traditional (the 繁/简 button).
+    @AppStorage("chant.script") private var scriptChoice = ScriptChoice.original
 
-    /// The text as stored, and the script it is mostly written in.
+    /// The text as stored.
     @State private var source: ChantDocument?
-    @State private var sourceScript = ChineseScript.simplified
-    /// The text on screen: `source`, or `source` converted to the other script.
+    /// The text on screen: `source`, or `source` converted to the chosen script.
     @State private var document: ChantDocument?
     @State private var error: String?
     /// First row mostly on screen; read from the scroll view, never written back to it.
@@ -93,7 +92,7 @@ struct ChantReaderView: View {
         .onChange(of: isAutoScrollRunning, initial: true) { UIApplication.shared.isIdleTimerDisabled = isAutoScrollRunning }
         .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
         .sheet(isPresented: $showContents) { contents }
-        .onChange(of: convertScript) { showConverted() }
+        .onChange(of: scriptChoice) { showConverted() }
     }
 
     private func text(_ document: ChantDocument, _ units: ChantUnits) -> some View {
@@ -244,13 +243,13 @@ struct ChantReaderView: View {
                 }
                 .accessibilityIdentifier("chantThemeButton")
                 Spacer()
-                Button { convertScript.toggle() } label: {
-                    // Names the script a tap switches to.
-                    let target = shownScript.other
+                Button { scriptChoice = scriptChoice.next } label: {
+                    // Names what a tap does: 原文 → 简体 → 繁体 → 原文.
+                    let label = scriptChoice.buttonLabel
                     Label {
-                        Text(target == .traditional ? "转为繁体" : "转为简体")
+                        Text(label.title)
                     } icon: {
-                        Text(target == .traditional ? "繁" : "简").font(.title3.weight(.medium))
+                        Text(label.icon).font(.title3.weight(.medium))
                     }
                 }
                 .disabled(source == nil)
@@ -324,13 +323,11 @@ struct ChantReaderView: View {
 
     // MARK: Script
 
-    private var shownScript: ChineseScript { convertScript ? sourceScript.other : sourceScript }
-
     /// Swaps in the text in the chosen script. Rows and blocks match one for one, so the reading position,
     /// the highlight and auto-scroll carry on where they were.
     private func showConverted() {
         guard let source else { return }
-        let shown = convertScript ? source.converted(to: sourceScript.other) : source
+        let shown = scriptChoice.script.map(source.converted(to:)) ?? source
         units = ChantUnits(shown)
         document = shown
     }
@@ -341,10 +338,8 @@ struct ChantReaderView: View {
         guard document == nil else { return }
         do {
             let loaded = try await ChantLibrary.load(book)
-            let script = ChineseScript.detect(loaded.rows.map(\.text).joined())
-            let shown = convertScript ? loaded.converted(to: script.other) : loaded
+            let shown = scriptChoice.script.map(loaded.converted(to:)) ?? loaded
             source = loaded
-            sourceScript = script
             units = ChantUnits(shown)
             document = shown
             topRow = 0

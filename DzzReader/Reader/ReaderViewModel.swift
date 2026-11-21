@@ -52,21 +52,16 @@ final class ReaderViewModel {
 
     // MARK: Script (繁 ⇄ 简)
 
-    /// The script the shown document is mostly written in.
-    private(set) var sourceScript = ChineseScript.traditional
-    /// The script on screen.
-    var shownScript: ChineseScript { settings.convertScript ? sourceScript.other : sourceScript }
-    /// The shown document converted to `shownScript`, kept so restyles don't convert it again.
+    /// The shown document converted to the chosen script, kept so restyles don't convert it again.
     @ObservationIgnored private var convertedText: (contentID: Int, script: ChineseScript, text: String)?
 
     /// A title or other short text as it should appear on screen.
     func displayed(_ text: String) -> String {
-        settings.convertScript ? shownScript.convert(text) : text
+        settings.script.apply(text)
     }
 
     private func displayText(for rendered: RenderedChapter) -> String? {
-        guard settings.convertScript else { return nil }
-        let script = shownScript
+        guard let script = settings.script.script else { return nil }
         if let cached = convertedText, cached.contentID == contentID, cached.script == script { return cached.text }
         let text = script.convertKeepingOffsets(rendered.text)
         convertedText = (contentID, script, text)
@@ -194,8 +189,6 @@ final class ReaderViewModel {
             document = span
             rendered = loaded.rendered(span)
             contentID += 1
-            // A sample is enough to tell; the whole document can be 300K characters.
-            sourceScript = ChineseScript.detect(String(rendered?.text.prefix(4_000) ?? ""))
             rebuildAttributed()
         }
         chapterIndex = index

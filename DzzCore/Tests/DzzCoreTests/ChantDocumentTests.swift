@@ -118,4 +118,16 @@ import Testing
         #expect(ChineseScript.simplified.convertKeepingOffsets(text) == "南无佛陀俱胝。萨婆乾闼婆。突瑟吒。娑啰。")
         #expect(ChineseScript.traditional.convertKeepingOffsets(text) == "南無佛陀俱胝。薩婆乾闥婆。突瑟吒。娑囉。")
     }
+
+    /// The 繁/简 button cycles 原文 → 简体 → 繁体 → 原文; 原文 shows the text as written, the others convert all of it.
+    @Test func scriptChoiceCycles() {
+        #expect(ScriptChoice.original.next == .simplified)
+        #expect(ScriptChoice.simplified.next == .traditional)
+        #expect(ScriptChoice.traditional.next == .original)
+        let text = "南無阿弥陀佛。波羅蜜。"
+        #expect(ScriptChoice.original.apply(text) == text)
+        #expect(ScriptChoice.simplified.apply(text) == "南无阿弥陀佛。波罗蜜。")
+        #expect(ScriptChoice.traditional.apply(text) == "南無阿彌陀佛。波羅蜜。")
+        #expect(ScriptChoice(rawValue: "simplified") == .simplified)
+    }
 }

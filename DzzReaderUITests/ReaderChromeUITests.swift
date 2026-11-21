@@ -39,7 +39,7 @@ final class ReaderChromeUITests: XCTestCase {
         }
     }
 
-    /// The 繁/简 button shows the book in the other script and back, keeps the place, and converts titles.
+    /// The 繁/简 button cycles 原文 → 简体 → 繁体 → 原文, keeps the place, and converts titles.
     func testScriptButtonConvertsTheBook() {
         openChangAhan()
         showChrome()
@@ -56,10 +56,16 @@ final class ReaderChromeUITests: XCTestCase {
         XCTAssertFalse(before.isEmpty)
 
         let button = app.buttons["scriptButton"]
+        XCTAssertEqual(button.label, "转为简体")
+        button.tap()
         XCTAssertEqual(button.label, "转为繁体")
+        XCTAssertEqual(title.label, "佛说长阿含经卷第三")
+        let simplified = text.value as? String ?? ""
+        XCTAssertEqual(simplified.utf16.count, before.utf16.count, "same place, same length")
+
         button.tap()
         XCTAssertEqual(title.label, "佛說長阿含經卷第三")
-        XCTAssertEqual(button.label, "转为简体")
+        XCTAssertEqual(button.label, "显示原文")
         let after = text.value as? String ?? ""
         // The same lines on screen, now in traditional characters.
         XCTAssertEqual(after.utf16.count, before.utf16.count, "same place, same length")
@@ -67,7 +73,7 @@ final class ReaderChromeUITests: XCTestCase {
         // Everything round-trips except characters the app leaves alone in both scripts: 俱 (ICU makes it 具,
         // but 俱 is simplified too) and 綖 (ICU's simplified form is outside the BMP, which would move offsets).
         let back = Array(after.applyingTransform(StringTransform("Hant-Hans"), reverse: false) ?? "")
-        let b = Array(before), a = Array(after)
+        let b = Array(simplified), a = Array(after)
         XCTAssertEqual(back.count, b.count)
         XCTAssertTrue(b.indices.allSatisfy { b[$0] == back[$0] || b[$0] == a[$0] })
         saveShot("reader-traditional")
@@ -77,11 +83,12 @@ final class ReaderChromeUITests: XCTestCase {
         XCTAssertEqual(app.buttons["chapter-3"].label, "佛說長阿含經卷第三")
         app.buttons["chapter-3"].tap()
 
-        // Back to simplified (other tests expect it).
+        // Back to the text as written (other tests expect it).
         showChrome()
         button.tap()
         XCTAssertEqual(title.label, "佛说长阿含经卷第三")
-        XCTAssertEqual(button.label, "转为繁体")
+        XCTAssertEqual(button.label, "转为简体")
+        XCTAssertEqual(text.value as? String, before)
     }
 
     func testChapterListSliderAppearanceAndBookmarks() {
