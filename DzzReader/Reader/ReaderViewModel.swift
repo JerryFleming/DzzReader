@@ -56,17 +56,16 @@ final class ReaderViewModel {
     private(set) var sourceScript = ChineseScript.traditional
     /// The script on screen.
     var shownScript: ChineseScript { settings.convertScript ? sourceScript.other : sourceScript }
-    /// The shown document converted to `shownScript`, kept so restyles don't convert it again. The text is
-    /// converted even when it is shown in its own script, so characters of the other script mixed into it
-    /// (a simplified text keeping 南無) match the rest.
+    /// The shown document converted to `shownScript`, kept so restyles don't convert it again.
     @ObservationIgnored private var convertedText: (contentID: Int, script: ChineseScript, text: String)?
 
     /// A title or other short text as it should appear on screen.
     func displayed(_ text: String) -> String {
-        shownScript.convert(text)
+        settings.convertScript ? shownScript.convert(text) : text
     }
 
-    private func displayText(for rendered: RenderedChapter) -> String {
+    private func displayText(for rendered: RenderedChapter) -> String? {
+        guard settings.convertScript else { return nil }
         let script = shownScript
         if let cached = convertedText, cached.contentID == contentID, cached.script == script { return cached.text }
         let text = script.convertKeepingOffsets(rendered.text)

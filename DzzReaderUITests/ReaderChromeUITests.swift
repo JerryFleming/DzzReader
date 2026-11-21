@@ -54,8 +54,6 @@ final class ReaderChromeUITests: XCTestCase {
         let text = app.textViews["chapterText"]
         let before = text.value as? String ?? ""
         XCTAssertFalse(before.isEmpty)
-        // The corpus keeps a few traditional characters (卷三 has 數); they are shown simplified like the rest.
-        XCTAssertFalse(before.contains("數"))
 
         let button = app.buttons["scriptButton"]
         XCTAssertEqual(button.label, "转为繁体")
