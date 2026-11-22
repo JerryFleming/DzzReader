@@ -100,6 +100,11 @@ final class QuoteSounds {
     private var generations: [Effect: Int] = [:]
 
     init() {
+        // Set the category before any player exists: prepareToPlay() under the default
+        // .soloAmbient category activates a non-mixable session and stops the person's music.
+        // .playback + .mixWithOthers plays over the person's music, and sounds even with the
+        // silent switch on.
+        try? AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
         for effect in Effect.allCases {
             guard let url = Bundle.main.url(forResource: effect.rawValue, withExtension: "caf"),
                   let player = try? AVAudioPlayer(contentsOf: url) else { continue }
@@ -111,9 +116,6 @@ final class QuoteSounds {
 
     func play(_ effect: Effect) {
         guard let player = players[effect] else { return }
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, options: .mixWithOthers)
-        try? session.setActive(true)
         generations[effect, default: 0] += 1
         player.volume = 1
         player.currentTime = Double.random(in: 0..<max(0.01, player.duration))

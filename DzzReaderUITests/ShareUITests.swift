@@ -25,7 +25,10 @@ final class ShareUITests: XCTestCase {
         add(attachment)
     }
 
-    private func wait(_ element: XCUIElement, _ format: String, timeout: TimeInterval = 10) -> Bool {
+    /// The timeouts only bound failures, so they are generous: while the card animates, XCUITest
+    /// can stall a single query for about 15 s waiting for the app to go idle, and a predicate
+    /// that is already true then misses a shorter deadline.
+    private func wait(_ element: XCUIElement, _ format: String, timeout: TimeInterval = 40) -> Bool {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: format), object: element)
         return XCTWaiter().wait(for: [expectation], timeout: timeout) == .completed
     }
@@ -54,9 +57,9 @@ final class ShareUITests: XCTestCase {
         saveShot("share-finished")
 
         app.buttons["放大字号"].tap()
-        XCTAssertTrue(wait(card, "value ENDSWITH '字号\((Int(size) ?? 0) + 1)'", timeout: 3), value(card))
+        XCTAssertTrue(wait(card, "value ENDSWITH '字号\((Int(size) ?? 0) + 1)'"), value(card))
         app.buttons["缩小字号"].tap()
-        XCTAssertTrue(wait(card, "value ENDSWITH '字号\(size)'", timeout: 3), value(card))
+        XCTAssertTrue(wait(card, "value ENDSWITH '字号\(size)'"), value(card))
 
         // 恢复示例 and 清空 sit in the middle of the button row, between 标线 and 缩小字号.
         let clear = app.buttons["清空"], reset = app.buttons["恢复示例"]
