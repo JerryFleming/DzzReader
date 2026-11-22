@@ -10,6 +10,7 @@ struct ChantShelfView: View {
     @State private var importRequested = false
     @State private var importErrors: [String] = []
     @State private var pendingDelete: GroupDeletion?
+    @State private var showFormatHelp = false
 
     private var recents: [ChantBook] {
         books.filter { $0.lastOpened != nil }
@@ -62,6 +63,7 @@ struct ChantShelfView: View {
             }
         }
         .confirmsGroupDeletion($pendingDelete)
+        .sheet(isPresented: $showFormatHelp) { ChantFormatHelp() }
         .accessibilityIdentifier("chantShelf")
         .navigationTitle("诵经")                       // back-button title on pushed pages
         .toolbar(.hidden, for: .navigationBar)
@@ -92,7 +94,8 @@ struct ChantShelfView: View {
         }
     }
 
-    /// Same shape as the 书架 top bar: a heading where the search field sits there, import on the right.
+    /// Same shape as the 书架 top bar: a heading where the search field sits there, import and format help on
+    /// the right, drawn by `TopBarIcon`; VoiceOver (and the UI tests) read the Chinese names.
     private var topBar: some View {
         HStack(spacing: 12) {
             Text("诵经")
@@ -102,11 +105,17 @@ struct ChantShelfView: View {
             Button {
                 importRequested = true
             } label: {
-                Label("导入", systemImage: "square.and.arrow.down")
-                    .labelStyle(.iconOnly)
-                    .font(.title3)
+                TopBarIcon(glyph: .importFile)
             }
+            .accessibilityLabel("导入")
             .accessibilityIdentifier("chantImportButton")
+            Button {
+                showFormatHelp = true
+            } label: {
+                TopBarIcon(glyph: .help)
+            }
+            .accessibilityLabel("格式说明")
+            .accessibilityIdentifier("chantFormatHelpButton")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)

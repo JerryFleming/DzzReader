@@ -37,6 +37,11 @@ targets:
         INFOPLIST_FILE: DzzReader/Info.plist
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SUPPORTS_MACCATALYST: "NO"
+      configs:
+        Debug:
+          # Simulator builds are signed ad hoc without get-task-allow; storekitd then refuses
+          # SKTestSession ("not installed for development"), so TipJarTests need it.
+          CODE_SIGN_ENTITLEMENTS: DzzReader/Debug.entitlements
 
   DzzReaderTests:
     type: bundle.unit-test
@@ -47,6 +52,8 @@ targets:
           - Fixtures
       - path: DzzReaderTests/Fixtures
         type: folder
+        buildPhase: resources
+      - path: DzzReader.storekit   # SKTestSession in TipJarTests
         buildPhase: resources
     dependencies:
       - target: DzzReader
@@ -76,6 +83,7 @@ schemes:
         DzzReaderUITests: [test]
     run:
       config: Debug
+      storeKitConfiguration: DzzReader.storekit   # local prices for the 支持 tips
     test:
       config: Debug
       targets:

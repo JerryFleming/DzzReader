@@ -113,19 +113,17 @@ struct ShelfView: View {
                 endSearchFocus()
                 importRequested = true
             } label: {
-                Label("导入", systemImage: "square.and.arrow.down")
-                    .labelStyle(.iconOnly)
-                    .font(.title3)
+                TopBarIcon(glyph: .importFile)
             }
+            .accessibilityLabel("导入")
 
             Button {
                 endSearchFocus()
                 downloadShown = true
             } label: {
-                Label("下载", systemImage: "icloud.and.arrow.down")
-                    .labelStyle(.iconOnly)
-                    .font(.title3)
+                TopBarIcon(glyph: .download)
             }
+            .accessibilityLabel("下载")
             .accessibilityIdentifier("downloadBooks")
         }
         .padding(.horizontal, 16)

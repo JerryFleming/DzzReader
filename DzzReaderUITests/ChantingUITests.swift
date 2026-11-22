@@ -282,4 +282,28 @@ final class ChantingUITests: XCTestCase {
         XCTAssertEqual(row.frame.minY, before, accuracy: 4, "starting does not scroll the text")
         saveShot("chant-auto-start-on-screen")
     }
+
+    /// The ? beside import explains the JSON format and opens the bundled sample.
+    func testFormatHelpShowsSpecAndSample() {
+        openChantTab()
+        saveShot("chant-shelf-bar")
+        app.buttons["chantFormatHelpButton"].tap()
+        XCTAssertTrue(app.navigationBars["诵经文本格式"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts[#"{"type": "linebreak"}"#].exists)
+        saveShot("chant-format-help")
+        let link = app.buttons["chantSampleLink"]
+        for _ in 0..<5 where !link.isHittable { app.swipeUp() }
+        link.tap()
+        let text = app.textViews["chantSampleText"]
+        XCTAssertTrue(text.waitForExistence(timeout: 10))
+        let deadline = Date().addingTimeInterval(10)
+        while !((text.value as? String) ?? "").contains(#"{"char": "大", "pinyin": "dà"}"#) && Date() < deadline {
+            usleep(250_000)
+        }
+        XCTAssertTrue(((text.value as? String) ?? "").contains(#"{"char": "大", "pinyin": "dà"}"#))
+        saveShot("chant-format-sample")
+        app.navigationBars.buttons["诵经文本格式"].tap()
+        app.buttons["完成"].tap()
+        XCTAssertTrue(app.buttons["chantImportButton"].waitForExistence(timeout: 5))
+    }
 }

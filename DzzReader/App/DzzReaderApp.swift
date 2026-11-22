@@ -63,6 +63,9 @@ struct RootView: View {
                     Tab("分享", systemImage: "square.and.arrow.up", value: AppTab.share) {
                         ShareView()
                     }
+                    Tab("支持", systemImage: "heart", value: AppTab.support) {
+                        SupportView()
+                    }
                 }
                 // A selection shared from the reader fills the card's text box and opens the tab;
                 // the book stays open on the shelf tab underneath.
@@ -151,5 +154,5 @@ final class QuoteInbox {
 }
 
 enum AppTab: Hashable {
-    case shelf, chanting, share
+    case shelf, chanting, share, support
 }
