@@ -74,3 +74,79 @@ struct DoneBarTextField: UIViewRepresentable {
         func textFieldShouldReturn(_ field: UITextField) -> Bool { parent.onDone(); return false }
     }
 }
+
+/// A URL box that wraps onto as many lines as the text needs, with the 完成 bar on its keyboard.
+/// Return and 完成 both put the keyboard away: a URL has no line breaks.
+struct DoneBarURLField: UIViewRepresentable {
+    let placeholder: String
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextView {
+        let view = UITextView()
+        view.delegate = context.coordinator
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
+        view.backgroundColor = .clear
+        view.isScrollEnabled = false   // grow with the text instead of scrolling inside the row
+        view.textContainerInset = .zero
+        view.textContainer.lineFragmentPadding = 0   // line up with the other Form rows
+        view.keyboardType = .URL
+        view.autocapitalizationType = .none
+        view.autocorrectionType = .no
+        view.returnKeyType = .done
+        view.text = text
+        view.inputAccessoryView = UIToolbar.doneBar { [weak view] in view?.resignFirstResponder() }
+
+        let label = context.coordinator.placeholder
+        label.text = placeholder
+        label.font = view.font
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = .placeholderText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            label.topAnchor.constraint(equalTo: view.topAnchor),
+        ])
+        label.isHidden = !text.isEmpty
+        return view
+    }
+
+    func updateUIView(_ view: UITextView, context: Context) {
+        context.coordinator.parent = self
+        if view.text != text { view.text = text }
+        context.coordinator.placeholder.isHidden = !text.isEmpty
+        view.isEditable = context.environment.isEnabled   // honour .disabled(_:)
+        view.textColor = context.environment.isEnabled ? .label : .secondaryLabel
+    }
+
+    /// The offered width, and as many lines of height as the text wraps to.
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView view: UITextView, context: Context) -> CGSize? {
+        let width = proposal.width ?? 320
+        let fitted = view.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        return CGSize(width: width, height: max(fitted.height, view.font?.lineHeight ?? 22))
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    final class Coordinator: NSObject, UITextViewDelegate {
+        var parent: DoneBarURLField
+        let placeholder = UILabel()
+        init(_ parent: DoneBarURLField) { self.parent = parent }
+
+        func textViewDidChange(_ view: UITextView) {
+            parent.text = view.text
+            placeholder.isHidden = !view.text.isEmpty
+        }
+
+        func textView(_ view: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            guard text.contains("\n") else { return true }
+            if text == "\n" { view.resignFirstResponder(); return false }   // the return key
+            // Pasted text: keep it on one line.
+            view.replace(view.textRange(from: view.position(from: view.beginningOfDocument, offset: range.location)!,
+                                        to: view.position(from: view.beginningOfDocument, offset: range.location + range.length)!)!,
+                         withText: text.replacingOccurrences(of: "\n", with: ""))
+            return false
+        }
+    }
+}

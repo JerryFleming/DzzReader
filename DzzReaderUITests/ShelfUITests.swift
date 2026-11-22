@@ -101,6 +101,41 @@ final class ShelfUITests: XCTestCase {
         }
     }
 
+    /// The download sheet's URL box wraps the long URL, takes typing, and has the 完成 bar on its keyboard.
+    func testDownloadURLDoneButton() {
+        let button = app.buttons["downloadBooks"]
+        XCTAssertTrue(button.waitForExistence(timeout: 30))
+        button.tap()
+        let field = app.textViews["downloadURL"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let url = field.value as? String ?? ""
+        XCTAssertTrue(url.hasSuffix(".tar.gz"), url)
+        XCTAssertGreaterThan(field.frame.height, 40, "the URL wraps onto more than one line")
+
+        field.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.95)).tap()   // caret at the end
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5))
+        field.typeText("x")
+        XCTAssertEqual(field.value as? String, url + "x")
+        field.typeText(XCUIKeyboardKey.delete.rawValue)
+        XCTAssertEqual(field.value as? String, url)
+        let done = app.toolbars.buttons["完成"]
+        XCTAssertTrue(done.waitForExistence(timeout: 3), "完成 missing")
+        saveShot("download-keyboard-done")
+        done.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5), "keyboard stayed")
+        XCTAssertTrue(field.exists, "the sheet stays open")
+
+        // Return puts the keyboard away too, without adding a line break.
+        // A positioned tap: XCUIElement.tap() on this UITextView never starts editing, though a real
+        // touch anywhere in it does.
+        field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "second tap: no keyboard")
+        field.typeText("\n")
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5), "return did not dismiss")
+        XCTAssertEqual(field.value as? String, url)
+        app.buttons["关闭"].tap()
+    }
+
     func testTopSearchBarAndBottomTabs() {
         let agama = app.staticTexts["阿含部"]
         XCTAssertTrue(agama.waitForExistence(timeout: 30))

@@ -19,10 +19,7 @@ struct DownloadBooksSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("tar.gz 网址", text: $urlString, axis: .vertical)
-                        .keyboardType(.URL)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
+                    DoneBarURLField(placeholder: "tar.gz 网址", text: $urlString)
                         .disabled(busy)
                         .accessibilityIdentifier("downloadURL")
                     if urlString != Corpus.defaultArchiveURL {
