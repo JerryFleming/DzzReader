@@ -1,109 +1,127 @@
 {
-  "appPolicies": {
-    "eula": "",
-    "policies": [
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
       {
-        "locale": "en_GB",
-        "policyText": "",
-        "policyURL": ""
+        "locale" : "en_GB",
+        "policyText" : "",
+        "policyURL" : ""
       }
     ]
   },
-  "identifier": "4C1D2B7E",
-  "nonRenewingSubscriptions": [],
-  "products": [
+  "identifier" : "4C1D2B7E",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
     {
-      "displayPrice": "0.99",
-      "familyShareable": false,
-      "internalID": "6A100001",
-      "localizations": [
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6A100001",
+      "localizations" : [
         {
-          "description": "A small tip",
-          "displayName": "Small tip",
-          "locale": "en_GB"
+          "description" : "A small tip",
+          "displayName" : "Small tip",
+          "locale" : "en_GB"
         },
         {
-          "description": "A small tip",
-          "displayName": "小小心意",
-          "locale": "zh_Hans"
+          "description" : "A small tip",
+          "displayName" : "小小心意",
+          "locale" : "zh_Hans"
         }
       ],
-      "productID": "com.jerryfleming.dzzreader.tip.small",
-      "referenceName": "Small tip",
-      "type": "Consumable"
+      "productID" : "com.jerryfleming.dzzreader.tip.small",
+      "referenceName" : "Small tip",
+      "type" : "Consumable"
     },
     {
-      "displayPrice": "2.99",
-      "familyShareable": false,
-      "internalID": "6A100002",
-      "localizations": [
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6A100002",
+      "localizations" : [
         {
-          "description": "Buy me a coffee",
-          "displayName": "Coffee",
-          "locale": "en_GB"
+          "description" : "Buy me a coffee",
+          "displayName" : "Coffee",
+          "locale" : "en_GB"
         },
         {
-          "description": "Buy me a coffee",
-          "displayName": "请杯咖啡",
-          "locale": "zh_Hans"
+          "description" : "Buy me a coffee",
+          "displayName" : "请杯咖啡",
+          "locale" : "zh_Hans"
         }
       ],
-      "productID": "com.jerryfleming.dzzreader.tip.coffee",
-      "referenceName": "Coffee",
-      "type": "Consumable"
+      "productID" : "com.jerryfleming.dzzreader.tip.coffee",
+      "referenceName" : "Coffee",
+      "type" : "Consumable"
     },
     {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "6A100003",
-      "localizations": [
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "6A100003",
+      "localizations" : [
         {
-          "description": "Support",
-          "displayName": "Support",
-          "locale": "en_GB"
+          "description" : "Support",
+          "displayName" : "Support",
+          "locale" : "en_GB"
         },
         {
-          "description": "Support",
-          "displayName": "支持一下",
-          "locale": "zh_Hans"
+          "description" : "Support",
+          "displayName" : "支持一下",
+          "locale" : "zh_Hans"
         }
       ],
-      "productID": "com.jerryfleming.dzzreader.tip.support",
-      "referenceName": "Support",
-      "type": "Consumable"
+      "productID" : "com.jerryfleming.dzzreader.tip.support",
+      "referenceName" : "Support",
+      "type" : "Consumable"
     },
     {
-      "displayPrice": "9.99",
-      "familyShareable": false,
-      "internalID": "6A100004",
-      "localizations": [
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "6A100004",
+      "localizations" : [
         {
-          "description": "Generous support",
-          "displayName": "Generous support",
-          "locale": "en_GB"
+          "description" : "Generous support",
+          "displayName" : "Generous support",
+          "locale" : "en_GB"
         },
         {
-          "description": "Generous support",
-          "displayName": "慷慨支持",
-          "locale": "zh_Hans"
+          "description" : "Generous support",
+          "displayName" : "慷慨支持",
+          "locale" : "zh_Hans"
         }
       ],
-      "productID": "com.jerryfleming.dzzreader.tip.generous",
-      "referenceName": "Generous support",
-      "type": "Consumable"
+      "productID" : "com.jerryfleming.dzzreader.tip.generous",
+      "referenceName" : "Generous support",
+      "type" : "Consumable"
     }
   ],
-  "settings": {
-    "_applicationInternalID": "",
-    "_developerTeamID": "GBX6ZRW9H9",
-    "_failTransactionsEnabled": false,
-    "_locale": "en_GB",
-    "_storefront": "GBR",
-    "_storeKitErrors": []
+  "settings" : {
+    "_applicationInternalID" : "",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_developerTeamID" : "GBX6ZRW9H9",
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_GB",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "GBR",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
   },
-  "subscriptionGroups": [],
-  "version": {
-    "major": 4,
-    "minor": 0
+  "subscriptionBundleGroups" : [
+
+  ],
+  "subscriptionGroups" : [
+
+  ],
+  "subscriptionSuiteGroups" : [
+
+  ],
+  "version" : {
+    "major" : 6,
+    "minor" : 3
   }
 }
