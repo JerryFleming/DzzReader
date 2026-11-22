@@ -6,7 +6,7 @@ struct ShareView: View {
     @AppStorage("share.quote") private var markup = QuoteScript.sample
     @AppStorage("share.fontSize") private var fontSize = 24.0
     @State private var animator = QuoteAnimator(tick: ShareView.tick, sounds: .shared)
-    @FocusState private var editing: Bool
+    @State private var editing = false
     @State private var contentWidth: CGFloat = 0
 
     /// Milliseconds per character; UI tests shorten it with `-shareTickMs`.
@@ -19,24 +19,26 @@ struct ShareView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    controls
-                    card
-                    editor
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 16) {
+                        controls
+                        card
+                        editor.id("editor")
+                    }
+                    .padding(16)
+                    .onGeometryChange(for: CGFloat.self) { $0.size.width - 32 } action: { contentWidth = $0 }
                 }
-                .padding(16)
-                .onGeometryChange(for: CGFloat.self) { $0.size.width - 32 } action: { contentWidth = $0 }
+                .scrollDismissesKeyboard(.interactively)
+                // The UIKit box doesn't scroll itself into view the way TextEditor did: once the
+                // keyboard is up (and the scroll view has made room for it), bring the box above it.
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+                    guard editing else { return }
+                    withAnimation { proxy.scrollTo("editor", anchor: .bottom) }
+                }
             }
-            .scrollDismissesKeyboard(.interactively)
             .navigationTitle("分享")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("完成") { editing = false }
-                }
-            }
         }
         .onAppear { animator.showFinished(script) }
         .onDisappear { animator.showFinished(script) }   // also silences the sounds
@@ -91,12 +93,10 @@ struct ShareView: View {
 
     private var editor: some View {
         VStack(alignment: .leading, spacing: 6) {
-            TextEditor(text: $markup)
-                .focused($editing)
+            QuoteEditor(text: $markup, editing: $editing)
                 .frame(minHeight: 120)
                 .padding(6)
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(.separator))
-                .accessibilityIdentifier("quoteEditor")
             Text("格式：出处::正文。用 | 把要标线的句子括起来；没有出处时显示“\(QuoteScript.defaultSource)”。")
                 .font(.footnote)
                 .foregroundStyle(.secondary)

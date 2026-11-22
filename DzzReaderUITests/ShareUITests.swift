@@ -35,6 +35,39 @@ final class ShareUITests: XCTestCase {
 
     private func value(_ element: XCUIElement) -> String { element.value as? String ?? "" }
 
+    /// The keyboard's 完成 bar must be there every time, including after leaving the tab.
+    func testDoneButtonDismissesKeyboardEveryTime() {
+        // Without -share.quote: an argument-domain value would undo every keystroke.
+        app.terminate()
+        app.launchArguments = ["-shareTickMs", "150"]
+        app.launch()
+        let tabs = app.tabBars.firstMatch
+        XCTAssertTrue(tabs.waitForExistence(timeout: 30))
+        for round in 1...3 {
+            tabs.buttons["分享"].tap()
+            let editor = app.textViews["quoteEditor"]
+            XCTAssertTrue(editor.waitForExistence(timeout: 5))
+            editor.tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "round \(round): keyboard")
+            if round == 1 {   // typing still reaches the card
+                editor.typeText("abc")
+                XCTAssertTrue(wait(app.otherElements["quoteCard"], "label CONTAINS 'abc'"), value(editor))
+                saveShot("share-keyboard-done")
+                // The box scrolls up into view rather than staying under the keyboard.
+                XCTAssertLessThan(editor.frame.minY + 30, app.keyboards.firstMatch.frame.minY,
+                                  "editor \(editor.frame) keyboard \(app.keyboards.firstMatch.frame)")
+            }
+            let done = app.toolbars.buttons["完成"]
+            XCTAssertTrue(done.waitForExistence(timeout: 3), "round \(round): 完成 missing")
+            done.tap()
+            XCTAssertTrue(wait(app.keyboards.firstMatch, "exists == false"), "round \(round): keyboard stayed")
+            XCTAssertFalse(done.exists, "round \(round): 完成 should go with the keyboard")
+            tabs.buttons["书架"].tap()
+        }
+        tabs.buttons["分享"].tap()
+        app.buttons["恢复示例"].tap()   // leave the saved quote as it was
+    }
+
     func testQuoteCardAnimatesAndShares() {
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
