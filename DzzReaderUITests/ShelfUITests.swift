@@ -77,6 +77,30 @@ final class ShelfUITests: XCTestCase {
         XCTAssertTrue(app.collectionViews["shelfSearchResults"].staticTexts.matching(NSPredicate(format: "label BEGINSWITH '002'")).firstMatch.exists)
     }
 
+    /// The keyboard's 完成 bar ends the search like Enter does, every time, including after leaving the tab.
+    func testSearchDoneButtonDismissesKeyboard() {
+        XCTAssertTrue(app.staticTexts["阿含部"].waitForExistence(timeout: 30))
+        let field = app.searchFields["shelfSearchField"]
+        let tabs = app.tabBars.firstMatch
+        for round in 1...3 {
+            field.tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "round \(round): keyboard")
+            if round == 1 { app.typeText("0026") }
+            let done = app.toolbars.buttons["完成"]
+            XCTAssertTrue(done.waitForExistence(timeout: 3), "round \(round): 完成 missing")
+            if round == 1 { saveShot("search-keyboard-done") }
+            done.tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5), "round \(round): keyboard stayed")
+            sleep(1)   // the shelf hands focus back if the system took it; 完成 must not count as that
+            XCTAssertFalse(app.keyboards.firstMatch.exists, "round \(round): keyboard came back")
+            // The query and its results stay.
+            XCTAssertEqual(field.value as? String, "0026")
+            XCTAssertTrue(app.collectionViews["shelfSearchResults"].staticTexts["0026 · 中阿含经"].exists)
+            tabs.buttons["分享"].tap()
+            tabs.buttons["书架"].tap()
+        }
+    }
+
     func testTopSearchBarAndBottomTabs() {
         let agama = app.staticTexts["阿含部"]
         XCTAssertTrue(agama.waitForExistence(timeout: 30))

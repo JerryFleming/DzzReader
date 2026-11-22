@@ -21,6 +21,7 @@
 		3BFF8A0DC36D0B641298DD55 /* ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAE0079103672F885A102C /* ReaderUITests.swift */; };
 		3C03ACA760593BB124EAC04B /* BookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41AA864CB9DBD089FEF35A4 /* BookRow.swift */; };
 		3C5A6CE2A8A3BEF2B092BDAC /* ShelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78C8D517D239CD75800343 /* ShelfUITests.swift */; };
+		3CB6A0335C5CDB66E4DB9EED /* KeyboardDoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6ED0B5B2346A0E07DFE7BF /* KeyboardDoneBar.swift */; };
 		3E1748FEAA6B5E4896B331C9 /* GroupDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAE9B56F2B7A1DAA75E1EE /* GroupDeletion.swift */; };
 		3F5D3512AB8C4AD5506DEEF9 /* QuoteCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BBBE8C29909AA38E11040D /* QuoteCardTests.swift */; };
 		401A20879FB02A62F0CEA816 /* ChantReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBDC1B052BBF7F945F8DCA3 /* ChantReaderView.swift */; };
@@ -141,6 +142,7 @@
 		92B096E9F7444794206B913E /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		93CFB5A8591A0161FCA93C2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		941CEC369C6A6DB01114B0D0 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgress.swift; sourceTree = "<group>"; };
+		9F6ED0B5B2346A0E07DFE7BF /* KeyboardDoneBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneBar.swift; sourceTree = "<group>"; };
 		A0142C0EA21FA88AB3F832E4 /* DzzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DzzCore; path = DzzCore; sourceTree = SOURCE_ROOT; };
 		A41AA864CB9DBD089FEF35A4 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
 		AB1BB8E961A8D1D61E179F88 /* ReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModelTests.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				6CEEB409CFCB4FDD049E5D95 /* DzzReaderApp.swift */,
+				9F6ED0B5B2346A0E07DFE7BF /* KeyboardDoneBar.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				BAEC8AF35C7FC11DCF9FC631 /* DzzReaderApp.swift in Sources */,
 				3E1748FEAA6B5E4896B331C9 /* GroupDeletion.swift in Sources */,
 				687505FBE1EB8ED6C1C3A872 /* Importer.swift in Sources */,
+				3CB6A0335C5CDB66E4DB9EED /* KeyboardDoneBar.swift in Sources */,
 				81A60D5FFE1A389A58DDEBE6 /* ModelContainer+App.swift in Sources */,
 				B89753C0C1C3CA05FEC08CA8 /* QuoteAnimator.swift in Sources */,
 				6D45D3FF05558B3C70463588 /* QuoteCardView.swift in Sources */,

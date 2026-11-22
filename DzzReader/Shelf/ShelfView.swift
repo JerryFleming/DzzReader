@@ -5,7 +5,7 @@ import SwiftUI
 struct ShelfView: View {
     @Query(sort: \Book.catalogOrder) private var books: [Book]
     @State private var searchText = ""
-    @FocusState private var searchFocused: Bool
+    @State private var searchFocused = false
     @Binding var importRequested: Bool
     @State private var downloadShown = false
     @State private var pendingDelete: GroupDeletion?
@@ -51,7 +51,7 @@ struct ShelfView: View {
                     .allowsHitTesting(searching)
                     .accessibilityHidden(!searching)
             }
-            .scrollDismissesKeyboard(.never)              // only Enter dismisses the keyboard
+            .scrollDismissesKeyboard(.never)              // only Enter or 完成 dismisses the keyboard
             .navigationTitle("书架")                       // back-button title on pushed pages
             .toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .top, spacing: 0) { topBar }
@@ -81,12 +81,9 @@ struct ShelfView: View {
             HStack(spacing: 6) {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
-                TextField("搜索经名或经号", text: $searchText)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .submitLabel(.search)
-                    .focused($searchFocused)
-                    .onSubmit { endSearchFocus() }           // Enter is the only key that dismisses
+                // Enter (the search key) and the keyboard's 完成 bar are the only ways to dismiss.
+                DoneBarTextField(placeholder: "搜索经名或经号", text: $searchText, focused: $searchFocused,
+                                 returnKey: .search) { endSearchFocus() }
                     .accessibilityIdentifier("shelfSearchField")
                     .accessibilityAddTraits(.isSearchField)
                 Button {

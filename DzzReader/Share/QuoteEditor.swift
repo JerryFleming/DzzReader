@@ -1,9 +1,7 @@
 import SwiftUI
 import UIKit
 
-/// The quote box: a UITextView whose keyboard carries a 完成 bar. SwiftUI's keyboard toolbar
-/// often fails to appear inside a TabView; an input accessory view belongs to the text view
-/// itself, so it shows every time the keyboard does.
+/// The quote box: a UITextView whose keyboard carries the 完成 bar (`UIToolbar.doneBar`).
 struct QuoteEditor: UIViewRepresentable {
     @Binding var text: String
     /// True while the box has the keyboard; set it to false to put the keyboard away.
@@ -18,13 +16,7 @@ struct QuoteEditor: UIViewRepresentable {
         view.text = text
         view.accessibilityIdentifier = "quoteEditor"
 
-        let bar = UIToolbar()
-        bar.items = [
-            UIBarButtonItem(systemItem: .flexibleSpace),
-            UIBarButtonItem(title: "完成", primaryAction: UIAction { [weak view] _ in view?.resignFirstResponder() }),
-        ]
-        bar.sizeToFit()
-        view.inputAccessoryView = bar
+        view.inputAccessoryView = UIToolbar.doneBar { [weak view] in view?.resignFirstResponder() }
         return view
     }
 
