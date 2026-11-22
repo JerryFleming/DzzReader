@@ -44,43 +44,34 @@ struct ShareView: View {
     }
 
     private var controls: some View {
-        HStack(spacing: 8) {
-            // Symbols as labels; VoiceOver (and the UI tests) still read the Chinese names.
-            Button("▶\u{FE0E}") { editing = false; animator.start(script) }
-                .buttonStyle(.borderedProminent)
+        // The shelves' rose badges; VoiceOver (and the UI tests) still read the Chinese names.
+        // Laid out in one row (not an overlay) so the 44pt badges never overlap on narrow phones.
+        HStack(spacing: 6) {
+            Button { editing = false; animator.start(script) } label: { TopBarIcon(glyph: .text("▶")) }
                 .accessibilityLabel("开始")
-            Button("✎\u{FE0E}") { editing = false; animator.underline(script) }
-                .buttonStyle(.bordered)
+            Button { editing = false; animator.underline(script) } label: { TopBarIcon(glyph: .text("✎")) }
                 .accessibilityLabel("标线")
                 .disabled(script.highlightCount == 0)
             Spacer(minLength: 0)
-            Button("A-") { fontSize = max(QuoteCardView.fontRange.lowerBound, fontSize - 1) }
-                .buttonStyle(.bordered)
+            // Editing the text, between playback and the card's size and sharing.
+            Button { markup = QuoteScript.sample } label: { TopBarIcon(glyph: .text("↺")) }
+                .accessibilityLabel("恢复示例")
+            Button(role: .destructive) { markup = "" } label: { TopBarIcon(glyph: .text("⌫")) }
+                .disabled(markup.isEmpty)
+                .accessibilityLabel("清空")
+            Spacer(minLength: 0)
+            Button { fontSize = max(QuoteCardView.fontRange.lowerBound, fontSize - 1) } label: { TopBarIcon(glyph: .text("A-")) }
                 .accessibilityLabel("缩小字号")
-            Button("A+") { fontSize = min(QuoteCardView.fontRange.upperBound, fontSize + 1) }
-                .buttonStyle(.bordered)
+            Button { fontSize = min(QuoteCardView.fontRange.upperBound, fontSize + 1) } label: { TopBarIcon(glyph: .text("A+")) }
                 .accessibilityLabel("放大字号")
             ShareLink(item: QuoteCardImage(markup: markup, fontSize: fontSize, minWidth: cardWidth),
                       preview: SharePreview(script.source, image: Image("QuotePaper"))) {
-                Text("⇪\u{FE0E}")
+                TopBarIcon(glyph: .text("⇪"))
             }
             .accessibilityLabel("图片")
-            .buttonStyle(.bordered)
             .disabled(script.glyphs.isEmpty)
         }
-        // Editing the text: centred on the row, in the gap between playback and the card's size and sharing.
-        .overlay {
-            HStack(spacing: 8) {
-                Button("↺\u{FE0E}") { markup = QuoteScript.sample }
-                    .accessibilityLabel("恢复示例")
-                Button("⌫\u{FE0E}", role: .destructive) { markup = "" }
-                    .disabled(markup.isEmpty)
-                    .accessibilityLabel("清空")
-            }
-            .buttonStyle(.bordered)
-        }
-        .tint(.green)
-        .controlSize(.small)
+        .buttonStyle(.borderless)
     }
 
     @ViewBuilder private var card: some View {

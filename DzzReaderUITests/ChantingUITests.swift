@@ -287,6 +287,10 @@ final class ChantingUITests: XCTestCase {
     func testFormatHelpShowsSpecAndSample() {
         openChantTab()
         saveShot("chant-shelf-bar")
+        for id in ["chantImportButton", "chantFormatHelpButton"] {   // Apple's 44pt minimum tap target
+            XCTAssertGreaterThanOrEqual(app.buttons[id].frame.width, 44, id)
+            XCTAssertGreaterThanOrEqual(app.buttons[id].frame.height, 44, id)
+        }
         app.buttons["chantFormatHelpButton"].tap()
         XCTAssertTrue(app.navigationBars["诵经文本格式"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts[#"{"type": "linebreak"}"#].exists)

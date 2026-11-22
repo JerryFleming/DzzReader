@@ -65,8 +65,14 @@ final class ShareUITests: XCTestCase {
         XCTAssertEqual(reset.frame.midY, underline.frame.midY, accuracy: 2, "same row")
         XCTAssertGreaterThan(reset.frame.minX, underline.frame.maxX)
         XCTAssertLessThan(clear.frame.maxX, smaller.frame.minX)
-        XCTAssertEqual((reset.frame.minX + clear.frame.maxX) / 2, app.windows.firstMatch.frame.midX, accuracy: 2,
-                       "centred on the row")
+        XCTAssertEqual(reset.frame.minX - underline.frame.maxX, smaller.frame.minX - clear.frame.maxX, accuracy: 2,
+                       "midway between playback and the size buttons")
+        // Every control is at least Apple's 44pt minimum tap target.
+        for name in ["开始", "标线", "恢复示例", "清空", "缩小字号", "放大字号", "图片"] {
+            let frame = app.buttons[name].frame
+            XCTAssertGreaterThanOrEqual(frame.width, 44, name)
+            XCTAssertGreaterThanOrEqual(frame.height, 44, name)
+        }
         saveShot("share-editor-buttons")
 
         app.buttons["图片"].tap()

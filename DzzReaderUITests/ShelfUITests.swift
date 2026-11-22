@@ -89,6 +89,11 @@ final class ShelfUITests: XCTestCase {
         XCTAssertLessThan(field.frame.maxY, agama.frame.minY)
         XCTAssertLessThan(field.frame.maxX, importButton.frame.minX)
         XCTAssertLessThan(abs(field.frame.midY - importButton.frame.midY), 8)
+        // Top-bar buttons are at least Apple's 44pt minimum tap target.
+        for button in [importButton, app.buttons["downloadBooks"]] {
+            XCTAssertGreaterThanOrEqual(button.frame.width, 44, button.label)
+            XCTAssertGreaterThanOrEqual(button.frame.height, 44, button.label)
+        }
 
         // Bottom bar: 书架, 诵经, 分享.
         let tabs = app.tabBars.firstMatch
